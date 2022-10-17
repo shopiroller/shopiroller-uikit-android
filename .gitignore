@@ -1,8 +1,8 @@
 
 # Created by 
-https://www.toptal.com/developers/gitignore/api/android,androidstudio,java
+https://www.toptal.com/developers/gitignore/api/android,androidstudio,java,kotlin,gradle
 # Edit at 
-https://www.toptal.com/developers/gitignore?templates=android,androidstudio,java
+https://www.toptal.com/developers/gitignore?templates=android,androidstudio,java,kotlin,gradle
 
 ### Android ###
 # Built application files
@@ -46,26 +46,7 @@ captures/
 
 # IntelliJ
 *.iml
-.idea/workspace.xml
-.idea/tasks.xml
-.idea/gradle.xml
-.idea/assetWizardSettings.xml
-.idea/dictionaries
-.idea/libraries
-# Android Studio 3 in .gitignore file.
-.idea/caches
-.idea/modules.xml
-# Comment next line if keeping position of elements in Navigation Editor 
-is relevant for you
-.idea/navEditor.xml
-# Android Studio
-*.iml
-.idea
-#.idea/workspace.xml - remove # and delete .idea if it better suit your 
-needs.
-.gradle
-build/
-.navigation
+.idea/
 
 # Keystore files
 # Uncomment the following lines if you do not want to check your keystore 
@@ -105,6 +86,7 @@ lint/tmp/
 ### Android Patch ###
 gen-external-apklibs
 output.json
+app/dev/release/output-metadata.json
 
 # Replacement of .externalNativeBuild directories introduced
 # with Android Studio 3.5.
@@ -133,6 +115,38 @@ output.json
 http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
+### Kotlin ###
+# Compiled class file
+
+# Log file
+
+# BlueJ files
+
+# Mobile Tools for Java (J2ME)
+
+# Package Files #
+
+# virtual machine crash logs, see 
+http://www.java.com/en/download/help/error_hotspot.xml
+
+### Gradle ###
+.gradle
+
+# Ignore Gradle GUI config
+gradle-app.setting
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+
+# Cache of project
+.gradletasknamecache
+
+# # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
+# gradle/wrapper/gradle-wrapper.properties
+
+### Gradle Patch ###
+**/build/
+
 ### AndroidStudio ###
 # Covers files to be ignored for android development using Android Studio.
 
@@ -145,7 +159,6 @@ hs_err_pid*
 # Generated files
 
 # Gradle files
-.gradle
 
 # Signing files
 .signing/
@@ -165,6 +178,13 @@ hs_err_pid*
 *.ipr
 *~
 *.swp
+
+# Keystore files
+*.jks
+*.keystore
+
+# Google Services (e.g. APIs or Firebase)
+# google-services.json
 
 # Android Patch
 
@@ -194,6 +214,7 @@ obj/
 .idea/sqlDataSources.xml
 .idea/dynamic.xml
 .idea/uiDesigner.xml
+.idea/jarRepositories.xml
 
 # OS-specific files
 .DS_Store
@@ -239,4 +260,4 @@ fabric.properties
 !/gradle/wrapper/gradle-wrapper.jar
 
 # End of 
-https://www.toptal.com/developers/gitignore/api/android,androidstudio,java
+https://www.toptal.com/developers/gitignore/api/android,androidstudio,java,kotlin,gradle
