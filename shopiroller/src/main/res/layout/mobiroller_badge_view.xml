@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/blue"
+    android:id="@+id/main_layout"
+    android:layout_height="wrap_content">
+
+    <com.shopiroller.views.legacy.ShopirollerTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:text="SOLD OUT"
+        android:letterSpacing="0.11"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        app:sSizeType="badge"
+        android:paddingBottom="3dp"
+        android:paddingTop="3dp"
+        android:id="@+id/badge_text"/>
+
+</RelativeLayout>

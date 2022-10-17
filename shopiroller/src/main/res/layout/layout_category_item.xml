@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:id="@+id/category_item_container_view"
+    android:layout_width="100dp"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="10dp"
+    android:paddingTop="9dp"
+    android:paddingBottom="9dp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/category_card_view"
+        android:layout_width="54dp"
+        android:layout_height="54dp"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        android:innerRadius="0dp"
+        android:shape="ring"
+        app:cardBackgroundColor="@color/gray_light"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/category_image_view"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop" />
+
+    </androidx.cardview.widget.CardView>
+
+    <com.shopiroller.views.legacy.ShopirollerTextView
+        android:id="@+id/category_name_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"
+        android:ellipsize="end"
+        android:includeFontPadding="false"
+        android:maxLines="2"
+        android:visibility="visible"
+        android:textAlignment="center"
+        app:sColorType="secondary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/category_card_view"
+        app:sSizeType="regular"
+        tool:text="Web Site Paketleri" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

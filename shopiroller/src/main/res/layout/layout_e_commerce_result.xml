@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="150dp"
+        app:layout_constraintBottom_toTopOf="@+id/result_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/inner_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.shopiroller.views.legacy.ShopirollerEmptyView
+                    android:id="@+id/failed_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="270dp"
+                    app:sBackgroundImageTintColor="#f5d8d8"
+                    app:sDescription="@string/e_commerce_result_failed_description"
+                    app:sEmptyIcon="@drawable/ic_credit_card"
+                    app:sShowNoContent="true"
+                    app:sTitle="@string/e_commerce_result_failed_title" />
+
+                <com.shopiroller.views.legacy.ShopirollerEmptyView
+                    android:id="@+id/success_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:layout_marginBottom="8dp"
+                    android:visibility="gone"
+                    app:sBackgroundImageTintColor="#d8f5e5"
+                    app:sDescription="@string/e_commerce_result_success_description"
+                    app:sEmptyIcon="@drawable/ic_done"
+                    app:sTitle="@string/e_commerce_result_success_title" />
+
+
+                <com.shopiroller.views.legacy.ShopirollerTextView
+                    android:id="@+id/extra_description_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="21dp"
+                    android:gravity="center_horizontal"
+                    android:visibility="gone"
+                    app:sColorType="text"
+                    app:sSizeType="paragraph_one" />
+
+
+                <LinearLayout
+                    android:id="@+id/failed_description_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <com.shopiroller.views.legacy.ShopirollerTextView
+                        android:id="@+id/failed_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center_horizontal"
+                        android:text="@string/e_commerce_result_credit_card_failed_title"
+                        android:textStyle="bold"
+                        app:sColorType="text"
+                        app:sSizeType="paragraph_one" />
+
+                    <com.shopiroller.views.legacy.ShopirollerTextView
+                        android:id="@+id/failed_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:gravity="center_horizontal"
+                        app:sColorType="text"
+                        app:sSizeType="paragraph_one" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <com.shopiroller.views.legacy.ShopirollerButton
+        android:id="@+id/result_button"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintBottom_toTopOf="@id/continue_shopping_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/card_view"
+        app:sButtonColorType="primary"
+        app:sButtonHasRadius="true"
+        app:layout_constraintWidth_percent="0.65"
+        app:sButtonText="@string/e_commerce_result_failed_action_update_payment_method" />
+
+
+    <com.shopiroller.views.legacy.ShopirollerButton
+        android:id="@+id/continue_shopping_button"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginBottom="118.5dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/result_button"
+        app:sButtonBackgroundColor="#F4F6F6"
+        app:sButtonHasRadius="true"
+        app:layout_constraintWidth_percent="0.65"
+        app:sButtonText="@string/e_commerce_result_success_action_continue_shopping"
+        app:sButtonTextColor="@color/black" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

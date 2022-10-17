@@ -1,0 +1,83 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'com.jakewharton.butterknife'
+    id 'kotlin-kapt'
+}
+
+android {
+
+    compileSdkVersion 31
+
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        minSdkVersion 21
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "androidx.core:core-ktx:$androidx_core_version"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.work:work-runtime:2.7.1'
+    implementation "androidx.browser:browser:1.2.0"
+
+    implementation 'com.google.android.material:material:1.2.1'
+    implementation "androidx.constraintlayout:constraintlayout:$constraintlayout_version"
+
+    implementation "org.greenrobot:eventbus:${eventbus_version}"
+
+    implementation "com.jakewharton:butterknife:$butterknife_version"
+    kapt "com.jakewharton:butterknife-compiler:$butterknife_version"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$butterknife_version"
+
+    implementation 'com.facebook.shimmer:shimmer:0.4.0@aar'
+
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+
+    implementation "com.squareup.retrofit2:retrofit:${retrofit_version}"
+    implementation "com.squareup.retrofit2:converter-gson:${retrofit_version}"
+
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2'
+
+    implementation "com.afollestad.material-dialogs:core:${material_dialogs_version}"
+    implementation "com.afollestad.material-dialogs:commons:${material_dialogs_version}"
+
+    implementation "com.squareup.retrofit2:retrofit:${retrofit_version}"
+    implementation "com.squareup.retrofit2:converter-gson:${retrofit_version}"
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.12.1'
+
+    implementation 'com.braintreepayments.api:braintree:3.14.1'
+
+    implementation 'com.stripe:stripe-android:20.8.0'
+
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+    implementation('com.airbnb.android:lottie:2.5.6') { exclude group: 'com.android.support' }
+
+    implementation 'io.paperdb:paperdb:2.7.1'
+
+    implementation 'com.github.delight-im:Android-AdvancedWebView:v3.2.0'
+    implementation 'com.github.chrisbanes:PhotoView:2.0.0'
+    implementation "com.miguelcatalan:materialsearchview:1.4.0" //just using res
+    implementation 'com.google.guava:guava:29.0-android'
+
+    implementation "com.github.ybq:Android-SpinKit:$spinkit_version"
+
+    implementation "com.android.support:multidex:$multidex_version"
+
+    implementation 'com.google.android.exoplayer:exoplayer:2.18.1'
+    implementation 'com.google.android.exoplayer:extension-okhttp:2.11.0'
+    implementation 'com.google.android.exoplayer:exoplayer-hls:2.18.1'
+}

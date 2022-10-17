@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/showcase_constraint_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.shopiroller.views.legacy.ShopirollerTextView
+        android:id="@+id/showcase_title_text_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="21dp"
+        android:layout_marginEnd="15dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        app:sColorType="primary"
+        app:layout_constraintEnd_toStartOf="@+id/category_see_all_linear_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:sSizeType="head_two"
+        tools:text="Vitrin" />
+
+    <LinearLayout
+        android:id="@+id/category_see_all_linear_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
+        android:orientation="horizontal"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@id/showcase_title_text_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/showcase_title_text_view">
+
+        <com.shopiroller.views.legacy.ShopirollerTextView
+            android:id="@+id/category_see_all_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="10dp"
+            android:gravity="top"
+            android:text="@string/e_commerce_list_see_all"
+            app:sColorType="text"
+            app:sSizeType="regular" />
+
+        <ImageView
+            android:id="@+id/right_arrow_icon"
+            android:layout_width="10dp"
+            android:layout_height="15dp"
+            android:src="@drawable/right_arrow_icon" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/showcase_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:overScrollMode="never"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/showcase_title_text_view" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

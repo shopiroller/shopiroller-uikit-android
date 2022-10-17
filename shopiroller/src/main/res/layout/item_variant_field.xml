@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.shopiroller.views.legacy.ShopirollerTextView
+        android:id="@+id/variant_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/ecommerce_product_detail_item_background"
+        android:clickable="true"
+        android:drawableEnd="@drawable/ic_keyboard_arrow_down_24dp"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:lineSpacingExtra="4.5sp"
+        android:maxLines="1"
+        android:paddingStart="15dp"
+        android:text="Variant"
+        app:sColorType="primary"
+        app:sSizeType="heading_two" />
+
+</FrameLayout>

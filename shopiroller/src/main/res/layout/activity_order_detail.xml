@@ -1,0 +1,709 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <com.shopiroller.views.legacy.ShopirollerToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.shopiroller.views.legacy.ShopirollerSwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/bottom_layout"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:fillViewport="true">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/main_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:clipToPadding="false"
+                android:paddingTop="10dp"
+                android:paddingBottom="13dp"
+                android:visibility="gone">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/preview_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:drawableLeft="@drawable/ic_info_outline_white_24dp"
+                        android:drawablePadding="10dp"
+                        android:drawableTint="#28429C"
+                        android:text="Bu ekranda yer alan veriler örnek olarak gösterilmektedir. Uygulamanızda kullanıcıya ait veriler gösterilecektir."
+                        android:textColor="#28429C" />
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/order_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@color/white"
+                    android:paddingBottom="3dp"
+                    android:visibility="visible"
+                    app:cardCornerRadius="2.5dp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintTop_toBottomOf="@id/preview_layout">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.shopiroller.views.legacy.ShopirollerTextView
+                            android:id="@+id/order_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="38dp"
+                            android:gravity="center_vertical"
+                            android:text="@string/e_commerce_order_details_information_title"
+                            app:sColorType="primary"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:sSizeType="head_two" />
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/order_status_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingEnd="15dp"
+                            app:layout_constraintTop_toBottomOf="@id/order_title">
+
+                            <com.shopiroller.views.legacy.ShopirollerTextView
+                                android:id="@+id/order_code"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:includeFontPadding="false"
+                                android:text="#MBRRRRRR"
+                                app:sColorType="text"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="@id/order_status_image"
+                                app:sSizeType="paragraph_one" />
+
+                            <com.shopiroller.views.legacy.ShopirollerTextView
+                                android:id="@+id/order_status"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:includeFontPadding="false"
+                                android:text="Payment Approved"
+                                app:sColorType="text"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/order_code"
+                                app:sSizeType="paragraph_one" />
+
+
+                            <com.shopiroller.views.legacy.ShopirollerTextView
+                                android:id="@+id/order_date"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                app:sColorType="text"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/order_status"
+                                app:sSizeType="paragraph_one"
+                                tools:text="20/11/2018" />
+
+                            <com.shopiroller.views.legacy.ShopirollerTextView
+                                android:id="@+id/order_user_note"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:visibility="gone"
+                                app:sColorType="text"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/order_date"
+                                tools:text="@string/e_commerce_order_details_user_note_sub_title"
+                                app:sSizeType="paragraph_one"/>
+
+                            <ImageView
+                                android:id="@+id/order_status_image"
+                                android:layout_width="60dp"
+                                android:layout_height="73dp"
+                                android:background="@drawable/ecommerce_product_empty_background"
+                                android:paddingLeft="10dp"
+                                android:paddingTop="8dp"
+                                android:paddingRight="14dp"
+                                android:paddingBottom="16dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <LinearLayout
+                    android:id="@+id/cargo_main_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintTop_toBottomOf="@id/order_layout">
+
+                    <View
+                        android:id="@+id/cargo_divider"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.7dp"
+                        android:layout_marginTop="25.5dp"
+                        android:background="#969fa2" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cargo_track_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="25.5dp"
+                        android:layout_marginEnd="16dp">
+
+                        <com.shopiroller.views.legacy.ShopirollerTextView
+                            android:id="@+id/tracking_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="38dp"
+                            android:gravity="center_vertical"
+                            android:text="@string/e_commerce_order_details_cargo_title"
+                            app:sColorType="primary"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:sSizeType="head_two" />
+
+                        <com.shopiroller.views.legacy.ShopirollerTextView
+                            android:id="@+id/cargo_company_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:includeFontPadding="false"
+                            android:text="Aras Kargo"
+                            app:sColorType="text"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tracking_title"
+                            app:sSizeType="paragraph_one" />
+
+                        <com.shopiroller.views.legacy.ShopirollerTextView
+                            android:id="@+id/cargo_tracking_number"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:includeFontPadding="false"
+                            android:text="123123123"
+                            app:sColorType="text"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/cargo_company_name"
+                            app:sSizeType="paragraph_one" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/payment_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.7dp"
+                    android:layout_marginTop="25.5dp"
+                    android:background="#969fa2"
+                    app:layout_constraintTop_toBottomOf="@id/cargo_main_layout" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/payment_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="25.5dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@color/white"
+                    android:visibility="visible"
+                    app:cardCornerRadius="2.5dp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintTop_toBottomOf="@id/payment_divider">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.shopiroller.views.legacy.ShopirollerTextView
+                            android:id="@+id/payment_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/e_commerce_order_details_payment_information_title"
+                            app:sColorType="primary"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:sSizeType="head_two" />
+
+                        <com.shopiroller.views.legacy.ShopirollerTextView
+                            android:id="@+id/payment_method_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            app:sColorType="text"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/payment_title"
+                            app:sSizeType="paragraph_one" />
+
+                        <com.shopiroller.views.legacy.ShopirollerTextView
+                            android:id="@+id/payment_method_description"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="20dp"
+                            android:lineSpacingExtra="3sp"
+                            android:visibility="gone"
+                            app:sColorType="text"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/payment_method_title"
+                            app:sSizeType="paragraph_one" />
+
+                        <LinearLayout
+                            android:id="@+id/bank_transfer_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:orientation="vertical"
+                            android:visibility="gone"
+                            app:layout_constraintTop_toBottomOf="@id/payment_method_title">
+
+                            <com.shopiroller.views.legacy.ShopirollerTextView
+                                android:id="@+id/bank_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:includeFontPadding="false"
+                                android:text="Aras Kargo"
+                                app:sColorType="text"
+                                app:sSizeType="paragraph_one" />
+
+                            <com.shopiroller.views.legacy.ShopirollerTextView
+                                android:id="@+id/receiver_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:includeFontPadding="false"
+                                android:text="Aras Kargo"
+                                app:sColorType="text"
+                                app:sSizeType="paragraph_one" />
+
+                            <com.shopiroller.views.legacy.ShopirollerTextView
+                                android:id="@+id/bank_account"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:includeFontPadding="false"
+                                android:text="Aras Kargo"
+                                app:sColorType="text"
+                                app:sSizeType="paragraph_one" />
+
+                            <com.shopiroller.views.legacy.ShopirollerTextView
+                                android:id="@+id/bank_iban"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:includeFontPadding="false"
+                                android:text="Aras Kargo"
+                                app:sColorType="text"
+                                app:sSizeType="paragraph_one" />
+
+                        </LinearLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <View
+                    android:id="@+id/address_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.7dp"
+                    android:layout_marginTop="25.5dp"
+                    android:background="#969fa2"
+                    app:layout_constraintTop_toBottomOf="@id/payment_layout" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cargo_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="25.5dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@color/white"
+                    android:visibility="visible"
+                    app:cardCornerRadius="2.5dp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintTop_toBottomOf="@id/address_divider">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.shopiroller.views.legacy.ShopirollerTextView
+                            android:id="@+id/cargo_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="38dp"
+                            android:gravity="center_vertical"
+                            android:text="@string/e_commerce_order_details_address_information_title"
+                            app:sColorType="primary"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:sSizeType="head_two" />
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/delivery_card_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/e_commerce_order_detail_address_background"
+                            app:layout_constraintTop_toBottomOf="@id/cargo_title">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <com.shopiroller.views.legacy.ShopirollerTextView
+                                    android:id="@+id/delivery_address_title"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="17dp"
+                                    android:paddingStart="15dp"
+                                    android:text="@string/e_commerce_order_details_delivery_address_title"
+                                    app:sColorType="primary"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:sSizeType="heading_two" />
+
+                                <com.shopiroller.views.legacy.ShopirollerTextView
+                                    android:id="@+id/delivery_address_description"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="20dp"
+                                    android:layout_marginBottom="19dp"
+                                    android:lineSpacingExtra="3sp"
+                                    android:paddingStart="15dp"
+                                    android:paddingTop="5dp"
+                                    android:paddingEnd="25dp"
+                                    app:sColorType="text"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toStartOf="@id/delivery_background_image_view"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@id/delivery_address_title"
+                                    app:sSizeType="paragraph_one"
+                                    tools:text="Akdeniz Üniversitesi Antalya Teknokenti Uluğbey Arge 2 Binası K:1 No:107 MobiRoller - Konyataltı/Antalya
+Bekir Çelik - 0(542) 378 87 81" />
+
+                                <ImageView
+                                    android:id="@+id/delivery_background_image_view"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:layout_marginEnd="25dp"
+                                    android:src="@drawable/gray_circle"
+                                    android:tint="#f8e7d8"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <ImageView
+                                    android:layout_width="0dp"
+                                    android:layout_height="0dp"
+                                    android:padding="10dp"
+                                    app:layout_constraintBottom_toBottomOf="@id/delivery_background_image_view"
+                                    app:layout_constraintEnd_toEndOf="@id/delivery_background_image_view"
+                                    app:layout_constraintStart_toStartOf="@id/delivery_background_image_view"
+                                    app:layout_constraintTop_toTopOf="@id/delivery_background_image_view"
+                                    app:srcCompat="@drawable/ic_truck_icon" />
+
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/billing_card_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="9dp"
+                            android:background="@drawable/e_commerce_order_detail_address_background"
+                            app:layout_constraintTop_toBottomOf="@+id/delivery_card_view">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <com.shopiroller.views.legacy.ShopirollerTextView
+                                    android:id="@+id/billing_address_title"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="18dp"
+                                    android:paddingStart="15dp"
+                                    android:text="@string/e_commerce_order_details_invoice_address_title"
+                                    app:sColorType="primary"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:sSizeType="heading_two" />
+
+                                <com.shopiroller.views.legacy.ShopirollerTextView
+                                    android:id="@+id/billing_address_description"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="20dp"
+                                    android:layout_marginBottom="19dp"
+                                    android:lineSpacingExtra="3sp"
+                                    android:paddingStart="15dp"
+                                    android:paddingTop="5dp"
+                                    android:paddingEnd="25dp"
+                                    app:sColorType="text"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toStartOf="@+id/billing_background_image_view"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@id/billing_address_title"
+                                    app:sSizeType="paragraph_one"
+                                    tools:text="Erenköy Mahallesi 4858 Sk. No: 18 Kepez/Antalya
+Bekir Çelik - 0(542) 378 87 81" />
+
+                                <ImageView
+                                    android:id="@+id/billing_background_image_view"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:layout_marginEnd="25dp"
+                                    android:src="@drawable/gray_circle"
+                                    android:tint="#f8e7d8"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <ImageView
+                                    android:layout_width="0dp"
+                                    android:layout_height="0dp"
+                                    android:padding="10dp"
+                                    app:layout_constraintBottom_toBottomOf="@id/billing_background_image_view"
+                                    app:layout_constraintEnd_toEndOf="@id/billing_background_image_view"
+                                    app:layout_constraintStart_toStartOf="@id/billing_background_image_view"
+                                    app:layout_constraintTop_toTopOf="@id/billing_background_image_view"
+                                    app:srcCompat="@drawable/ic_no_billing_icon" />
+
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+                <View
+                    android:id="@+id/products_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.7dp"
+                    android:layout_marginTop="14.5dp"
+                    android:background="#969fa2"
+                    app:layout_constraintTop_toBottomOf="@id/cargo_layout" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/product_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14.5dp"
+                    android:background="@color/white"
+                    android:paddingStart="8.5dp"
+                    android:paddingEnd="8.5dp"
+                    android:visibility="visible"
+                    app:cardCornerRadius="2.5dp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintTop_toBottomOf="@id/products_divider">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <com.shopiroller.views.legacy.ShopirollerTextView
+                            android:id="@+id/product_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/e_commerce_order_details_product_title"
+                            android:layout_marginStart="16dp"
+                            app:sColorType="primary"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:sSizeType="head_two" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/product_list"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="10dp"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="8.5dp"
+                            android:paddingEnd="8.5dp" />
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </com.shopiroller.views.legacy.ShopirollerSwipeRefreshLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingStart="16dp"
+            android:paddingTop="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="16dp"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:id="@+id/subtotal_description_layout"
+                android:layout_height="wrap_content">
+
+                <com.shopiroller.views.legacy.ShopirollerTextView
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:id="@+id/product_total_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:sSizeType="paragraph_one"
+                    app:sColorType="secondary"
+                    android:text="@string/e_commerce_shopping_cart_products_price"
+                    app:layout_constraintBottom_toTopOf="@id/coupon_discount_price_description"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <com.shopiroller.views.legacy.ShopirollerTextView
+                    android:id="@+id/coupon_discount_price_description"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/e_commerce_shopping_cart_bottom_view_coupon_discount"
+                    android:visibility="gone"
+                    app:sSizeType="paragraph_one"
+                    app:sColorType="secondary"
+                    app:layout_constraintBottom_toTopOf="@+id/shipping_total_description"
+                    app:layout_constraintTop_toBottomOf="@+id/product_total_description"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <com.shopiroller.views.legacy.ShopirollerTextView
+                    android:id="@+id/shipping_total_description"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/e_commerce_shopping_cart_shipping_price"
+                    app:sSizeType="paragraph_one"
+                    app:sColorType="secondary"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/coupon_discount_price_description"
+                    app:layout_constraintVertical_chainStyle="packed" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/amount_text_container"
+                android:layout_width="wrap_content"
+                android:visibility="visible"
+                app:layout_constraintStart_toEndOf="@id/subtotal_description_layout"
+                app:layout_constraintTop_toTopOf="@+id/subtotal_description_layout"
+                android:layout_marginStart="5dp"
+                app:layout_constraintBottom_toBottomOf="@+id/subtotal_description_layout"
+                android:layout_height="0dp">
+
+                <com.shopiroller.views.legacy.ShopirollerTextView
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:id="@+id/product_total_description_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:sSizeType="paragraph_one"
+                    app:sColorType="secondary"
+                    tools:text=": 140 TL"
+                    app:layout_constraintBottom_toTopOf="@id/coupon_discount_price_text_view"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <com.shopiroller.views.legacy.ShopirollerTextView
+                    android:id="@+id/coupon_discount_price_text_view"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text=": 140 TL"
+                    app:sSizeType="paragraph_one"
+                    android:visibility="gone"
+                    app:sColorType="secondary"
+                    app:layout_constraintBottom_toTopOf="@id/shipping_total_description_text_view"
+                    app:layout_constraintTop_toBottomOf="@+id/product_total_description_text_view" />
+
+                <com.shopiroller.views.legacy.ShopirollerTextView
+                    android:id="@+id/shipping_total_description_text_view"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text=": 140 TL"
+                    app:sSizeType="paragraph_one"
+                    app:sColorType="secondary"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.shopiroller.views.legacy.ShopirollerTextView
+                android:id="@+id/total_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:sColorType="secondary"
+                app:sSizeType="paragraph_one"
+                android:text="@string/e_commerce_shopping_cart_total_price"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:layout_constraintBottom_toTopOf="@+id/total"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.shopiroller.views.legacy.ShopirollerTextView
+                android:id="@+id/total"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="75,80 TL"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="19sp"
+                android:autoSizeMaxTextSize="100sp"
+                android:autoSizeStepGranularity="2sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_bold"
+                android:maxLines="1"
+                android:gravity="end"
+                app:layout_constraintStart_toEndOf="@id/amount_text_container"
+                app:layout_constraintBottom_toTopOf="@id/taxes_included_description"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/total_description"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

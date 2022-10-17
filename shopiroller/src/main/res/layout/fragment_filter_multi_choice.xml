@@ -1,0 +1,48 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="com.shopiroller.fragments.filter.FilterMultiChoiceFragment">
+
+    <EditText
+        android:id="@+id/search_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/filter_rectangle_background"
+        android:drawableStart="@drawable/ic_baseline_search_24"
+        android:drawablePadding="10dp"
+        android:drawableTint="#455154"
+        android:hint="@string/e_commerce_filter_multi_choice_search"
+        android:inputType="text"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:textColorHint="#455154"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:targetApi="m" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/multi_choice_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="5dp"
+        android:overScrollMode="never"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@id/apply_button"
+        app:layout_constraintTop_toBottomOf="@+id/search_edit_text"
+        tools:listitem="@layout/e_commerce_item_filter_multi_choice" />
+
+    <com.shopiroller.views.legacy.ShopirollerButton
+        android:id="@+id/apply_button"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:sButtonColorType="primary"
+        app:sButtonText="@string/e_commerce_filter_multi_choice_apply" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

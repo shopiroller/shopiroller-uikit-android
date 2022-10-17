@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:id="@+id/scroll_view"
+        android:fillViewport="true"
+        android:nestedScrollingEnabled="true"
+        app:layout_constraintBottom_toTopOf="@id/bottom_layout"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipChildren="false"
+            android:clipToPadding="false">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/delivery_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:visibility="gone"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintVertical_chainStyle="spread_inside">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/delivery_title_layout"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp">
+
+                        <com.shopiroller.views.legacy.ShopirollerTextView
+                            android:layout_width="wrap_content"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:layout_height="match_parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:sColorType="primary"
+                            app:sSizeType="heading_two"
+                            android:text="@string/e_commerce_address_selection_shipping_address_title" />
+
+                        <com.shopiroller.views.legacy.ShopirollerTextView
+                            android:id="@+id/action_add_new_shipping_address"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:sColorType="primary"
+                            app:sSizeType="paragraph_one"
+                            android:paddingRight="10dp"
+                            android:paddingLeft="10dp"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:text="@string/e_commerce_address_selection_add_new_address"
+                            app:layout_constraintEnd_toEndOf="parent"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/delivery_empty_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        app:layout_constraintTop_toBottomOf="@id/delivery_title_layout">
+
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            android:background="@drawable/circle_gray_background"
+                            android:backgroundTint="#F8E7D8"
+                            android:layout_marginTop="40dp"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_truck_icon"
+                            android:padding="10dp"
+                            android:tint="@color/black"
+                            android:id="@+id/delivery_empty_image_view"
+                            />
+
+                        <com.shopiroller.views.legacy.ShopirollerTextView
+                            android:layout_width="wrap_content"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            android:layout_height="wrap_content"
+                            app:sColorType="primary"
+                            android:layout_marginTop="13dp"
+                            app:layout_constraintTop_toBottomOf="@+id/delivery_empty_image_view"
+                            app:sSizeType="head_two"
+                            android:id="@+id/delivery_empty_title"
+                            android:text="@string/e_commerce_address_selection_no_shipping_address"
+                            />
+                        <com.shopiroller.views.legacy.ShopirollerButton
+                            android:layout_width="130dp"
+                            android:layout_height="28dp"
+                            app:layout_constraintTop_toBottomOf="@+id/delivery_empty_title"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            android:layout_marginBottom="60dp"
+                            android:id="@+id/action_add_new_shipping_address_empty"
+                            app:sButtonText="@string/e_commerce_address_selection_no_shipping_address_button"
+                            app:sButtonColorType="primary"
+                            android:layout_marginTop="18dp"
+                            app:sButtonHasRadius="true"
+                            />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/delivery_content_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:background="@drawable/e_commerce_address"
+                        android:visibility="gone"
+                        app:layout_constraintTop_toBottomOf="@id/delivery_title_layout">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/shipping_content_inner_layout"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="15dp"
+                            android:paddingBottom="20dp"
+                            android:layout_marginEnd="15dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <com.shopiroller.views.legacy.ShopirollerTextView
+                                app:layout_constraintTop_toTopOf="parent"
+                                android:id="@+id/shipping_address_title"
+                                android:layout_width="0dp"
+                                app:sColorType="primary"
+                                app:sSizeType="heading_two"
+                                app:layout_constraintStart_toStartOf="parent"
+                                android:layout_height="wrap_content" />
+
+                            <com.shopiroller.views.legacy.ShopirollerTextView
+                                android:id="@+id/shipping_address_description_one"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                android:lineSpacingExtra="3sp"
+                                android:maxLines="1"
+                                android:layout_marginTop="8dp"
+                                android:ellipsize="end"
+                                app:sSizeType="paragraph_one"
+                                app:sColorType="text"
+                                app:layout_constraintTop_toBottomOf="@id/shipping_address_title" />
+
+                            <com.shopiroller.views.legacy.ShopirollerTextView
+                                android:id="@+id/shipping_address_description"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                app:layout_constraintStart_toStartOf="parent"
+                                android:maxLines="5"
+                                app:layout_constraintEnd_toStartOf="@+id/shipping_address_action_edit"
+                                android:lineSpacingExtra="3sp"
+                                app:sSizeType="paragraph_one"
+                                app:sColorType="text"
+                                app:layout_constraintTop_toBottomOf="@id/shipping_address_description_one" />
+
+                            <ImageView
+                                android:id="@+id/shipping_address_action_edit"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:background="@drawable/circle_gray_background"
+                                android:backgroundTint="#f4f6f6"
+                                app:srcCompat="@drawable/ic_edit_white_24dp"
+                                android:padding="6dp"
+                                android:tint="@color/black"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"/>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <com.shopiroller.views.legacy.ShopirollerTextView
+                        android:id="@+id/other_shipping_addresses"
+                        android:layout_width="match_parent"
+                        android:layout_height="33dp"
+                        android:visibility="gone"
+                        android:layout_marginTop="16dp"
+                        android:gravity="center"
+                        android:lineSpacingExtra="3sp"
+                        android:text="@string/e_commerce_address_selection_other_addresses"
+                        app:sColorType="primary"
+                        app:sSizeType="heading_two"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/delivery_content_layout" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/billing_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="10dp"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/delivery_layout"
+                app:layout_constraintVertical_chainStyle="spread_inside">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/billing_title_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="12dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:paddingBottom="12dp">
+
+                        <com.shopiroller.views.legacy.ShopirollerTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:sSizeType="heading_two"
+                            app:sColorType="primary"
+                            android:text="@string/e_commerce_address_selection_invoice_address_title" />
+
+                        <com.shopiroller.views.legacy.ShopirollerTextView
+                            android:id="@+id/action_add_new_billing_address"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:sColorType="primary"
+                            app:sSizeType="paragraph_one"
+                            android:paddingRight="10dp"
+                            android:paddingLeft="10dp"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:text="@string/e_commerce_address_selection_add_new_address"
+                            app:layout_constraintEnd_toEndOf="parent"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/billing_empty_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="15dp"
+                        android:visibility="visible"
+                        app:layout_constraintTop_toBottomOf="@id/billing_title_layout">
+
+
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            android:backgroundTint="#F8E7D8"
+                            android:background="@drawable/circle_gray_background"
+                            android:layout_marginTop="40dp"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_outline_file_copy_24"
+                            android:padding="8dp"
+                            android:tint="@color/black"
+                            android:id="@+id/billing_empty_image_view"
+                            />
+
+                        <com.shopiroller.views.legacy.ShopirollerTextView
+                            android:layout_width="wrap_content"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            android:layout_height="wrap_content"
+                            app:sColorType="primary"
+                            android:layout_marginTop="13dp"
+                            app:layout_constraintTop_toBottomOf="@+id/billing_empty_image_view"
+                            app:sSizeType="head_two"
+                            android:id="@+id/billing_empty_title"
+                            android:text="@string/e_commerce_address_selection_no_invoice_address"
+                            />
+
+                        <com.shopiroller.views.legacy.ShopirollerButton
+                            android:layout_width="130dp"
+                            android:layout_height="28dp"
+                            android:id="@+id/action_add_new_billing_address_empty"
+                            app:layout_constraintTop_toBottomOf="@+id/billing_empty_title"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:mButtonText="@string/e_commerce_address_selection_no_invoice_address_button"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            android:layout_marginBottom="60dp"
+                            app:sButtonColorType="primary"
+                            android:layout_marginTop="18dp"
+                            app:sButtonHasRadius="true"
+                            />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/billing_content_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:visibility="gone"
+                        android:background="@drawable/e_commerce_address"
+                        app:layout_constraintTop_toBottomOf="@id/billing_title_layout">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/billing_content_inner_layout"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginEnd="15dp"
+                            android:paddingBottom="15dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <com.shopiroller.views.legacy.ShopirollerTextView
+                                app:layout_constraintTop_toTopOf="parent"
+                                android:id="@+id/billing_address_title"
+                                android:layout_width="0dp"
+                                app:sColorType="primary"
+                                app:sSizeType="heading_two"
+                                app:layout_constraintStart_toStartOf="parent"
+                                android:layout_height="wrap_content" />
+
+                            <com.shopiroller.views.legacy.ShopirollerTextView
+                                android:id="@+id/billing_address_description_one"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                android:lineSpacingExtra="3sp"
+                                android:maxLines="1"
+                                android:ellipsize="end"
+                                android:layout_marginTop="8dp"
+                                app:sSizeType="paragraph_one"
+                                app:sColorType="text"
+                                app:layout_constraintTop_toBottomOf="@id/billing_address_title" />
+
+
+                            <com.shopiroller.views.legacy.ShopirollerTextView
+                                android:id="@+id/billing_address_description"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                app:layout_constraintStart_toStartOf="parent"
+                                android:lineSpacingExtra="3sp"
+                                app:layout_constraintEnd_toStartOf="@+id/billing_address_action_edit"
+                                android:maxLines="5"
+                                app:sSizeType="paragraph_one"
+                                app:sColorType="text"
+                                app:layout_constraintTop_toBottomOf="@id/billing_address_description_one" />
+
+                            <ImageView
+                                android:id="@+id/billing_address_action_edit"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:background="@drawable/circle_gray_background"
+                                android:backgroundTint="#f4f6f6"
+                                app:srcCompat="@drawable/ic_edit_white_24dp"
+                                android:padding="6dp"
+                                android:tint="@color/black"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    <com.shopiroller.views.legacy.ShopirollerTextView
+                        android:id="@+id/other_billing_addresses"
+                        android:layout_width="match_parent"
+                        android:layout_height="33dp"
+                        android:visibility="gone"
+                        android:layout_marginTop="16dp"
+                        android:gravity="center"
+                        android:lineSpacingExtra="3sp"
+                        android:text="@string/e_commerce_address_selection_other_addresses"
+                        app:sColorType="primary"
+                        app:sSizeType="heading_two"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/billing_content_layout" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/scroll_view"
+        app:layout_constraintVertical_chainStyle="spread_inside">
+
+        <RelativeLayout
+            android:id="@+id/top_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/e_commerce_gradient"/>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/continue_layout"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="32dp">
+
+            <com.shopiroller.views.legacy.ShopirollerTextView
+                android:layout_width="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/continue_button"
+                android:text="@string/e_commerce_address_selection_next_step"
+                app:sSizeType="regular"
+                android:layout_marginEnd="16dp"
+                app:sColorType="text"
+                android:layout_height="wrap_content"/>
+
+            <com.shopiroller.views.legacy.ShopirollerFloatingActionButton
+                android:id="@+id/continue_button"
+                android:layout_width="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginEnd="16dp"
+                android:layout_height="wrap_content"
+                android:rotation="180"
+                app:elevation="0dp"
+                app:sFABColorType="primary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@drawable/ic_arrow_back_white_24dp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">#212121</item>
+        <item name="colorPrimaryVariant">#212121</item>
+        <item name="colorSecondary">#212121</item>
+        <item name="colorSecondaryVariant">#212121</item>
+
+    </style>
+</resources>

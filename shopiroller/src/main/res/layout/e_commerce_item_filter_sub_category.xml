@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="32dp"
+    android:paddingTop="21dp"
+    android:paddingEnd="22dp">
+
+    <com.shopiroller.views.legacy.ShopirollerTextView
+        android:id="@+id/name_text_view"
+        style="@style/BodyS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/neutral_one"
+        app:sColorType="primary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:sSizeType="paragraph_one"
+        tools:text="Para Birimi" />
+
+    <ImageView
+        android:id="@+id/selected_image_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_check_24dp"
+        android:tint="#8a000000"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@id/name_text_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/name_text_view" />
+</androidx.constraintlayout.widget.ConstraintLayout>

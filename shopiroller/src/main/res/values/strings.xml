@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">ShopirollerSDK</string>
+    <string name="e_commerce_list_no_product_title">No products added.</string>
+    <string name="e_commerce_list_no_product_description">There are currently no added items in the shop.</string>
+    <string name="e_commerce_list_sold_out_badge">Sold Out</string>
+    <string name="e_commerce_list_sale_badge">Sale</string>
+    <string name="e_commerce_list_free_shipping_badge">Free Shipping</string>
+    <string name="e_commerce_list_categories">Categories</string>
+    <string name="e_commerce_list_see_all">See All</string>
+    <string name="e_commerce_list_explore">Explore</string>
+
+    <string name="e_commerce_category_list_categories_title">Categories</string>
+    <string name="e_commerce_category_list_category_item_count">%1$s items</string>
+    <string name="e_commerce_category_list_see_all_product_for_category">See All %1$s Products</string>
+
+    <string name="e_commerce_category_product_list_no_empty_view_title">No products added</string>
+    <string name="e_commerce_category_product_list_no_empty_view_description">There are currently no added items in the shop.</string>
+    <string name="e_commerce_category_product_list_order">Order</string>
+    <string name="e_commerce_category_product_list_filter">Filter</string>
+    <string name="e_commerce_category_product_list_order_dialog_title">Order</string>
+    <string name="e_commerce_category_product_list_order_dialog_most_shipped">Best Sellers</string>
+    <string name="e_commerce_category_product_list_order_dialog_price_increasing">Price Increasing</string>
+    <string name="e_commerce_category_product_list_order_dialog_price_decreasing">Price Decreasing</string>
+    <string name="e_commerce_category_product_list_order_dialog_most_recent_added">Most Recent Added</string>
+
+    <string name="e_commerce_product_search_no_result_title">No result for %1$s</string>
+    <string name="e_commerce_product_search_no_result_description">No results for your search. Try other search terms.</string>
+
+    <string name="e_commerce_product_detail_quantity">Quantity</string>
+    <string name="e_commerce_product_detail_description">Product Description</string>
+    <string name="e_commerce_product_detail_return_terms">Return &amp; Exchange Terms</string>
+    <string name="e_commerce_product_detail_delivery_conditions">Delivery Conditions</string>
+    <string name="e_commerce_product_detail_terms_delivery_conditions_popup_button">Back to product</string>
+    <string name="e_commerce_product_detail_buy_now">Add to Cart</string>
+    <string name="e_commerce_product_detail_maximum_product_message">You can purchase up to %s items from this product.</string>
+    <string name="e_commerce_product_detail_sold_out_button">Sold Out</string>
+    <string name="e_commerce_product_detail_sold_out_badge">Sold Out</string>
+    <string name="e_commerce_product_detail_free_shipping_badge">Free Shipping</string>
+    <string name="e_commerce_product_detail_does_not_exist_variant_error">Variant Error</string>
+    <string name="e_commerce_product_detail_does_not_exist_variant_description">You have selected a variant that is not in the product. Please change your variant selection.</string>
+    <string name="e_commerce_product_detail_maximum_product_limit_title">Maximum Product Limit</string>
+    <string name="e_commerce_product_detail_maximum_product_limit_description">You reached maximum product buying limit. You can added max %s products in shopping cart</string>
+    <string name="e_commerce_product_detail_maximum_product_limit_button">Back to product</string>
+    <string name="e_commerce_product_detail_out_of_stock_title">Out of Stock</string>
+    <string name="e_commerce_product_detail_out_of_stock_description">You can\'t order this product anymore as it is out of stock</string>
+    <string name="e_commerce_product_detail_out_of_stock_button">Back to product list</string>
+    <string name="e_commerce_product_detail_added_to_shopping_cart_button">Added to Shopping cart</string>
+    <string name="e_commerce_product_detail_cargo_warning">Cargo Fee <![CDATA[<b>%s</b>]]></string>
+    <string name="e_commerce_product_detail_not_found_product_title">Not Found</string>
+    <string name="e_commerce_product_detail_not_found_product_description">The page you are looking for does not exist or may have been removed.</string>
+    <string name="e_commerce_product_detail_not_found_product_button">Understood</string>
+
+    <string name="e_commerce_address_selection_title">Shipping Information</string>
+    <string name="e_commerce_address_selection_shipping_address_title">Shipping Address</string>
+    <string name="e_commerce_address_selection_add_new_address">Add</string>
+    <string name="e_commerce_address_selection_no_shipping_address">No delivery address.</string>
+    <string name="e_commerce_address_selection_no_shipping_address_button">Add New Address</string>
+    <string name="e_commerce_address_selection_other_addresses">Other Addresses</string>
+    <string name="e_commerce_address_selection_invoice_address_title">Invoice Address</string>
+    <string name="e_commerce_address_selection_no_invoice_address">No invoice address.</string>
+    <string name="e_commerce_address_selection_no_invoice_address_button">Add New Address</string>
+    <string name="e_commerce_address_selection_next_step">Next Step: Payment Method</string>
+    <string name="e_commerce_address_selection_address_shipping_popup_title">Select Address</string>
+    <string name="e_commerce_address_selection_address_shipping_popup_description">Select Address description</string>
+    <string name="e_commerce_address_selection_address_invoice_popup_title">Select Address</string>
+    <string name="e_commerce_address_selection_address_invoice_popup_description">Select Address description</string>
+
+    <string name="e_commerce_payment_method_selection_title">Payment</string>
+    <string name="e_commerce_payment_method_selection_empty_view_title">There is no payment method yet.</string>
+    <string name="e_commerce_payment_method_selection_empty_view_description">The store owner has not added a payment method yet.</string>
+    <string name="e_commerce_payment_method_selection_button_title">Select Payment Method</string>
+    <string name="e_commerce_payment_method_selection_payment_type_popup_title">Select Payment</string>
+    <string name="e_commerce_payment_method_selection_payment_type_popup_description">Select your best payment method.</string>
+    <string name="e_commerce_payment_method_selection_next_step">Next Step: Order Info</string>
+    <string name="e_commerce_payment_method_selection_pay_at_door">Cash on Delivery</string>
+    <string name="e_commerce_payment_method_selection_transfer">Transfer</string>
+    <string name="e_commerce_payment_method_selection_credit_card">Credit Card</string>
+    <string name="e_commerce_payment_method_selection_paypal">PayPal</string>
+    <string name="e_commerce_payment_method_selection_stripe">Stripe</string>
+
+    <string name="e_commerce_payment_method_selection_description_text">After clicking "Complete order", you will be redirected to %s to complete your purchase securely</string>
+
+    <string name="e_commerce_payment_credit_card_number">Card Number</string>
+    <string name="e_commerce_payment_credit_card_name">Cardholder Name</string>
+    <string name="e_commerce_payment_credit_card_expire_date">MM/YY</string>
+    <string name="e_commerce_payment_credit_card_security_code">CVV</string>
+    <string name="e_commerce_payment_credit_card_validation_empty">%s is required</string>
+    <string name="e_commerce_payment_credit_card_validation_invalid">%s is invalid</string>
+    <string name="e_commerce_payment_secure_payment_title">3D Secure Payment</string>
+    <string name="e_commerce_payment_bank_iban">Iban: %s</string>
+    <string name="e_commerce_payment_bank_branch">Branch: %s</string>
+    <string name="e_commerce_payment_bank_account">Account: %s</string>
+    <string name="e_commerce_payment_bank_copy_toast_message">Copied to clipboard</string>
+
+    <string name="e_commerce_order_summary_title">Order Summary</string>
+    <string name="e_commerce_order_summary_payment_title">Payment</string>
+    <string name="e_commerce_order_summary_cart_title">Cart</string>
+    <string name="e_commerce_order_summary_cart_description">%1$s items\n %2$s</string>
+    <string name="e_commerce_order_summary_invoice_address_title">Billing Address</string>
+    <string name="e_commerce_order_summary_delivery_address_title">Shipping Address</string>
+    <string name="e_commerce_order_summary_agreement_description"><![CDATA[I confirm that I have read, understand and agree to the <u><b><font color=#000000>Sales Agreement Form</font></b></u>]]></string>
+    <string name="e_commerce_order_summary_products_price">Subtotal</string>
+    <string name="e_commerce_order_summary_shipping_price">Shipping</string>
+    <string name="e_commerce_order_summary_total_price">Total</string>
+    <string name="e_commerce_order_summary_action_confirm_order">Confirm Order</string>
+    <string name="e_commerce_order_summary_agreement_popup_title">You have to agree the terms.</string>
+    <string name="e_commerce_order_summary_agreement_popup_description">You have to agree the Terms of Conditions and Privacy Policy.</string>
+    <string name="e_commerce_order_summary_agreement_popup_button">Agree now</string>
+    <string name="e_commerce_order_summary_update_order_popup_title">Update your order!</string>
+    <string name="e_commerce_order_summary_update_order_popup_description">You can\'t order this cart anymore. Some products were changed, updated or removed from sale.</string>
+    <string name="e_commerce_order_summary_update_order_popup_button">Update My Cart</string>
+    <string name="e_commerce_order_summary_order_note_hint">Order Note</string>
+
+    <string name="e_commerce_result_success_title">It’s ordered!</string>
+    <string name="e_commerce_result_success_description">Thanks for your order, we hope you enjoyed shopping with us.</string>
+    <string name="e_commerce_result_success_action_my_orders">Check Order</string>
+    <string name="e_commerce_result_success_action_continue_shopping">Continue Shopping</string>
+    <string name="e_commerce_result_failed_title">Payment failed.</string>
+    <string name="e_commerce_result_failed_description">Sorry, payment failed. You can change the payment method and try again.</string>
+    <string name="e_commerce_result_failed_action_update_payment_method">Update Payment Method</string>
+    <string name="e_commerce_result_success_reference_number">Reference Number : %s</string>
+    <string name="e_commerce_result_credit_card_not_enough_balance">Balance is not enough</string>
+    <string name="e_commerce_result_credit_card_process_did_not_approved">Transaction was not approved</string>
+    <string name="e_commerce_result_credit_card_invalid_payment_info">Card Info is not correct</string>
+    <string name="e_commerce_result_credit_card_lost_or_stolen">Lost or stolen card.</string>
+    <string name="e_commerce_result_credit_card_expired_card">Card is expired</string>
+    <string name="e_commerce_result_credit_card_invalid_cvc">Invalid Cvc</string>
+    <string name="e_commerce_result_credit_card_requires_three_d">This process requires 3D Secure</string>
+    <string name="e_commerce_result_credit_card_installment_not_allowed">Installment can\'t be applied with Debit card</string>
+    <string name="e_commerce_result_credit_card_too_many_invalid">Too many invalid attempts</string>
+    <string name="e_commerce_result_credit_card_not_enough_limit">Limit is not enough for this amount</string>
+    <string name="e_commerce_result_credit_card_invalid_enum">Invalid an enum like Currency, Locale or RefundReason</string>
+    <string name="e_commerce_result_credit_card_already_done_before">The process done before</string>
+    <string name="e_commerce_result_credit_card_failed_title">Error Message</string>
+    <string name="e_commerce_result_pay_pal_currency_not_supported">The currency used is not supported.</string>
+
+    <string name="e_commerce_list_order_number">Order Number :</string>
+    <string name="e_commerce_my_orders_title">My Orders</string>
+    <string name="e_commerce_my_orders_no_order_title">No order yet.</string>
+    <string name="e_commerce_my_orders_no_order_description">If you start shopping, you will be able to follow your orders here!</string>
+
+    <string name="e_commerce_order_status_waiting_payment">Waiting Payment</string>
+    <string name="e_commerce_order_status_waiting_approval">Waiting Approval</string>
+    <string name="e_commerce_order_status_approved">Approved</string>
+    <string name="e_commerce_order_status_waiting_supplying">Waiting Supplying</string>
+    <string name="e_commerce_order_status_preparing">Preparing</string>
+    <string name="e_commerce_order_status_shipped">Shipped</string>
+    <string name="e_commerce_order_status_delivered">Delivered</string>
+    <string name="e_commerce_order_status_cancel_requested">Cancellation Requested</string>
+    <string name="e_commerce_order_status_canceled">Canceled</string>
+    <string name="e_commerce_order_status_refunded">Refunded</string>
+    <string name="e_commerce_order_status_payment_failed">Payment Failed</string>
+
+    <string name="e_commerce_order_details_title">Order No: %s</string>
+    <string name="e_commerce_order_details_information_title">Order Detail</string>
+    <string name="e_commerce_order_details_user_note_sub_title">User Note:</string>
+    <string name="e_commerce_order_details_cargo_title">Cargo Tracking</string>
+    <string name="e_commerce_order_details_address_information_title">Address Information</string>
+    <string name="e_commerce_order_details_delivery_address_title">Shipping Address</string>
+    <string name="e_commerce_order_details_invoice_address_title">Invoice Address</string>
+    <string name="e_commerce_order_details_payment_information_title">Payment</string>
+    <string name="e_commerce_order_details_product_title">Products</string>
+    <string name="e_commerce_order_details_quantity"><![CDATA[<b>Piece: </b>]]>%s</string>
+    <string name="e_commerce_order_details_cargo_tracking">Where is my cargo?</string>
+    <string name="e_commerce_order_details_item_ordered">%d items ordered</string>
+    <string name="e_commerce_order_details_bank_receiver"><![CDATA[<b>Receiver Name: </b>]]>%s</string>
+    <string name="e_commerce_order_details_bank_account"><![CDATA[<b>Account: </b>]]>%s</string>
+    <string name="e_commerce_order_details_bank_iban"><![CDATA[<b>Iban: </b>]]>%s</string>
+    <string name="e_commerce_order_details_bank_copy_toast_message">Copied to clipboard</string>
+    <string name="e_commerce_order_details_cargo_copy_toast_message">Copied to clipboard</string>
+
+    <string name="e_commerce_shopping_cart_item_count">%d items</string>
+    <string name="e_commerce_shopping_cart_clear_cart">Clear Cart</string>
+    <string name="e_commerce_shopping_cart_products_price">Subtotal</string>
+    <string name="e_commerce_shopping_cart_shipping_price">Shipping</string>
+    <string name="e_commerce_shopping_cart_total_price">Total</string>
+    <string name="e_commerce_shopping_cart_checkout_button">Proceed to Checkout</string>
+    <string name="e_commerce_shopping_cart_title">Shopping Cart</string>
+    <string name="e_commerce_shopping_cart_invalid_product_left">%s product left</string>
+    <string name="e_commerce_shopping_cart_invalid_removed_basket">Removed basket</string>
+    <string name="e_commerce_shopping_cart_invalid_out_of_stock">Out Of Stock</string>
+    <string name="e_commerce_shopping_cart_invalid_publishment_end">Product Removed</string>
+    <string name="e_commerce_shopping_cart_invalid_popup_button">Ready to Checkout</string>
+    <string name="e_commerce_shopping_cart_updating_popup_title">Cart is updating</string>
+    <string name="e_commerce_shopping_cart_updating_popup_description">Your basket will be updated for reasons below</string>
+    <string name="e_commerce_shopping_cart_empty_view_start_shopping_button">Start Shopping</string>
+    <string name="e_commerce_shopping_cart_empty_view_title">Your cart is Empty</string>
+    <string name="e_commerce_shopping_cart_empty_view_description">You have no items in your shopping cart.</string>
+    <string name="e_commerce_shopping_cart_clear_cart_title">Are you sure to clear cart?</string>
+    <string name="e_commerce_shopping_cart_clear_cart_description">You are clearing all products in shopping cart now.</string>
+    <string name="e_commerce_shopping_cart_clear_cart_button">Yes, clear my cart</string>
+    <string name="e_commerce_shopping_cart_delete_cart_title">Are you sure to delete this product?</string>
+    <string name="e_commerce_shopping_cart_delete_cart_description">You are deleting %s now.</string>
+    <string name="e_commerce_shopping_cart_delete_cart_button">Yes, delete it</string>
+    <string name="e_commerce_shopping_cart_cargo_warning"><![CDATA[<b>%s</b>]]> special cargo fee applied</string>
+    <string name="e_commerce_shopping_cart_taxes_included">Taxes Included</string>
+    <string name="e_commerce_shopping_cart_coupon_dialog_title">Your discount code</string>
+    <string name="e_commerce_shopping_cart_coupon_dialog_textfield_placeholder">Discount Code</string>
+    <string name="e_commerce_shopping_cart_coupon_apply_discount">Apply Discount</string>
+    <string name="e_commerce_shopping_cart_bottom_view_coupon_discount">Discount</string>
+
+    <string name="e_commerce_dialog_delete_address_positive_button">Yes delete it</string>
+    <string name="e_commerce_dialog_negative_button">No, not now.</string>
+
+    <string name="e_commerce_search_list_order">Order</string>
+    <string name="e_commerce_search_list_filter">Filter</string>
+
+    <string name="e_commerce_filter_category">Category</string>
+    <string name="e_commerce_filter_brand">Brand</string>
+    <string name="e_commerce_filter_size">Size</string>
+    <string name="e_commerce_filter_color">Color</string>
+    <string name="e_commerce_filter_price_range">Price Range</string>
+    <string name="e_commerce_filter_lowest">Lowest</string>
+    <string name="e_commerce_filter_highest">Highest</string>
+    <string name="e_commerce_stock_only">Stock Only</string>
+    <string name="e_commerce_discounted_products">Discounted Products</string>
+    <string name="e_commerce_free_shipping">Free Shipping</string>
+    <string name="e_commerce_filter_list_products">List Products</string>
+
+    <string name="e_commerce_filter_multi_choice_search">Search</string>
+    <string name="e_commerce_filter_multi_choice_apply">Apply</string>
+
+    <string name="e_commerce_filter_selection_apply">Apply</string>
+
+    <string name="e_commerce_filter_clear">Clear</string>
+    <string name="e_commerce_multi_choice_search">Search</string>
+    <string name="e_commerce_multi_choice_apply">Apply</string>
+    <string name="please_check_your_internet_connection">Please check your internet connection</string>
+    <string name="common_error">Sorry, something went wrong. Please try again later</string>
+    <string name="connection_required_error">No internet connection</string>
+    <string name="OK">OK</string>
+    <string name="field_required">%s is required</string>
+    <string name="cancel">Cancel</string>
+    <string name="action_search">Search</string>
+    <string name="action_share">Share</string>
+
+    <string name="mobiroller_dialog_negative_button">No, not now.</string>
+    <string name="apply_discount">Apply Discount</string>
+    <string name="discount_code">Discount Code</string>
+    <string name="your_discount_code">Your discount code</string>
+
+
+
+    <string-array name="order_flow_status">
+        <item>Shipping</item>
+        <item>Payment</item>
+        <item>&#160;&#160;Order&#160;&#160;&#160;</item>
+    </string-array>
+
+    <string name="notification_dialog_positive_button">Show Details</string>
+
+</resources>

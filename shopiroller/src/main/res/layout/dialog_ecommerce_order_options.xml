@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="#61000000">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/white_rounded_border_rectangle_background"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/filled_recycler_background_color"
+            app:layout_constraintTop_toBottomOf="@id/order_dialog_title_text_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/date_publishment_date_descending_text_view"/>
+
+        <com.shopiroller.views.legacy.ShopirollerTextView
+            android:id="@+id/order_dialog_title_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/e_commerce_category_product_list_order_dialog_title"
+            android:textAlignment="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/order_count_descending_order_text_view"
+            android:layout_marginTop="53dp"
+            android:paddingBottom="20dp"
+            app:sSizeType="head_one"
+            app:sColorType="primary"/>
+
+        <com.shopiroller.views.legacy.ShopirollerTextView
+            android:id="@+id/order_count_descending_order_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="22dp"
+            android:text="@string/e_commerce_category_product_list_order_dialog_most_shipped"
+            app:sSizeType="heading_two"
+            app:sColorType="primary"
+            android:background="@color/white"
+            android:layout_marginTop="1dp"
+            app:layout_constraintTop_toBottomOf="@id/order_dialog_title_text_view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <com.shopiroller.views.legacy.ShopirollerTextView
+            android:id="@+id/price_ascending_order_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="22dp"
+            android:text="@string/e_commerce_category_product_list_order_dialog_price_increasing"
+            app:sSizeType="heading_two"
+            app:sColorType="primary"
+            android:background="@color/white"
+            android:layout_marginTop="1dp"
+            app:layout_constraintTop_toBottomOf="@id/order_count_descending_order_text_view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <com.shopiroller.views.legacy.ShopirollerTextView
+            android:id="@+id/price_descending_order_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="22dp"
+            android:text="@string/e_commerce_category_product_list_order_dialog_price_decreasing"
+            app:sSizeType="heading_two"
+            app:sColorType="primary"
+            android:background="@color/white"
+            android:layout_marginTop="1dp"
+            app:layout_constraintTop_toBottomOf="@id/price_ascending_order_text_view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <com.shopiroller.views.legacy.ShopirollerTextView
+            android:id="@+id/date_publishment_date_descending_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="22dp"
+            android:text="@string/e_commerce_category_product_list_order_dialog_most_recent_added"
+            android:background="@color/white"
+            app:sSizeType="heading_two"
+            app:sColorType="primary"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="1dp"
+            app:layout_constraintTop_toBottomOf="@id/price_descending_order_text_view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <ImageView
+            android:id="@+id/order_count_descending_done_image_view"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            app:srcCompat="@drawable/ic_done"
+            android:layout_marginEnd="30dp"
+            app:layout_constraintTop_toTopOf="@id/order_count_descending_order_text_view"
+            app:layout_constraintBottom_toBottomOf="@id/order_count_descending_order_text_view"
+            app:layout_constraintEnd_toEndOf="@id/order_count_descending_order_text_view"/>
+
+        <ImageView
+            android:id="@+id/price_ascending_done_image_view"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            app:srcCompat="@drawable/ic_done"
+            android:layout_marginEnd="30dp"
+            app:layout_constraintTop_toTopOf="@id/price_ascending_order_text_view"
+            app:layout_constraintBottom_toBottomOf="@id/price_ascending_order_text_view"
+            app:layout_constraintEnd_toEndOf="@id/price_ascending_order_text_view"/>
+
+        <ImageView
+            android:id="@+id/price_descending_done_image_view"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            app:srcCompat="@drawable/ic_done"
+            android:layout_marginEnd="30dp"
+            app:layout_constraintTop_toTopOf="@id/price_descending_order_text_view"
+            app:layout_constraintBottom_toBottomOf="@id/price_descending_order_text_view"
+            app:layout_constraintEnd_toEndOf="@id/price_descending_order_text_view"/>
+
+        <ImageView
+            android:id="@+id/date_publishment_date_descending_done_image_view"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            app:srcCompat="@drawable/ic_done"
+            android:layout_marginEnd="30dp"
+            app:layout_constraintTop_toTopOf="@id/date_publishment_date_descending_text_view"
+            app:layout_constraintBottom_toBottomOf="@id/date_publishment_date_descending_text_view"
+            app:layout_constraintEnd_toEndOf="@id/date_publishment_date_descending_text_view"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/icon_background_card_view"
+        android:layout_width="76dp"
+        android:layout_height="76dp"
+        android:innerRadius="0dp"
+        android:shape="ring"
+        app:cardCornerRadius="38dp"
+        app:cardElevation="0dp"
+        app:layout_constraintTop_toTopOf="@id/container_view"
+        app:layout_constraintBottom_toTopOf="@id/container_view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/icon_background_colored_card_view"
+        android:layout_width="58dp"
+        android:layout_height="58dp"
+        android:innerRadius="0dp"
+        android:shape="ring"
+        app:cardCornerRadius="29dp"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="@color/light_yellow"
+        app:layout_constraintTop_toTopOf="@id/icon_background_card_view"
+        app:layout_constraintBottom_toBottomOf="@id/icon_background_card_view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ecommerce_order_options_black_icon"/>
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

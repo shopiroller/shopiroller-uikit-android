@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center_horizontal">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dialog_header_layout"
+        android:layout_marginTop="-38dp"
+        android:background="@drawable/layout_custom_body_shape">
+
+        <com.shopiroller.views.legacy.ShopirollerTextView
+            android:id="@+id/title_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="58dp"
+            android:gravity="center"
+            android:paddingStart="25dp"
+            android:paddingEnd="25dp"
+            android:maxLines="3"
+            android:ellipsize="end"
+            android:text="Update your order!"
+            app:sColorType="primary"
+            app:sSizeType="head_one" />
+
+        <com.shopiroller.views.legacy.ShopirollerTextView
+            android:id="@+id/description_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxHeight="250dp"
+            android:layout_marginTop="20dp"
+            android:text="You can’t order on your cart. Some products changed, updated or not selling anymore."
+            android:gravity="center"
+            android:scrollbars="vertical"
+            android:paddingStart="45dp"
+            android:paddingEnd="45dp"
+            android:layout_below="@+id/title_text_view"
+            app:sColorType="text"
+            app:sSizeType="regular"
+            />
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/description_text_view"
+            android:layout_marginBottom="30dp"
+            android:layout_marginTop="25dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingStart="25dp"
+            android:paddingEnd="25dp">
+
+            <com.shopiroller.views.legacy.ShopirollerButton
+                android:id="@+id/button"
+                android:layout_width="200dp"
+                android:layout_height="44dp"
+                android:layout_marginStart="15dp"
+                android:gravity="center"
+                android:layout_marginEnd="15dp"
+                app:sButtonBackgroundColor="#f4f6f6"
+                app:sButtonHasRadius="true"
+                app:sButtonTextColor="#000000"
+                app:sButtonText="@string/notification_dialog_positive_button"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/dialog_header_layout"
+        android:layout_width="76dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="76dp"
+        android:layout_alignParentTop="true"
+        android:gravity="center">
+
+        <RelativeLayout
+            android:id="@+id/dialog_header"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:background="@drawable/layout_custom_header_shape">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:backgroundTint="#f8e7d8"
+                android:id="@+id/icon_layout"
+                android:gravity="center"
+                android:background="@drawable/layout_custom_header_shape"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/icon_image_view"
+                    android:layout_width="30dp"
+                    android:gravity="center"
+                    android:layout_height="30dp"
+                    android:tint="@color/black"
+                    app:srcCompat="@drawable/ic_edit_white_24dp"
+                    />
+            </RelativeLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

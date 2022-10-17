@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="?attr/actionButtonStyle"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:clipToPadding="false"
+    android:focusable="true">
+
+    <ImageView
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_gravity="center"
+        android:id="@+id/shopping_bag_icon"
+        app:srcCompat="@drawable/ic_baseline_shopping_cart_24"/>
+
+    <TextView
+        android:id="@+id/cart_badge"
+        android:layout_width="16dp"
+        android:visibility="gone"
+        android:layout_height="16dp"
+        android:fontFamily="@font/poppins_regular"
+        android:layout_gravity="right"
+        android:layout_marginEnd="-5dp"
+        android:layout_marginRight="-5dp"
+        android:layout_marginTop="3dp"
+        android:background="@drawable/badge_background"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:maxLength="2"
+        android:padding="2dp"
+        android:textColor="@android:color/white"
+        android:text="0"
+        android:textSize="9sp"/>
+
+</FrameLayout>

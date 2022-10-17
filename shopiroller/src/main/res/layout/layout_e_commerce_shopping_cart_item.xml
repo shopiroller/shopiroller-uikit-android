@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardElevation="0dp"
+            android:id="@+id/cargo_layout"
+            app:cardBackgroundColor="#F8E7D8"
+            app:cardCornerRadius="6dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:paddingStart="10dp"
+                android:paddingTop="6dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="6dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:tint="#FFC28C"
+                    app:srcCompat="@drawable/ic_local_shipping_white_24dp" />
+
+                <com.shopiroller.views.legacy.ShopirollerTextView
+                    android:id="@+id/cargo_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:sSizeType="regular"
+                    app:sColorType="secondary"
+                    android:includeFontPadding="false"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="10dp"
+                    android:gravity="center" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/image_view"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/no_image_e_commerce"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="14dp"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.shopiroller.views.legacy.ShopirollerTextView
+                android:id="@+id/title_text_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="36dp"
+                android:maxLines="2"
+                android:text="Dining Chairs With Rustic Legs Set Of 2"
+                app:sSizeType="regular"
+                app:sColorType="secondary"
+                app:layout_constraintEnd_toStartOf="@id/price_text_view"
+                app:layout_constraintStart_toEndOf="@+id/image_view"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="90dp"
+                android:layout_height="28dp"
+                android:background="@drawable/ecommerce_product_detail_item_background"
+                app:layout_constraintStart_toStartOf="@id/title_text_view"
+                app:layout_constraintBottom_toBottomOf="@id/image_view">
+
+                <com.shopiroller.views.legacy.ShopirollerClickableLayout
+                    android:id="@+id/minus_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:paddingStart="3dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:padding="4dp"
+                        android:tint="@color/black"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_baseline_remove_24" />
+                </com.shopiroller.views.legacy.ShopirollerClickableLayout>
+
+                <com.shopiroller.views.legacy.ShopirollerTextView
+                    android:id="@+id/count_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:text="3"
+                    app:sColorType="primary"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/plus_text_view"
+                    app:layout_constraintStart_toEndOf="@id/minus_text_view"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:sSizeType="heading_two" />
+
+                <com.shopiroller.views.legacy.ShopirollerClickableLayout
+                    android:id="@+id/plus_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:paddingEnd="3dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:padding="4dp"
+                        android:tint="@color/black"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_add_white_24dp" />
+
+                </com.shopiroller.views.legacy.ShopirollerClickableLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.shopiroller.views.legacy.ShopirollerTextView
+                android:id="@+id/price_sale_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$279.98"
+                app:sColorType="text"
+                app:sSizeType="regular"
+                app:layout_constraintBottom_toTopOf="@id/price_text_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginBottom="3dp" />
+
+            <com.shopiroller.views.legacy.ShopirollerTextView
+                android:id="@+id/price_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$279.98"
+                app:sColorType="primary"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:sSizeType="heading_two" />
+
+            <ImageView
+                android:id="@+id/remove_image_view"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@drawable/circle_gray_background"
+                android:backgroundTint="#f4f6f6"
+                android:padding="9dp"
+                android:tint="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_trash_icon" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

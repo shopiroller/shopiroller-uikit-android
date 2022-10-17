@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main_layout"
+        android:layout_width="match_parent"
+        android:layout_marginTop="16dp"
+        android:layout_height="wrap_content"
+        android:paddingStart="22dp"
+        android:minHeight="100dp"
+        android:paddingBottom="20dp"
+        android:paddingEnd="11dp">
+
+        <com.shopiroller.views.legacy.ShopirollerTextView
+            android:id="@+id/bank_name"
+            android:layout_width="wrap_content"
+            app:sSizeType="heading_two"
+            app:sColorType="primary"
+            android:layout_height="wrap_content"
+            android:text="TR09 4444 1231 5323 9846 3415"
+            app:layout_constraintBottom_toTopOf="@id/bank_iban"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <com.shopiroller.views.legacy.ShopirollerTextView
+            android:id="@+id/bank_reference"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="IBAN: TR75 0006 2105 0054 0012 2158 25"
+            app:layout_constraintBottom_toTopOf="@id/bank_iban"
+            app:sSizeType="paragraph_one"
+            app:sColorType="text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bank_name"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <com.shopiroller.views.legacy.ShopirollerTextView
+            android:id="@+id/bank_iban"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="IBAN: TR75 0006 2105 0054 0012 2158 25"
+            app:layout_constraintBottom_toTopOf="@id/bank_branch"
+            app:sSizeType="paragraph_one"
+            app:sColorType="text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bank_reference"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <com.shopiroller.views.legacy.ShopirollerTextView
+            android:id="@+id/bank_branch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="IBAN: TR75 0006 2105 0054 0012 2158 25"
+            app:layout_constraintBottom_toTopOf="@id/bank_account_number"
+            app:sSizeType="paragraph_one"
+            app:sColorType="text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bank_iban"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <com.shopiroller.views.legacy.ShopirollerTextView
+            android:id="@+id/bank_account_number"
+            android:layout_width="wrap_content"
+            app:sSizeType="paragraph_one"
+            app:sColorType="text"
+            android:layout_height="wrap_content"
+            android:text="TR09 4444 1231 5323 9846 3415"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bank_branch"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <ImageView
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:id="@+id/copy_button"
+            android:layout_width="32dp"
+            android:background="@drawable/circle_gray_background"
+            android:backgroundTint="#f4f6f6"
+            app:srcCompat="@drawable/ic_copy_icon"
+            android:padding="9dp"
+            android:tint="@color/black"
+            android:layout_height="32dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="6dp"
+        android:id="@+id/selected_image_view"
+        android:backgroundTint="@color/black"
+        android:background="@drawable/circle_gray_background"
+        app:srcCompat="@drawable/ic_check_24dp"
+        android:padding="4dp"
+        android:layout_marginEnd="11dp"
+        android:layout_alignParentEnd="true"
+        />
+
+</RelativeLayout>

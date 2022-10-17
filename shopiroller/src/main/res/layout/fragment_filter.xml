@@ -1,0 +1,382 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/filter_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="invisible"
+    tools:context="com.shopiroller.fragments.filter.FilterFragment"
+    tools:visibility="visible">
+
+    <ScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:nestedScrollingEnabled="true"
+        app:layout_constraintBottom_toTopOf="@+id/confirm_button"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/menu_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                android:overScrollMode="never"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@+id/category_container"
+                tools:itemCount="3"
+                tools:listitem="@layout/e_commerce_item_filter" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/category_container"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:layout_constraintTop_toBottomOf="@id/menu_list"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <com.shopiroller.views.legacy.ShopirollerTextView
+                    android:id="@+id/category_name_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="66dp"
+                    android:text="@string/e_commerce_filter_category"
+                    android:textStyle="bold"
+                    app:sColorType="primary"
+                    app:layout_constraintBottom_toTopOf="@+id/selected_categories_text_view"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    app:sSizeType="heading_two" />
+
+                <com.shopiroller.views.legacy.ShopirollerTextView
+                    android:id="@+id/selected_categories_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="66dp"
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    app:sColorType="text"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/category_name_title"
+                    app:sSizeType="regular"
+                    tools:text="@string/e_commerce_filter_category" />
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="16dp"
+                    android:layout_marginEnd="25dp"
+                    android:src="@drawable/right_arrow_icon"
+                    android:tint="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/silver"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/brand_container"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/category_container"
+                tools:visibility="visible">
+
+                <com.shopiroller.views.legacy.ShopirollerTextView
+                    android:id="@+id/brand_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="66dp"
+                    android:text="@string/e_commerce_filter_brand"
+                    android:textStyle="bold"
+                    app:sColorType="primary"
+                    app:layout_constraintBottom_toTopOf="@id/selected_brands_text_view"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    app:sSizeType="heading_two" />
+
+                <com.shopiroller.views.legacy.ShopirollerTextView
+                    android:id="@+id/selected_brands_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="66dp"
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    app:sColorType="text"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/brand_title"
+                    app:sSizeType="regular"
+                    tools:text="@string/e_commerce_filter_brand" />
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="16dp"
+                    android:layout_marginEnd="25dp"
+                    android:src="@drawable/right_arrow_icon"
+                    android:tint="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/silver"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/price_range_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="15dp"
+                android:paddingTop="22dp"
+                android:paddingEnd="15dp"
+                app:layout_constraintTop_toBottomOf="@+id/brand_container">
+
+                <com.shopiroller.views.legacy.ShopirollerTextView
+                    android:id="@+id/price_range_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="66dp"
+                    android:text="@string/e_commerce_filter_price_range"
+                    android:textStyle="bold"
+                    app:sColorType="primary"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:sSizeType="heading_two" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/minimum_price_container"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="5dp"
+                    android:background="@drawable/filter_rectangle_background"
+                    app:layout_constraintEnd_toStartOf="@+id/maximum_price_container"
+                    app:layout_constraintStart_toStartOf="@id/price_range_title"
+                    app:layout_constraintTop_toBottomOf="@id/price_range_title">
+
+                    <EditText
+                        android:id="@+id/minimum_price_edit_text"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/transparent"
+                        android:digits="0123456789"
+                        android:hint="@string/e_commerce_filter_lowest"
+                        android:inputType="numberDecimal"
+                        android:maxLength="10"
+                        android:maxLines="1"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="15dp"
+                        android:singleLine="true"
+                        android:textSize="13sp"
+                        app:layout_constraintEnd_toStartOf="@id/minimum_price_currency_text_view"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.shopiroller.views.legacy.ShopirollerTextView
+                        android:id="@+id/minimum_price_currency_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="9dp"
+                        android:textStyle="bold"
+                        app:sColorType="primary"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:sSizeType="heading_two"
+                        tools:text="TRY" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/maximum_price_container"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="25dp"
+                    android:background="@drawable/filter_rectangle_background"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/minimum_price_container"
+                    app:layout_constraintTop_toTopOf="@id/minimum_price_container">
+
+                    <EditText
+                        android:id="@+id/maximum_price_edit_text"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/transparent"
+                        android:digits="0123456789"
+                        android:hint="@string/e_commerce_filter_highest"
+                        android:inputType="numberDecimal"
+                        android:maxLength="10"
+                        android:maxLines="1"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="15dp"
+                        android:singleLine="true"
+                        android:textSize="13sp"
+                        app:layout_constraintEnd_toStartOf="@id/maximum_price_currency_text_view"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.shopiroller.views.legacy.ShopirollerTextView
+                        android:id="@+id/maximum_price_currency_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="9dp"
+                        android:textStyle="bold"
+                        app:sColorType="primary"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:sSizeType="heading_two"
+                        tools:text="TRY" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="22dp"
+                    android:background="@color/silver"
+                    app:layout_constraintTop_toBottomOf="@id/minimum_price_container" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/stock_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="15dp"
+                android:paddingTop="22dp"
+                android:paddingEnd="15dp"
+                app:layout_constraintTop_toBottomOf="@id/price_range_container">
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/stock_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="25dp"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"
+                    android:text="@string/e_commerce_stock_only"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="22dp"
+                    android:background="@color/silver"
+                    app:layout_constraintTop_toBottomOf="@id/stock_switch" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/discounted_products_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="15dp"
+                android:paddingTop="22dp"
+                android:paddingEnd="15dp"
+                android:visibility="visible"
+                app:layout_constraintTop_toBottomOf="@id/stock_container">
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/discounted_products_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="25dp"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"
+                    android:text="@string/e_commerce_discounted_products"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="22dp"
+                    android:background="@color/silver"
+                    app:layout_constraintTop_toBottomOf="@id/discounted_products_switch" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/free_shipping_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="15dp"
+                android:paddingTop="22dp"
+                android:paddingEnd="15dp"
+                android:paddingBottom="22dp"
+                android:visibility="visible"
+                app:layout_constraintTop_toBottomOf="@id/discounted_products_container">
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/free_shipping_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="25dp"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"
+                    android:text="@string/e_commerce_free_shipping"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+    <com.shopiroller.views.legacy.ShopirollerButton
+        android:id="@+id/confirm_button"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:sButtonColorType="primary"
+        app:sButtonText="@string/e_commerce_filter_list_products" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

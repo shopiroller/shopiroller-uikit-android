@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:id="@+id/vertica_list_item_root_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:paddingStart="30dp"
+    android:paddingEnd="30dp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/category_card_view"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_centerInParent="true"
+        android:layout_marginEnd="20dp"
+        android:innerRadius="0dp"
+        android:shape="ring"
+        app:cardBackgroundColor="@color/gray_light"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="0dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toStartOf="@id/category_information_linear_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/category_image_view"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop" />
+
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:id="@+id/category_information_linear_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/right_arrow_icon"
+        app:layout_constraintStart_toEndOf="@id/category_card_view"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.shopiroller.views.legacy.ShopirollerTextView
+            android:id="@+id/category_name_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:ellipsize="end"
+            android:lineSpacingExtra="2sp"
+            android:maxLines="1"
+            android:visibility="gone"
+            app:sColorType="primary"
+            app:sSizeType="heading_one"
+            tool:text="Shoes" />
+
+        <com.shopiroller.views.legacy.ShopirollerTextView
+            android:id="@+id/category_item_count_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:ellipsize="end"
+            android:visibility="gone"
+            android:lineSpacingExtra="2sp"
+            android:maxLines="1"
+            app:sColorType="text"
+            app:sSizeType="paragraph_one"
+            tool:text="812 items" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/right_arrow_icon"
+        android:layout_width="10dp"
+        android:layout_height="15dp"
+        android:src="@drawable/right_arrow_icon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

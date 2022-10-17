@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:padding="7.5dp">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/e_commerce_address_border"
+        android:paddingStart="10dp"
+        android:paddingTop="18dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="18dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.shopiroller.views.legacy.ShopirollerTextView
+            android:id="@+id/order_number_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:layout_marginStart="4dp"
+            android:lineSpacingExtra="8.5sp"
+            android:text="@string/e_commerce_list_order_number"
+            app:sColorType="primary"
+            app:layout_constraintBottom_toTopOf="@+id/order_date"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:sSizeType="heading_two" />
+
+
+        <com.shopiroller.views.legacy.ShopirollerTextView
+            android:id="@+id/order_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="4dp"
+            app:sColorType="primary"
+            app:layout_constraintStart_toEndOf="@+id/order_number_title"
+            app:layout_constraintTop_toTopOf="@+id/order_number_title"
+            app:sSizeType="heading_two"
+            tools:text="2032568432" />
+
+        <com.shopiroller.views.legacy.ShopirollerTextView
+            android:id="@+id/order_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="4dp"
+            app:sColorType="text"
+            android:includeFontPadding="false"
+            app:layout_constraintBottom_toTopOf="@+id/order_time"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/order_number_title"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:sSizeType="paragraph_one"
+            tools:text="20/11/2018" />
+
+
+        <com.shopiroller.views.legacy.ShopirollerTextView
+            android:id="@+id/order_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="4dp"
+            app:sColorType="text"
+            android:includeFontPadding="false"
+            app:layout_constraintBottom_toTopOf="@+id/order_paid"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/order_date"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:sSizeType="paragraph_one"
+            tools:text="Salı, 12:20" />
+
+        <com.shopiroller.views.legacy.ShopirollerTextView
+            android:id="@+id/order_paid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="8.5sp"
+            app:sColorType="primary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/order_time"
+            app:sSizeType="heading_two"
+            tools:text="75,80 TL" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/status_background_view"
+            android:layout_width="wrap_content"
+            android:layout_height="27dp"
+            android:background="@drawable/e_commerce_order_status_background"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.shopiroller.views.legacy.ShopirollerTextView
+                android:id="@+id/status_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="Approved"
+                app:sColorType="primary"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:sSizeType="regular" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
