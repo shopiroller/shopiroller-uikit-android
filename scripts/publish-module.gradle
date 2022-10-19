@@ -1,0 +1,101 @@
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
+apply plugin: 'org.jetbrains.dokka'
+
+task androidSourcesJar(type: Jar) {
+    archiveClassifier.set('sources')
+    if (project.plugins.findPlugin("com.android.library")) {
+        from android.sourceSets.main.java.srcDirs
+        from android.sourceSets.main.kotlin.srcDirs
+    } else {
+        from sourceSets.main.java.srcDirs
+        from sourceSets.main.kotlin.srcDirs
+    }
+}
+
+tasks.withType(dokkaHtmlPartial.getClass()).configureEach {
+    pluginsMapConfiguration.set(
+            ["org.jetbrains.dokka.base.DokkaBase": """{ "separateInheritedMembers": true}"""]
+    )
+}
+
+task javadocJar(type: Jar, dependsOn: dokkaJavadoc) {
+    archiveClassifier.set('javadoc')
+    from dokkaJavadoc.outputDirectory
+}
+
+artifacts {
+    archives androidSourcesJar
+    archives javadocJar
+}
+
+group = 'com.shopiroller'
+version = "0.0.2"
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                groupId "com.shopiroller.uikit"
+                artifactId "shopiroller"
+                version version
+                if (project.plugins.findPlugin("com.android.library")) {
+                    from components.release
+                } else {
+                    from components.java
+                }
+
+                artifact androidSourcesJar
+                artifact javadocJar
+
+                pom {
+                    name = 'shopiroller-uikit'
+                    description = 'Mobile e-commerce applications are now closer to your users with Shopiroller iOS SDK. It is now very easy to have your own mobile application.'
+                    url = 'https://github.com/shopiroller/shopiroller-uikit-android'
+                    licenses {
+                        license {
+                            name = 'MIT License'
+                            url = 'https://github.com/shopiroller/shopiroller-uikit-android/blob/main/LICENSE'
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = 'hpolat'
+                            name = 'Hasan Polat'
+                            email = 'hasan.polat@mobiroller.com\n'
+                        }
+                        developer {
+                            id = 'ayalcn'
+                            name = 'Abdullah Yalçın'
+                            email = 'abdullah.yalcin@mobiroller.com'
+                        }
+                        developer {
+                            id = 'gorkemgur'
+                            name = 'Görkem Göktuğ Gür'
+                            email = 'gorkem.gur@mobiroller.com'
+                        }
+                        developer {
+                            id = 'ealtaca'
+                            name = 'Emre Can Altaca'
+                            email = 'ealtaca@mobiroller.com'
+                        }
+                    }
+                    scm {
+                        connection = 'scm:git@github.com:shopiroller/shopiroller-uikit-android.git'
+                        developerConnection = 'scm:git@github.com:shopiroller/shopiroller-uikit-android.git'
+                        url = 'https://github.com/shopiroller/shopiroller-uikit-android'
+                    }
+                }
+            }
+        }
+    }
+}
+
+signing {
+    useInMemoryPgpKeys(
+            rootProject.ext["signing.keyId"],
+            rootProject.ext["signing.key"],
+            rootProject.ext["signing.password"],
+    )
+    sign publishing.publications
+}
