@@ -9,7 +9,7 @@ plugins {
 android {
     compileSdkVersion 31
     ext {
-        PUBLISH_GROUP_ID = 'com.shopiroller.uikit'
+        PUBLISH_GROUP_ID = 'com.shopiroller'
         PUBLISH_ARTIFACT_ID = 'shopiroller'
         PUBLISH_VERSION = "0.0.2"
     }

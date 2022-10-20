@@ -38,7 +38,7 @@ Shopiroller UIKit for Android is a development kit with an user interface, you c
 ## Before getting started
 ---
 
-This section shows you the prerequisites you need for testing Sendbird UIKit for Android sample apps.
+This section shows you the prerequisites you need for testing Shopiroller UIKit for Android sample apps.
 
 Requirements
 The minimum requirements for UIKit for Android are:
@@ -47,16 +47,76 @@ The minimum requirements for UIKit for Android are:
 * Java 8 or higher
 * Support androidx only
 * Android Gradle plugin 4.0.1 or higher
-* Sendbird Chat SDK for Android 4.0.3 and later
 
-### Try the sample app using your data
+### Initialize With Credentials
 <br>
 
-If you want to try the sample app , you need to change variables in SampleApplication 
-
-<br>
+There is interface of Shopiroller to control user login status, to use shopiroller adapter, to change theme and handle adress status like edited , added.
 
 ```kotlin
+object Shopiroller {
+
+    @JvmStatic
+    @NonNull
+    var adapter: ShopirollerAdapter? = null
+
+    @JvmStatic
+    var listener: ShopirollerListener? = null
+
+    @JvmStatic
+    var addressListener: ShopirollerAddressListener? = null
+
+    //todo set field
+    @JvmStatic
+    @NonNull
+    var userLoginStatus: Boolean = false
+        set(value) {
+            field = value
+            if (!value) {
+                userId = null
+                userEmail = null
+                userFullName = null
+            }
+        }
+
+    @JvmStatic
+    @Nullable
+    var userId: String? = null
+
+    @JvmStatic
+    @Nullable
+    var userEmail: String? = null
+
+    @JvmStatic
+    @Nullable
+    var userFullName: String? = null
+
+    @JvmStatic
+    fun getTheme(): Theme {
+        return Theme()
+    }
+
+    fun init(adapter: ShopirollerAdapter, context: Context) {
+        this.adapter = adapter
+    }
+}
+```
+
+First you need implement ShopirollerAdapter to your application like below code :
+
+```kotlin
+
+class SampleApplication: Application(),ShopirollerAdapter {
+
+    companion object {
+        var shopirollerAdapter: ShopirollerAdapter? = null
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+        shopirollerAdapter = this
+    }
+
     override fun getAppKey(): String {
         return "yourAppKey"
     }
@@ -88,7 +148,43 @@ If you want to try the sample app , you need to change variables in SampleApplic
     override fun getActionBarColor(): Int {
         return Color.someColor
     }
+
+}
+
 ```
+
+<br>
+
+After that you need to create instance with init function of Shopiroller Interface you need to add adapter and context as parameter.
+
+```kotlin
+
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        SampleApplication.shopirollerAdapter?.let { init(it, this@MainActivity) } //We created instance of Shopiroller Interface
+        setContentView(R.layout.activity_main)
+    }
+}
+```
+Like the code above created instance for shopirollerAdapter in SampleApplication to use our credentials in app.
+
+After that you can create shopirollerFragment in here , like below code : 
+
+```kotlin
+    val shopirollerFragment = ShopirollerFragment()
+
+    val fragmentManager = supportFragmentManager
+    val fragmentTransaction = fragmentManager.beginTransaction()
+    fragmentTransaction.replace(
+        R.id.shopiroller_frame_layout,
+        shopirollerFragment
+        )
+    fragmentTransaction.addToBackStack(null)
+    fragmentTransaction.commit()
+```
+
+<br>
 
 ## Getting Started
 <br>
