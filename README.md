@@ -45,68 +45,40 @@ The minimum requirements for UIKit for Android are:
 
 * Android 5.0 (API level 21) or higher
 * Java 8 or higher
-* Support androidx only
 * Android Gradle plugin 4.0.1 or higher
 
 ### Initialize With Credentials
 <br>
 
-There is interface of Shopiroller to control user login status, to use shopiroller adapter, to change theme and handle adress status like edited , added.
+In Shopiroller Listener you can handle user actions with listener. You can implement this listener to your activity or fragment to set user actions when the user clicks the corresponding button.
 
 ```kotlin
-object Shopiroller {
-
-    @JvmStatic
-    @NonNull
-    var adapter: ShopirollerAdapter? = null
-
-    @JvmStatic
-    var listener: ShopirollerListener? = null
-
-    @JvmStatic
-    var addressListener: ShopirollerAddressListener? = null
-
-    //todo set field
-    @JvmStatic
-    @NonNull
-    var userLoginStatus: Boolean = false
-        set(value) {
-            field = value
-            if (!value) {
-                userId = null
-                userEmail = null
-                userFullName = null
-            }
-        }
-
-    @JvmStatic
-    @Nullable
-    var userId: String? = null
-
-    @JvmStatic
-    @Nullable
-    var userEmail: String? = null
-
-    @JvmStatic
-    @Nullable
-    var userFullName: String? = null
-
-    @JvmStatic
-    fun getTheme(): Theme {
-        return Theme()
-    }
-
-    fun init(adapter: ShopirollerAdapter, context: Context) {
-        this.adapter = adapter
-    }
+interface ShopirollerListener {
+    fun onBadgeCountChanged(@NonNull count: Int) //ShoppingCart Count Changed
+    fun loginNeeded() //UserLogin Needed Handle
+    fun onStartShoppingClicked() //Start Order Flow
+    fun onDefaultAddressChanged(billingAddressId: String, shippingAddressId: String) //Set Default Address
+    fun onNewShippingAddressClicked(activity: FragmentActivity) //Add New Shipping Address
+    fun onNewBillingAddressClicked(activity: FragmentActivity) //Add New Billing Address
+    fun onEditShippingAddressClicked(activity: FragmentActivity, shippingAddress: UserShippingAddressModel) //Edit Shippinh Address
+    fun onEditBillingAddressClicked(activity: FragmentActivity, billingAddressModel: UserBillingAddressModel) //Edit Billing Address
+    fun getDefaultAddresses(listener: ShopirollerCallBackListener<DefaultAddressList>) //Get User's default address list
+    fun getBillingAddresses(listener: ShopirollerCallBackListener<List<UserBillingAddressModel>>) //Get User's Billing Address List
+    fun getShippingAddresses(listener: ShopirollerCallBackListener<List<UserShippingAddressModel>>) //Get User's Shipping Address List
 }
 ```
 
-First you need implement ShopirollerAdapter to your application like below code :
+In Shopiroller Interface 
+* You can set **userLoginStatus** to use **loginNeeded()** function in ShopirollerListener
+* You need to change **userId** variable with your **userId**
+* You need to change **userEmail** variable with your **userEmail**
+* You need to change **userFullName** variable with your **userFullName**
+* You can change your app's colors with edit **Theme Class**
+
+First you need implement **ShopirollerAdapter** to your application like below code:
 
 ```kotlin
-
-class SampleApplication: Application(),ShopirollerAdapter {
+class SampleApplication: Application(), ShopirollerAdapter {
 
     companion object {
         var shopirollerAdapter: ShopirollerAdapter? = null
@@ -148,9 +120,8 @@ class SampleApplication: Application(),ShopirollerAdapter {
     override fun getActionBarColor(): Int {
         return Color.someColor
     }
-
+    
 }
-
 ```
 
 <br>
