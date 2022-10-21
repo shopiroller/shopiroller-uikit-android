@@ -110,7 +110,7 @@ class SampleApplication: Application(), ShopirollerAdapter {
     }
 
     override fun getApplyzeBaseURL(): String {
-        return "userManagementBaseUrl"
+        return "applyzeBaseUrl"
     }
 
     override fun getShopirollerBaseURL(): String {
