@@ -106,7 +106,7 @@ class SampleApplication: Application(), ShopirollerAdapter {
     }
 
     override fun getLocale(): String {
-        return "pereferredLocale"
+        return "preferredLocale"
     }
 
     override fun getApplyzeBaseURL(): String {
