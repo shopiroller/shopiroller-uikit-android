@@ -143,16 +143,16 @@ Like the code above created instance for shopirollerAdapter in SampleApplication
 After that you can create shopirollerFragment in here , like below code : 
 
 ```kotlin
-    val shopirollerFragment = ShopirollerFragment()
+val shopirollerFragment = ShopirollerFragment()
 
-    val fragmentManager = supportFragmentManager
-    val fragmentTransaction = fragmentManager.beginTransaction()
-    fragmentTransaction.replace(
-        R.id.shopiroller_frame_layout,
-        shopirollerFragment
-        )
-    fragmentTransaction.addToBackStack(null)
-    fragmentTransaction.commit()
+val fragmentManager = supportFragmentManager
+val fragmentTransaction = fragmentManager.beginTransaction()
+fragmentTransaction.replace(
+    R.id.shopiroller_frame_layout,
+    shopirollerFragment
+    )
+fragmentTransaction.addToBackStack(null)
+fragmentTransaction.commit()
 ```
 
 <br>
