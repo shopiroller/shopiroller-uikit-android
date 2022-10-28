@@ -194,7 +194,7 @@ android {
 }
 
 dependencies {
-    implementation 'com.shopiroller.uikit:shopiroller:0.0.2'
+    implementation 'com.shopiroller:uikit:0.0.3'
 }
 ```
 
