@@ -8,13 +8,6 @@ plugins {
 
 android {
     compileSdkVersion 31
-    ext {
-        PUBLISH_GROUP_ID = 'com.shopiroller'
-        //If you are in development change this section to "uikit-alpha"
-        PUBLISH_ARTIFACT_ID = 'uikit'
-        //Release version
-        PUBLISH_VERSION = "0.0.3"
-    }
 
     ext {
         PUBLISH_GROUP_ID = 'com.shopiroller'
@@ -30,6 +23,29 @@ android {
 
     defaultConfig {
         minSdkVersion 21
+    }
+
+    buildTypes {
+        getByName("release") {
+            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
+            minifyEnabled = true
+            ext {
+                PUBLISH_GROUP_ID = 'com.shopiroller'
+                PUBLISH_ARTIFACT_ID = 'uikit'
+                PUBLISH_VERSION = "0.0.3"
+            }
+        }
+
+        getByName("debug") {
+            ext {
+                PUBLISH_GROUP_ID = 'com.shopiroller'
+                //If you are in development change this section to "uikit-alpha"
+                PUBLISH_ARTIFACT_ID = 'uikit'
+                //Release version
+                PUBLISH_VERSION = "0.0.4-alpha"
+            }
+            debuggable = true
+        }
     }
 
     compileOptions {
