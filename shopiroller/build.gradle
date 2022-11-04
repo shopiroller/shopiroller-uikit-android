@@ -19,6 +19,7 @@ android {
     def script = "${rootDir}/scripts/publish-module.gradle";
     if (project.file(script).exists()) {
         apply from: "${script}"
+}
     }
 
     buildToolsVersion "30.0.3"
