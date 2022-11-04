@@ -675,7 +675,7 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
     }
 
     private void setVariantFields() {
-        Boolean isOdd = false;
+        boolean isOdd = false;
 
         if (variantFields.size() %2 != 0) {
             isOdd = true;
@@ -690,7 +690,6 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
                 inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 rootView = inflater.inflate(R.layout.e_commerce_variant_layout, null);
                 linearLayout = rootView.findViewById(R.id.variant_main_view);
-                linearLayout.addView(variantFields.get(i));
                 linearLayouts.add(rootView);
             } else {
                 linearLayout.addView(variantFields.get(i));
