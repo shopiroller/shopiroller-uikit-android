@@ -150,7 +150,7 @@ public class ShopirollerDialog {
                         .customView(R.layout.mobiroller_dialog_button, false)
                         .build();
                 setBasic(materialDialog);
-            } else if (mType == MobirollerDialogType.LIST) {
+            } else if (mType == MobirollerDialogType.LIST || mType == MobirollerDialogType.LIST_WITH_BUTTON) {
                 materialDialog = new MaterialDialog.Builder(mContext)
                         .customView(R.layout.mobiroller_dialog_list, false)
                         .stackingBehavior(StackingBehavior.NEVER)
