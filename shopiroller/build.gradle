@@ -11,15 +11,15 @@ android {
     ext {
         PUBLISH_GROUP_ID = 'com.shopiroller'
         PUBLISH_ARTIFACT_ID = 'uikit'
-        //If you are in development add suffix-alpha (latest version is 0.0.6-alpha)
+        //If you are in development add suffix -alpha (latest development alpha version is 0.0.9)
         //Release version
+        //Sample -> PUBLISH_VERSION = "0.0.9-alpha"
         PUBLISH_VERSION = "0.0.3"
     }
 
     def script = "${rootDir}/scripts/publish-module.gradle";
     if (project.file(script).exists()) {
         apply from: "${script}"
-}
     }
 
     buildToolsVersion "30.0.3"
