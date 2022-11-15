@@ -97,12 +97,12 @@
                 <ImageView
                     android:layout_width="19dp"
                     app:srcCompat="@drawable/ic_info_icon"
-                    android:tint="#8A8A8A"
                     android:id="@+id/info_image_view"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    android:layout_height="19dp"/>
+                    android:layout_height="19dp"
+                    app:tint="#8A8A8A" />
 
                 <com.shopiroller.views.legacy.ShopirollerTextView
                     android:layout_width="0dp"
@@ -265,7 +265,7 @@
                     android:id="@+id/total"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="75,80 TL"
+                    tools:text="75,80 TL"
                     android:autoSizeTextType="uniform"
                     android:autoSizeMinTextSize="19sp"
                     android:autoSizeMaxTextSize="100sp"
