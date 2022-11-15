@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -41,6 +42,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.shopiroller.adapter.ProductImageAdapter;
 import com.shopiroller.util.ECommerceUtil;
 import com.shopiroller.R;
 import com.shopiroller.R2;
@@ -168,6 +170,7 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
     List<ProductDetailModel> variants = new ArrayList<>();
     List<ProductImage> mediaImages = new ArrayList<>();
     List<ProductImage> variantImages = new ArrayList<>();
+    List<View> variantFields = new ArrayList<>();
     String videoUrl;
 
     private int amount;
@@ -514,10 +517,12 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
                 LayoutInflater vi = getLayoutInflater();
                 View v = vi.inflate(R.layout.item_variant_field, null);
 
-                v.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1f));
+                v.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 2f));
                 if (variationGroupsModels.size() > 1) {
-                    if (i + 1 != variationGroupsModels.size()) v.setPadding(0, 0, 10, 0);
-                    else v.setPadding(10, 0, 0, 0);
+                    if (i + 1 != variationGroupsModels.size())
+                        v.setPadding(0, 0, 30, 0);
+                    else
+                        v.setPadding(10, 0, 0, 0);
                 }
 
                 List<String> variantList = new ArrayList<>();
@@ -540,8 +545,9 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
                     }
                     createVariantSelectionListDialog(materialListFilterDialog, textView);
                 });
-                variantLayout.addView(v);
+                variantFields.add(v);
             }
+            setVariantFields();
         }
 
         if (!productModel.images.isEmpty())
@@ -665,6 +671,46 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
             imageAdapter.notifyDataSetChanged();
         } else {
             viewPagerCountDots.setVisibility(View.GONE);
+        }
+    }
+
+    private void setVariantFields() {
+        boolean isOdd = false;
+
+        if (variantFields.size() %2 != 0) {
+            isOdd = true;
+        }
+
+        List<View> linearLayouts = new ArrayList<>();
+        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        View rootView = inflater.inflate(R.layout.e_commerce_variant_layout, null);
+        ViewGroup linearLayout = rootView.findViewById(R.id.variant_main_view);
+        for(int i = 0; i < variantFields.size(); i++) {
+            if (i % 2 == 0) {
+                inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                rootView = inflater.inflate(R.layout.e_commerce_variant_layout, null);
+                linearLayout = rootView.findViewById(R.id.variant_main_view);
+                linearLayouts.add(rootView);
+            } else {
+                linearLayout.addView(variantFields.get(i));
+            }
+        }
+
+        if (isOdd) {
+            LayoutInflater emptyTextViewInflater = getLayoutInflater();
+            View emptyView = emptyTextViewInflater.inflate(R.layout.item_variant_field, null);
+            ShopirollerTextView emptyViewTextView = emptyView.findViewById(R.id.variant_text_view);
+            emptyViewTextView.setVisibility(View.INVISIBLE);
+            View lastRootView = linearLayouts.get(linearLayouts.size() - 1);
+            linearLayouts.remove(lastRootView);
+            ViewGroup oddLinearLayout = lastRootView.findViewById(R.id.variant_main_view);
+            emptyView.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 2f));
+            oddLinearLayout.addView(emptyView);
+            linearLayouts.add(lastRootView);
+        }
+
+        for (int i = 0; i < linearLayouts.size(); i++) {
+            variantLayout.addView(linearLayouts.get(i));
         }
     }
 
