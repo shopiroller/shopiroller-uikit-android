@@ -687,13 +687,11 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
         ViewGroup linearLayout = rootView.findViewById(R.id.variant_main_view);
         for(int i = 0; i < variantFields.size(); i++) {
             if (i % 2 == 0) {
-                inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 rootView = inflater.inflate(R.layout.e_commerce_variant_layout, null);
                 linearLayout = rootView.findViewById(R.id.variant_main_view);
                 linearLayouts.add(rootView);
-            } else {
-                linearLayout.addView(variantFields.get(i));
             }
+                linearLayout.addView(variantFields.get(i));
         }
 
         if (isOdd) {
