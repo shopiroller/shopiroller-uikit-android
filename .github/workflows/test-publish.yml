@@ -3,11 +3,7 @@
 
 name: Test Publish
 
-on:
-  workflow_dispatch:
-  push:
-    branches:
-      - bugfix/SR-1268
+on: workflow_dispatch
 
 jobs:
   publish:
