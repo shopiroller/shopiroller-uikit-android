@@ -5,8 +5,8 @@ name: Test Publish
 
 on:
   push:
-    branches:
-      - bugfix/SR-1268
+    paths:
+     - 'publish-version.txt'
 
 jobs:
   publish:
