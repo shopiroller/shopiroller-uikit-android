@@ -19,7 +19,7 @@ jobs:
           java-version: 11
       - name: Release build
         # assembleRelease for all modules, excluding non-library modules: samples, docs
-        run: ./gradlew assembleRelease -x :shopiroller:assembleRelease -x :shopiroller:assembleRelease -x :shopiroller:assembleRelease
+        run: ./gradlew assembleRelease -x :shopiroller:assembleRelease -x :shopiroller:assembleRelease -x :shopiroller:assembleRelease --stacktrace
       - name: Source jar and dokka
         run: ./gradlew androidSourcesJar javadocJar
       - name: Publish to MavenCentral
