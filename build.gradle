@@ -28,4 +28,5 @@ def script = "${rootDir}/scripts/publish-root.gradle";
 if (project.file(script).exists()) {
     apply from: "${script}"
 }
+}
 

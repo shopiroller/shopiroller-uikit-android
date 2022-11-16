@@ -54,13 +54,8 @@ public class OrderProductViewHolder extends RecyclerView.ViewHolder {
         }
 
         title.setText(UtilManager.localizationHelper().getLocalizedTitle(product.title));
-        price.setText(String.format("%s %s", ECommerceUtil.getPriceString(product.price), ECommerceUtil.getCurrencySymbol(product.currency)));
 
-        if (product.campaignPrice == 0) {
-            price.setText(ECommerceUtil.getPriceString(product.price * product.quantity) + " " + ECommerceUtil.getCurrencySymbol(product.currency));
-        } else {
-            price.setText(ECommerceUtil.getPriceString(product.campaignPrice * product.quantity) + " " + ECommerceUtil.getCurrencySymbol(product.currency));
-        }
+        price.setText(ECommerceUtil.getPriceString(product.price * product.quantity) + " " + ECommerceUtil.getCurrencySymbol(product.currency));
 
         description.setText(Html.fromHtml(itemView.getContext().getString(R.string.e_commerce_order_details_quantity, String.valueOf(product.quantity))));
     }

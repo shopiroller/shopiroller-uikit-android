@@ -17,18 +17,13 @@ jobs:
         with:
           distribution: adopt
           java-version: 11
-
-        # Builds the release artifacts of the library
       - name: Release build
-        run: ./gradlew :shopiroller:assembleRelease
-
-        # Generates other artifacts (javadocJar is optional)
+        # assembleRelease for all modules, excluding non-library modules: samples, docs
+        run: ./gradlew assembleRelease -x :shopiroller:assembleRelease -x :shopiroller:assembleRelease -x :shopiroller:assembleRelease --stacktrace
       - name: Source jar and dokka
         run: ./gradlew androidSourcesJar javadocJar
-
-        # Runs upload, and then closes & releases the repository
       - name: Publish to MavenCentral
-        run: ./gradlew assembleRelease publishToSonatype closeAndReleaseStagingRepository --stacktrace --max-workers 1
+        run: ./gradlew publishReleasePublicationToSonatypeRepository --max-workers 1 closeAndReleaseSonatypeStagingRepository
         env:
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}

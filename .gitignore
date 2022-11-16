@@ -8,8 +8,6 @@ build/
 
 # Local configuration file (sdk path, etc)
 local.properties
-publish-module.gradle
-publish-root.gradle
 secring.gpg
 **/android/local.properties
 **/android/secring.gpg
