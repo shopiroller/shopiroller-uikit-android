@@ -18,10 +18,6 @@ jobs:
           distribution: adopt
           java-version: 11
 
-        # Builds the release artifacts of the library
-      - name: Release build
-        run: ./gradlew :shopiroller:assembleRelease
-
         # Generates other artifacts (javadocJar is optional)
       - name: Source jar and dokka
         run: ./gradlew androidSourcesJar javadocJar
