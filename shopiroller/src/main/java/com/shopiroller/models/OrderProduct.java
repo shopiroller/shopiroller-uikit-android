@@ -13,7 +13,7 @@ public class OrderProduct implements Serializable {
     public String title;
     @SerializedName("featuredImage")
     public ProductImage featuredImage;
-    @SerializedName("paidPrice")
+    @SerializedName("price")
     public double price;
     @SerializedName("quantity")
     public int quantity;
