@@ -6,15 +6,36 @@ plugins {
     id 'kotlin-kapt'
 }
 
+def publishVersion = ""
+def publishGroupId = ""
+def publishArtifactId = ""
+
+new File("${rootDir}/scripts/publish-version.txt").eachLine { line ->
+    if (line.contains("VERSION")) {
+        String[] split = line.split("=")
+        publishVersion = split[1]
+    }
+
+    if (line.contains("GROUP_ID")) {
+        String[] split = line.split("=")
+        publishGroupId = split[1]
+    }
+
+    if (line.contains("ARTIF")) {
+        String[] split = line.split("=")
+        publishArtifactId = split[1];
+    }
+}
+
 android {
     compileSdkVersion 31
     ext {
-        PUBLISH_GROUP_ID = 'com.shopiroller'
-        PUBLISH_ARTIFACT_ID = 'uikit'
+        PUBLISH_GROUP_ID = publishGroupId
+        PUBLISH_ARTIFACT_ID = publishArtifactId
         //If you are in development add suffix -alpha (latest development alpha version is 0.0.9)
         //Release version
-        //Sample -> PUBLISH_VERSION = "0.0.9-alpha"
-        PUBLISH_VERSION = "0.0.3"
+        //Sample -> PUBLISH_VERSION = "0.0.13-alpha"
+        PUBLISH_VERSION = publishVersion
     }
 
     def script = "${rootDir}/scripts/publish-module.gradle";
