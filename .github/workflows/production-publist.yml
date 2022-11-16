@@ -3,10 +3,7 @@
 
 name: Production Publish
 
-on:
-  release:
-    # We'll run this workflow when a new GitHub release is created
-    types: [released]
+on: workflow_dispatch
 
 jobs:
   publish:
