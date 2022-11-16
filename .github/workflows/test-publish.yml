@@ -5,7 +5,8 @@ name: Test Publish
 
 on:
   push:
-    branches: [bugfix/SR-1268]
+    branches:
+      - bugfix/SR-1268
 
 jobs:
   publish:
