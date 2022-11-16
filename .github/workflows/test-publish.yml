@@ -4,9 +4,10 @@
 name: Test Publish
 
 on:
+  workflow_dispatch:
   push:
-    paths:
-     - 'publish-version.txt'
+    branches:
+      - bugfix/SR-1268
 
 jobs:
   publish:
