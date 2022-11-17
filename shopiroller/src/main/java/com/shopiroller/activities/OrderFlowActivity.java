@@ -527,7 +527,7 @@ public class OrderFlowActivity extends ECommerceBaseActivity {
     }
 
     private void presentPaymentSheet() {
-        PaymentSheet.Configuration configuration = new PaymentSheet.Configuration("ShopirollerSDK");
+        PaymentSheet.Configuration configuration = new PaymentSheet.Configuration(getString(R.string.e_commerce_order_summary_payment_title));
         paymentSheet.presentWithPaymentIntent(paymentClientSecret, configuration);
     }
 
