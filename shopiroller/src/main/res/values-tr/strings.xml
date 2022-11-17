@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">ShopirollerSDK</string>
     <string name="e_commerce_list_no_product_title">Henüz ürün eklenmedi.</string>
     <string name="e_commerce_list_no_product_description">Bu mağazada henüz hiç ürün yok. Ancak yakın zamanda burada bir şeyler olacaktır.</string>
     <string name="e_commerce_list_sold_out_badge">Tükendi</string>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">ShopirollerSDK</string>
     <string name="e_commerce_list_no_product_title">No products added.</string>
     <string name="e_commerce_list_no_product_description">There are currently no added items in the shop.</string>
     <string name="e_commerce_list_sold_out_badge">Sold Out</string>
