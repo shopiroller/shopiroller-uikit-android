@@ -1,5 +1,5 @@
 # This workflow will build a package using Maven and then publish it to GitHub packages when a release is created
-# For more information see: https://github.com/actions/setup-java/blob/main/docs/advanced usage.md#apache-maven-with-a-settings-path
+# For more information see: https://github.com/actions/setup-java/blob/main/docs/advanced-usage.md#apache-maven-with-a-settings-path
 
 name: Test Publish
 
@@ -22,10 +22,10 @@ jobs:
         run: ./gradlew assembleRelease -x :shopiroller:assembleRelease -x :shopiroller:assembleRelease -x :shopiroller:assembleRelease --stacktrace
       - name: Source jar and dokka
         run: ./gradlew androidSourcesJar javadocJar
-      - name: Publish Library
-	run: ./gradlew publish --no-daemon --no-parallel
-      - name: Close And Release Library
-	run: ./gradlew closeAndReleaseRepository
+      - name: Publish to MavenCentral
+        run: ./gradlew publish --no-daemon --no-parallel 
+      - name: Release Library
+        run: ./closeAndReleaseRepository
         env:
           ORG_GRADLE_PROJECT_OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           ORG_GRADLE_PROJECT_OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
