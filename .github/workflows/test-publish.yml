@@ -22,8 +22,6 @@ jobs:
         run: ./gradlew assembleRelease -x :shopiroller:assembleRelease -x :shopiroller:assembleRelease -x :shopiroller:assembleRelease --stacktrace
       - name: Source jar and dokka
         run: ./gradlew androidSourcesJar javadocJar
-      - script:
-   	echo value is $(variables.SonarVerbose)
       - name: Publish Library
 run: |
           ./gradlew publish --no-daemon --no-parallel
