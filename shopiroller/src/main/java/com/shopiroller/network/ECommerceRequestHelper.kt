@@ -126,10 +126,10 @@ class ECommerceRequestHelper {
                 .addHeader(REQUEST_META_OS_TYPE, META_VAL_OS_TYPE)
                 .addHeader(REQUEST_META_OS_VERSION, Build.VERSION.RELEASE)
                 .addHeader(
-                    REQUEST_FALLBACK_LANGUAGE, adapter?.getDefaultLang()?.toLowerCase(Locale.getDefault())
+                    REQUEST_FALLBACK_LANGUAGE, adapter?.getDefaultLang()?.toLowerCase(Locale.ENGLISH)
                 )
                 .addHeader(
-                    REQUEST_META_LANGUAGE, adapter?.getLocale()?.toUpperCase(Locale.getDefault())
+                    REQUEST_META_LANGUAGE, adapter?.getLocale()?.toUpperCase(Locale.ENGLISH)
                 )
                 .addHeader(REQUEST_HEADER_LANGUAGE, finalHeaderLang)
                 .addHeader(REQUEST_CLIENT_ECOMMERCE_VERSION, CLIENT_ECOMMERCE_VERSION)
