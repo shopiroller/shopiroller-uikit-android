@@ -115,7 +115,7 @@ class ECommerceRequestHelper {
             .writeTimeout(REQ_WRITE_TIMEOUT.toLong(), TimeUnit.SECONDS)
             .readTimeout(REQ_READ_TIMEOUT.toLong(), TimeUnit.SECONDS)
         val aliasKey = adapter?.getAliasKey()
-        val finalHeaderLang = adapter?.getLocale()?.toUpperCase() + "-" + adapter?.getLocale()?.toLowerCase()
+        val finalHeaderLang = adapter?.getLocale()?.toUpperCase(Locale.ENGLISH) + "-" + adapter?.getLocale()?.toLowerCase(Locale.ENGLISH)
         clientBuilder.addInterceptor { chain: Interceptor.Chain ->
             val request = chain.request().newBuilder()
                 .addHeader(
