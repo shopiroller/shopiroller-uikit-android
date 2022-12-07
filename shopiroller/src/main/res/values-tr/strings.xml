@@ -8,11 +8,9 @@
     <string name="e_commerce_list_categories">Kategoriler</string>
     <string name="e_commerce_list_see_all">Hepsini Gör</string>
     <string name="e_commerce_list_explore">Keşfet</string>
-
     <string name="e_commerce_category_list_categories_title">Kategoriler</string>
     <string name="e_commerce_category_list_category_item_count">%1$s ürün</string>
     <string name="e_commerce_category_list_see_all_product_for_category">Tüm %1$s Ürünleri</string>
-
     <string name="e_commerce_category_product_list_no_empty_view_title">Ürün eklenmemiş.</string>
     <string name="e_commerce_category_product_list_no_empty_view_description">Mağazada bu kategori için ürün bulunmamaktadır.</string>
     <string name="e_commerce_category_product_list_order">Sırala</string>
@@ -22,11 +20,8 @@
     <string name="e_commerce_category_product_list_order_dialog_price_increasing">Fiyat Artan</string>
     <string name="e_commerce_category_product_list_order_dialog_price_decreasing">Fiyat Azalan</string>
     <string name="e_commerce_category_product_list_order_dialog_most_recent_added">En Yeniler</string>
-
-
     <string name="e_commerce_product_search_no_result_title">%1$s ile ilgili sonuç bulunamadı</string>
     <string name="e_commerce_product_search_no_result_description">Aramanız ile ilgili bir sonuç bulunamadı. Başka bir şey deneyin.</string>
-
     <string name="e_commerce_product_detail_quantity">Adet</string>
     <string name="e_commerce_product_detail_description">Ürün Açıklaması</string>
     <string name="e_commerce_product_detail_return_terms">İade &amp; Değişim Koşulları</string>
@@ -50,7 +45,6 @@
     <string name="e_commerce_product_detail_not_found_product_title">Bulunamadı</string>
     <string name="e_commerce_product_detail_not_found_product_description">Aradığınız sayfa mevcut değil ya da kaldırılmış olabilir.</string>
     <string name="e_commerce_product_detail_not_found_product_button">Anladım</string>
-
     <string name="e_commerce_address_selection_title">Kargo Bilgisi</string>
     <string name="e_commerce_address_selection_shipping_address_title">Teslimat Adresi</string>
     <string name="e_commerce_address_selection_add_new_address">Ekle</string>
@@ -65,7 +59,6 @@
     <string name="e_commerce_address_selection_address_shipping_popup_description">Adres Seçimi açıklama</string>
     <string name="e_commerce_address_selection_address_invoice_popup_title">Adres Seçimi</string>
     <string name="e_commerce_address_selection_address_invoice_popup_description">Adres Seçimi açıklama</string>
-
     <string name="e_commerce_payment_method_selection_title">Ödeme Bilgisi</string>
     <string name="e_commerce_payment_method_selection_empty_view_title">Henüz bir ödeme yöntemi yok.</string>
     <string name="e_commerce_payment_method_selection_empty_view_description">Mağaza sahibi henüz bir ödeme yöntemi eklemedi.</string>
@@ -88,9 +81,7 @@
     <string name="e_commerce_payment_bank_branch">Şube: %s</string>
     <string name="e_commerce_payment_bank_account">Hesap: %s</string>
     <string name="e_commerce_payment_bank_copy_toast_message">Panoya kopyalandı.</string>
-
     <string name="e_commerce_payment_method_selection_description_text">Siparişi tamamla"yı tıkladıktan sonra, satın alma işleminizi güvenli bir şekilde tamamlamak için %s'a yönlendirileceksiniz.</string>
-
     <string name="e_commerce_order_summary_title">Sipariş Özeti</string>
     <string name="e_commerce_order_summary_payment_title">Ödeme</string>
     <string name="e_commerce_order_summary_cart_title">Sepet</string>
@@ -109,7 +100,6 @@
     <string name="e_commerce_order_summary_update_order_popup_description">Bu sepeti sipariş veremezsin. Bazı ürünler tükendi veya kaldırıldı.</string>
     <string name="e_commerce_order_summary_update_order_popup_button">Sepetimi Güncelle</string>
     <string name="e_commerce_order_summary_order_note_hint">Sipariş Notu</string>
-
     <string name="e_commerce_result_success_title">Sipariş verildi!</string>
     <string name="e_commerce_result_success_description">Siparişiniz için teşekkürler, umarız alışverişinizden keyif almışsınızdır.</string>
     <string name="e_commerce_result_success_action_my_orders">Siparişlerim</string>
@@ -132,12 +122,10 @@
     <string name="e_commerce_result_credit_card_already_done_before">Daha önce yapılan işlem</string>
     <string name="e_commerce_result_credit_card_failed_title">Hata Mesajı</string>
     <string name="e_commerce_result_pay_pal_currency_not_supported">Kullanılan para birimi desteklenmemektedir.</string>
-
     <string name="e_commerce_list_order_number">Sipariş Numarası</string>
     <string name="e_commerce_my_orders_title">Siparişlerim</string>
     <string name="e_commerce_my_orders_no_order_title">Sipariş bulunamadı.</string>
     <string name="e_commerce_my_orders_no_order_description">Hemen alışveriş yapıp siparişlerinizi bu sayfadan takip edebilirsiniz.</string>
-
     <string name="e_commerce_order_status_waiting_payment">Ödeme Bekliyor</string>
     <string name="e_commerce_order_status_waiting_approval">Onay Bekliyor</string>
     <string name="e_commerce_order_status_approved">Onaylandı</string>
@@ -149,7 +137,6 @@
     <string name="e_commerce_order_status_canceled">İptal Edildi</string>
     <string name="e_commerce_order_status_refunded">İade Edildi</string>
     <string name="e_commerce_order_status_payment_failed">Ödeme Başarısız</string>
-
     <string name="e_commerce_order_details_title">Sipariş No: %s</string>
     <string name="e_commerce_order_details_information_title">Sipariş Bilgisi</string>
     <string name="e_commerce_order_details_user_note_sub_title">Kullanıcı Notu:</string>
@@ -167,7 +154,6 @@
     <string name="e_commerce_order_details_bank_iban"><![CDATA[<b>Iban: </b>]]>%s</string>
     <string name="e_commerce_order_details_bank_copy_toast_message">Panoya kopyalandı.</string>
     <string name="e_commerce_order_details_cargo_copy_toast_message">Panoya kopyalandı.</string>
-
     <string name="e_commerce_shopping_cart_item_count">%d ürün</string>
     <string name="e_commerce_shopping_cart_clear_cart">Sepeti Temizle</string>
     <string name="e_commerce_shopping_cart_products_price">Ürün Tutarı</string>
@@ -197,13 +183,10 @@
     <string name="e_commerce_shopping_cart_coupon_dialog_textfield_placeholder">İndirim Kodu</string>
     <string name="e_commerce_shopping_cart_coupon_apply_discount">İndirimi Uygula</string>
     <string name="e_commerce_shopping_cart_bottom_view_coupon_discount">İndirim</string>
-
     <string name="e_commerce_dialog_delete_address_positive_button">Evet silinsin</string>
     <string name="e_commerce_dialog_negative_button">Hayır, şimdi değil</string>
-
     <string name="e_commerce_search_list_order">Sırala</string>
     <string name="e_commerce_search_list_filter">Filtrele</string>
-
     <string name="e_commerce_filter_category">Kategori</string>
     <string name="e_commerce_filter_brand">Marka</string>
     <string name="e_commerce_filter_size">Beden</string>
@@ -215,12 +198,9 @@
     <string name="e_commerce_discounted_products">İndirimli Ürünler</string>
     <string name="e_commerce_free_shipping">Ücretsiz Kargo</string>
     <string name="e_commerce_filter_list_products">Ürünleri Listele</string>
-
     <string name="e_commerce_filter_multi_choice_search">Ara</string>
     <string name="e_commerce_filter_multi_choice_apply">Uygula</string>
-
     <string name="e_commerce_filter_selection_apply">Uygula</string>
-
     <string name="e_commerce_filter_clear">Temizle</string>
     <string name="e_commerce_multi_choice_search">Ara</string>
     <string name="e_commerce_multi_choice_apply">Uygula</string>
@@ -232,19 +212,15 @@
     <string name="cancel">Vazgeç</string>
     <string name="action_search">Ara</string>
     <string name="action_share">Paylaş</string>
-
     <string name="mobiroller_dialog_negative_button">Hayır, şimdi değil</string>
     <string name="apply_discount">İndirimi Uygula</string>
     <string name="discount_code">İndirim Kodu</string>
     <string name="your_discount_code">İndirim kodunuz</string>
-
-
     <string-array name="order_flow_status">
         <item>Kargo</item>
         <item>Ödeme</item>
         <item>Sipariş</item>
     </string-array>
-
-
     <string name="notification_dialog_positive_button">İncele</string>
+    <string name="e_commerce_payment_method_selection_paypal">Paypal</string>
 </resources>
