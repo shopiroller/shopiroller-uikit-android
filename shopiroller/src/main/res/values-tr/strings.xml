@@ -80,7 +80,7 @@
     <string name="e_commerce_payment_bank_iban">Iban: %s</string>
     <string name="e_commerce_payment_bank_branch">Şube: %s</string>
     <string name="e_commerce_payment_bank_account">Hesap: %s</string>
-    <string name="e_commerce_payment_bank_copy_toast_message">Panoya kopyalandı.</string>
+    <string name="e_commerce_payment_bank_copy_toast_message">Panoya kopyalandı</string>
     <string name="e_commerce_payment_method_selection_description_text">Siparişi tamamla"yı tıkladıktan sonra, satın alma işleminizi güvenli bir şekilde tamamlamak için %s'a yönlendirileceksiniz.</string>
     <string name="e_commerce_order_summary_title">Sipariş Özeti</string>
     <string name="e_commerce_order_summary_payment_title">Ödeme</string>
