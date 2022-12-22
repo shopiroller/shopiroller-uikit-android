@@ -11,6 +11,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.Spannable;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -43,6 +44,8 @@ import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.shopiroller.adapter.ProductImageAdapter;
+import com.shopiroller.models.VariantDataModel;
+import com.shopiroller.models.VariationsModel;
 import com.shopiroller.util.ECommerceUtil;
 import com.shopiroller.R;
 import com.shopiroller.R2;
@@ -81,14 +84,18 @@ import com.shopiroller.views.legacy.ShopirollerDialog;
 import com.shopiroller.views.legacy.ShopirollerTextView;
 import com.shopiroller.views.legacy.ShopirollerToolbar;
 
+import org.checkerframework.checker.units.qual.A;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -171,6 +178,8 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
     List<ProductImage> mediaImages = new ArrayList<>();
     List<ProductImage> variantImages = new ArrayList<>();
     List<View> variantFields = new ArrayList<>();
+    private Integer currentVariantPosition = 1;
+    private Integer selectedVariantGroupIndex = 0;
     String videoUrl;
 
     private int amount;
@@ -425,7 +434,8 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
             DialogUtil.showNoConnectionError(this);
     }
 
-    private void getSelectedVariant() {
+    private void setCurrentVariantIndex() {
+        currentVariantPosition = 0;
         for (int i = 0; i < variants.size(); i++) {
             List<String> variantValue = new ArrayList<>();
             for (int j = 0; j < variants.get(i).variantData.size(); j++) {
@@ -434,9 +444,13 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
             if (variantValue.containsAll(variantMapData.values())) {
                 productModel = variants.get(i);
                 productId = productModel.id;
-                loadVariantModel(i);
+                currentVariantPosition = i;
             }
         }
+    }
+
+    private void getSelectedVariant() {
+        loadVariantModel(currentVariantPosition);
     }
 
     private void loadVariantModel(int variantIndex) {
@@ -525,23 +539,24 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
                         v.setPadding(10, 0, 0, 0);
                 }
 
-                List<String> variantList = new ArrayList<>();
-                for (int j = 0; j < variationGroupsModels.get(i).getVariations().size(); j++) {
-                    variantList.add(variationGroupsModels.get(i).getVariations().get(j).getValue());
-                }
-
                 ShopirollerTextView textView = v.findViewById(R.id.variant_text_view);
                 textView.setText(variationGroupsModels.get(i).getVariations().get(0).getValue());
                 variantMapData.put(variationGroupsModels.get(i).getName(), variationGroupsModels.get(i).getVariations().get(0).getValue());
                 textView.setTag(i);
 
                 int finalI = i;
+                getAvailableVariants();
                 textView.setOnClickListener(x -> {
                     Integer selectedTextViewPosition = (Integer) textView.getTag();
-                    if (selectedVariantIndexMapData.get(selectedTextViewPosition) != null) {
-                        materialListFilterDialog = new MaterialListFilterDialog(this, variationGroupsModels.get(finalI).getName(), variantList, selectedVariantIndexMapData.get(selectedTextViewPosition));
+                    selectedVariantGroupIndex = selectedTextViewPosition;
+                    List<String> availableVariantList = getAvailableVariants();
+                    if (availableVariantList.size() == 1) {
+                        selectedVariantIndexMapData.put(selectedVariantGroupIndex,0);
+                    }
+                    if (selectedVariantIndexMapData.get(selectedVariantGroupIndex) != null) {
+                        materialListFilterDialog = new MaterialListFilterDialog(this, variationGroupsModels.get(finalI).getName(), getAvailableVariants(), selectedVariantIndexMapData.get(selectedVariantGroupIndex));
                     } else {
-                        materialListFilterDialog = new MaterialListFilterDialog(this, variationGroupsModels.get(finalI).getName(), variantList, 0);
+                        materialListFilterDialog = new MaterialListFilterDialog(this, variationGroupsModels.get(finalI).getName(), getAvailableVariants(), 0);
                     }
                     createVariantSelectionListDialog(materialListFilterDialog, textView);
                 });
@@ -674,7 +689,46 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
         }
     }
 
+    private List<String> getAvailableVariants() {
+        setCurrentVariantIndex();
+        ProductDetailModel currentVariant = variants.get(currentVariantPosition);
+        String selectedVariationGroupId = variationGroupsModels.get(selectedVariantGroupIndex).getId();
+        List<ProductDetailModel> otherVariantsList = new ArrayList<>(variants);
+        List<ProductDetailModel> newOtherVariantsList = new ArrayList<>();
+        List<String> availableVariantsList = new ArrayList<>();
+        for (int i = 0; i < currentVariant.variantData.size(); i++) {
+            VariantDataModel currentVariantDataModel = currentVariant.variantData.get(i);
+            if (!currentVariantDataModel.getVariationGroupId().equals(selectedVariationGroupId)) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    otherVariantsList = otherVariantsList.stream().filter(variants -> variants.variantData.contains(currentVariantDataModel)).collect(Collectors.toList());
+                } else {
+                    for (int j = 0; j < otherVariantsList.size(); j++) {
+                        if (otherVariantsList.get(i).variantData.contains(currentVariantDataModel)) {
+                            newOtherVariantsList.add(otherVariantsList.get(j));
+                        }
+                    }
+                }
+            }
+        }
+
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.N) {
+            otherVariantsList = newOtherVariantsList;
+        }
+
+        for (int i = 0; i < otherVariantsList.size(); i++) {
+            for (int j = 0; j < otherVariantsList.get(i).variantData.size(); j++) {
+                String currentValue = otherVariantsList.get(i).variantData.get(j).getValue();
+                if (otherVariantsList.get(i).variantData.get(j).getVariationGroupId().equals(selectedVariationGroupId) && !availableVariantsList.contains(currentValue)) {
+                    availableVariantsList.add(currentValue);
+                }
+            }
+        }
+
+        return availableVariantsList;
+    }
+
     private void setVariantFields() {
+
         boolean isOdd = false;
 
         if (variantFields.size() %2 != 0) {
@@ -710,6 +764,7 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
         for (int i = 0; i < linearLayouts.size(); i++) {
             variantLayout.addView(linearLayouts.get(i));
         }
+
     }
 
     private void createVariantSelectionListDialog(MaterialListFilterDialog materialListFilterDialog, TextView textView) {
@@ -722,6 +777,7 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
                 variantMapData.put(variationGroupsModels.get((Integer) textView.getTag()).getName(), selectedVariant);
                 selectedVariantIndexMapData.put(((Integer) textView.getTag()), position);
                 materialListFilterDialog.dismiss();
+                setCurrentVariantIndex();
                 getSelectedVariant();
             }
         });
