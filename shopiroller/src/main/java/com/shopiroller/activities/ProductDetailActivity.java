@@ -90,10 +90,12 @@ import org.greenrobot.eventbus.Subscribe;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -691,22 +693,29 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
         setCurrentVariantIndex();
         ProductDetailModel currentVariant = variants.get(currentVariantPosition);
         String selectedVariationGroupId = variationGroupsModels.get(selectedVariantGroupIndex).getId();
-        List<ProductDetailModel> otherVariantsList = new ArrayList<>();
+        List<ProductDetailModel> otherVariantsList = new ArrayList<>(variants);
+        List<ProductDetailModel> newOtherVariantsList = new ArrayList<>();
         List<String> availableVariantsList = new ArrayList<>();
         for (int i = 0; i < currentVariant.variantData.size(); i++) {
-            if (!currentVariant.variantData.get(i).getVariationGroupId().equals(selectedVariationGroupId)) {
-                for (int j = 0; j < variants.size() ; j++) {
-                    if (variants.get(j).variantData.contains(currentVariant.variantData.get(i))) {
-                        otherVariantsList.add(variants.get(j));
+            VariantDataModel currentVariantDataModel = currentVariant.variantData.get(i);
+            if (!currentVariantDataModel.getVariationGroupId().equals(selectedVariationGroupId)) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    otherVariantsList = otherVariantsList.stream().filter(variants -> variants.variantData.contains(currentVariantDataModel)).collect(Collectors.toList());
+                } else {
+                    for (int j = 0; j < otherVariantsList.size(); j++) {
+                        if (otherVariantsList.get(i).variantData.contains(currentVariantDataModel)) {
+                            newOtherVariantsList.add(otherVariantsList.get(i));
+                        }
                     }
                 }
             }
         }
 
         for (int i = 0; i < otherVariantsList.size(); i++) {
-            for (int j = 0; j < otherVariantsList.get(i).variantData.size(); j ++) {
-                if (otherVariantsList.get(i).variantData.get(j).getVariationGroupId().equals(selectedVariationGroupId)) {
-                    availableVariantsList.add(otherVariantsList.get(i).variantData.get(j).getValue());
+            for (int j = 0; j < otherVariantsList.get(i).variantData.size(); j++) {
+                String currentValue = otherVariantsList.get(i).variantData.get(j).getValue();
+                if (otherVariantsList.get(i).variantData.get(j).getVariationGroupId().equals(selectedVariationGroupId) && !availableVariantsList.contains(currentValue)) {
+                    availableVariantsList.add(currentValue);
                 }
             }
         }
