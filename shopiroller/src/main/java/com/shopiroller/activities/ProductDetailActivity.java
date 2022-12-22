@@ -704,11 +704,15 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
                 } else {
                     for (int j = 0; j < otherVariantsList.size(); j++) {
                         if (otherVariantsList.get(i).variantData.contains(currentVariantDataModel)) {
-                            newOtherVariantsList.add(otherVariantsList.get(i));
+                            newOtherVariantsList.add(otherVariantsList.get(j));
                         }
                     }
                 }
             }
+        }
+
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.N) {
+            otherVariantsList = newOtherVariantsList;
         }
 
         for (int i = 0; i < otherVariantsList.size(); i++) {
