@@ -551,7 +551,7 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
                     selectedVariantGroupIndex = selectedTextViewPosition;
                     List<String> availableVariantList = getAvailableVariants();
                     if (availableVariantList.size() == 1) {
-                        selectedVariantIndexMapData.put(selectedVariantGroupIndex,0);
+                        selectedVariantIndexMapData.put(selectedVariantGroupIndex, 0);
                     }
                     if (selectedVariantIndexMapData.get(selectedVariantGroupIndex) != null) {
                         materialListFilterDialog = new MaterialListFilterDialog(this, variationGroupsModels.get(finalI).getName(), getAvailableVariants(), selectedVariantIndexMapData.get(selectedVariantGroupIndex));
@@ -699,13 +699,9 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
         for (int i = 0; i < currentVariant.variantData.size(); i++) {
             VariantDataModel currentVariantDataModel = currentVariant.variantData.get(i);
             if (!currentVariantDataModel.getVariationGroupId().equals(selectedVariationGroupId)) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    otherVariantsList = otherVariantsList.stream().filter(variants -> variants.variantData.contains(currentVariantDataModel)).collect(Collectors.toList());
-                } else {
-                    for (int j = 0; j < otherVariantsList.size(); j++) {
-                        if (otherVariantsList.get(i).variantData.contains(currentVariantDataModel)) {
-                            newOtherVariantsList.add(otherVariantsList.get(i));
-                        }
+                for (int j = 0; j < otherVariantsList.size(); j++) {
+                    if (otherVariantsList.get(i).variantData.contains(currentVariantDataModel)) {
+                        newOtherVariantsList.add(otherVariantsList.get(i));
                     }
                 }
             }
@@ -727,7 +723,7 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
 
         boolean isOdd = false;
 
-        if (variantFields.size() %2 != 0) {
+        if (variantFields.size() % 2 != 0) {
             isOdd = true;
         }
 
@@ -735,13 +731,13 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         View rootView = inflater.inflate(R.layout.e_commerce_variant_layout, null);
         ViewGroup linearLayout = rootView.findViewById(R.id.variant_main_view);
-        for(int i = 0; i < variantFields.size(); i++) {
+        for (int i = 0; i < variantFields.size(); i++) {
             if (i % 2 == 0) {
                 rootView = inflater.inflate(R.layout.e_commerce_variant_layout, null);
                 linearLayout = rootView.findViewById(R.id.variant_main_view);
                 linearLayouts.add(rootView);
             }
-                linearLayout.addView(variantFields.get(i));
+            linearLayout.addView(variantFields.get(i));
         }
 
         if (isOdd) {
@@ -869,7 +865,7 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
                     addProductToCart();
                 }
             } else if (!Shopiroller.getUserLoginStatus()) {
-                if(Shopiroller.getListener() != null)
+                if (Shopiroller.getListener() != null)
                     Shopiroller.getListener().loginNeeded();
             } else {
                 Toast.makeText(this, R.string.common_error, Toast.LENGTH_SHORT).show();
