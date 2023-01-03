@@ -26,6 +26,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -33,6 +34,8 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.widget.ImageViewCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
@@ -42,7 +45,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.shopiroller.adapter.ProductImageAdapter;
+import com.shopiroller.adapter.VariantMainAdapter;
+import com.shopiroller.models.VariantDataModel;
 import com.shopiroller.util.ECommerceUtil;
 import com.shopiroller.R;
 import com.shopiroller.R2;
@@ -97,7 +101,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ProductDetailActivity extends ECommerceBaseActivity implements VideoPlayerActivity.Listener {
+public class ProductDetailActivity extends ECommerceBaseActivity implements VideoPlayerActivity.Listener, VariantMainAdapter.VariantSelectionListener {
 
     @BindView(R2.id.image_view_pager)
     ViewPager imageViewPager;
@@ -163,6 +167,8 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
     ImageView videoPlayImageView;
     @BindView(R2.id.web_view_for_url)
     WebView webViewForUrl;
+    @BindView(R2.id.variant_list)
+    RecyclerView variantList;
 
     Map<String, String> variantMapData = new HashMap<>();
     Map<Integer, Integer> selectedVariantIndexMapData = new HashMap<>();
@@ -186,6 +192,8 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
     MaterialListFilterDialog materialListFilterDialog;
     private ProductListModel productListModel;
     ProductImageAdapter imageAdapter;
+
+    private VariantMainAdapter adapter;
 
     public static void startActivity(Context context, String productId, String title, String featuredImageUrl) {
         if (productId == null) {
@@ -288,6 +296,10 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
                 decor.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
             }
         }
+
+        LinearLayoutManager llm = new LinearLayoutManager(this);
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        variantList.setLayoutManager(llm);
 
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
         localizationHelper = UtilManager.localizationHelper();
@@ -495,6 +507,8 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
 
         if (productModel.variationGroups.size() > 0 && !productModel.variants.isEmpty()) {
 
+            variantList.setVisibility(View.VISIBLE);
+
             variationGroupsModels = productModel.variationGroups;
             variants = productModel.variants;
 
@@ -548,6 +562,9 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
                 variantFields.add(v);
             }
             setVariantFields();
+
+            adapter = new VariantMainAdapter(variationGroupsModels,this);
+            variantList.setAdapter(adapter);
         }
 
         if (!productModel.images.isEmpty())
@@ -691,7 +708,7 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
                 linearLayout = rootView.findViewById(R.id.variant_main_view);
                 linearLayouts.add(rootView);
             }
-                linearLayout.addView(variantFields.get(i));
+            linearLayout.addView(variantFields.get(i));
         }
 
         if (isOdd) {
@@ -894,6 +911,11 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
         webViewForUrl.setWebViewClient(new WebViewClient());
         webViewForUrl.getSettings().setJavaScriptEnabled(true);
         webViewForUrl.loadUrl(videoUrl);
+    }
+
+    @Override
+    public void clickedVariantSection(@Nullable Integer variantIndex, @Nullable Integer variantGroupIndex) {
+
     }
 
     public class ProductImageAdapter extends PagerAdapter {

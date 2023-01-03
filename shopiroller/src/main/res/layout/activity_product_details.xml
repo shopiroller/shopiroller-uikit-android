@@ -262,6 +262,19 @@
                 android:visibility="gone"
                 app:layout_constraintTop_toBottomOf="@id/top_container"/>
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/variant_list"
+                android:layout_width="0dp"
+                android:visibility="gone"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/quantity_layout"
+                app:layout_constraintTop_toBottomOf="@id/variant_field_layout"
+                tools:itemCount="5"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_main_variant"/>
+
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/quantity_layout"
@@ -271,7 +284,7 @@
                 android:layout_marginTop="12dp"
                 android:layout_marginRight="16dp"
                 android:background="@drawable/ecommerce_product_detail_item_background"
-                app:layout_constraintTop_toBottomOf="@id/variant_field_layout">
+                app:layout_constraintTop_toBottomOf="@id/variant_list">
 
                 <com.shopiroller.views.legacy.ShopirollerTextView
                     android:id="@+id/quantity_text"
