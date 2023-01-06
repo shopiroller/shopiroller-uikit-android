@@ -1,17 +1,16 @@
 package com.shopiroller.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.shopiroller.R
+import com.shopiroller.models.VariantSelectionModel
 import com.shopiroller.models.Variation
-import com.shopiroller.models.VariationGroupsModel
 import com.shopiroller.viewholders.VariantMainViewHolder
 
 class VariantMainAdapter(
-    private var mainList: List<VariationGroupsModel>,
+    private var mainList: ArrayList<VariantSelectionModel>,
     private var variantSelectionListener: VariantSelectionListener) :
     RecyclerView.Adapter<VariantMainViewHolder>() {
 
@@ -26,12 +25,15 @@ class VariantMainAdapter(
     }
 
     override fun onBindViewHolder(holder: VariantMainViewHolder, position: Int) {
-        val section: List<Variation> = mainList[position].variations
-        val sectionName: String = mainList[position].name
-        holder.bind(sectionName, ChildVariantAdapter(section,variantSelectionListener,position))
+        holder.bind(mainList[position], ChildVariantAdapter(mainList[position],variantSelectionListener,position))
     }
 
     override fun getItemCount(): Int {
         return mainList.size
+    }
+
+    fun updateVariantModel(mainList: ArrayList<VariantSelectionModel>, position: Int?) {
+        mainList[position ?: 0].variantGroupIsActive = true
+        notifyDataSetChanged()
     }
 }

@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:id="@+id/variant_main_layout"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -35,5 +36,16 @@
         tools:listitem="@layout/item_variant">
 
     </androidx.recyclerview.widget.RecyclerView>
+
+    <View
+        android:id="@+id/clickable_state"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        android:clickable="true"
+        app:layout_constraintTop_toTopOf="@id/child_recycler_view"
+        app:layout_constraintBottom_toBottomOf="@id/child_recycler_view"
+        app:layout_constraintStart_toStartOf="@id/child_recycler_view"
+        app:layout_constraintEnd_toEndOf="@id/child_recycler_view"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
