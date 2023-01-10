@@ -11,6 +11,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.Spannable;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -43,10 +44,12 @@ import androidx.viewpager.widget.ViewPager;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.errorprone.annotations.Var;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.shopiroller.adapter.VariantMainAdapter;
 import com.shopiroller.models.VariantDataModel;
+import com.shopiroller.models.VariantSelectionModel;
 import com.shopiroller.util.ECommerceUtil;
 import com.shopiroller.R;
 import com.shopiroller.R2;
@@ -91,8 +94,10 @@ import org.greenrobot.eventbus.Subscribe;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -178,6 +183,12 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
     List<ProductImage> variantImages = new ArrayList<>();
     List<View> variantFields = new ArrayList<>();
     String videoUrl;
+
+    HashMap<Integer, VariantSelectionModel> variantGroupsChildParentMap = new HashMap<>();
+    ArrayList<VariantSelectionModel> variantSelectionModels = new ArrayList<>();
+
+    ArrayList<VariantDataModel> filterDataModel = new ArrayList<>();
+
 
     private int amount;
     int selectedPosition = 0;
@@ -563,8 +574,21 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
             }
             setVariantFields();
 
-            adapter = new VariantMainAdapter(variationGroupsModels,this);
+            Boolean variantGroupIsActive = true;
+            for (int i = 0; i < variationGroupsModels.size(); i++) {
+                if (i != 0) {
+                    variantGroupIsActive = false;
+                }
+                variantSelectionModels.add(new VariantSelectionModel(
+                        variationGroupsModels.get(i).getVariations(),
+                        variationGroupsModels.get(i).getId(),
+                        variationGroupsModels.get(i).getName(),
+                        variantGroupIsActive));
+            }
+
+            adapter = new VariantMainAdapter(variantSelectionModels, this);
             variantList.setAdapter(adapter);
+
         }
 
         if (!productModel.images.isEmpty())
@@ -694,7 +718,7 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
     private void setVariantFields() {
         boolean isOdd = false;
 
-        if (variantFields.size() %2 != 0) {
+        if (variantFields.size() % 2 != 0) {
             isOdd = true;
         }
 
@@ -702,7 +726,7 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         View rootView = inflater.inflate(R.layout.e_commerce_variant_layout, null);
         ViewGroup linearLayout = rootView.findViewById(R.id.variant_main_view);
-        for(int i = 0; i < variantFields.size(); i++) {
+        for (int i = 0; i < variantFields.size(); i++) {
             if (i % 2 == 0) {
                 rootView = inflater.inflate(R.layout.e_commerce_variant_layout, null);
                 linearLayout = rootView.findViewById(R.id.variant_main_view);
@@ -834,7 +858,7 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
                     addProductToCart();
                 }
             } else if (!Shopiroller.getUserLoginStatus()) {
-                if(Shopiroller.getListener() != null)
+                if (Shopiroller.getListener() != null)
                     Shopiroller.getListener().loginNeeded();
             } else {
                 Toast.makeText(this, R.string.common_error, Toast.LENGTH_SHORT).show();
@@ -913,8 +937,109 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
         webViewForUrl.loadUrl(videoUrl);
     }
 
+    public void filterVariantModel() {
+
+        Boolean variantGroupIsActive = true;
+        for (int i = 0; i < variationGroupsModels.size(); i++) {
+            if (i != 0) {
+                variantGroupIsActive = false;
+            }
+            variantSelectionModels.add(new VariantSelectionModel(
+                    variationGroupsModels.get(i).getVariations(),
+                    variationGroupsModels.get(i).getId(),
+                    variationGroupsModels.get(i).getName(),
+                    variantGroupIsActive));
+        }
+
+    }
+
+
     @Override
     public void clickedVariantSection(@Nullable Integer variantIndex, @Nullable Integer variantGroupIndex) {
+
+        HashSet<Variation> availableVariants = new HashSet<Variation>();
+
+        String selectedVariant = variationGroupsModels.get(variantGroupIndex).getVariations().get(variantIndex).getValue();
+        String selectedVariantId = variationGroupsModels.get(variantGroupIndex).getVariations().get(variantIndex).getId();
+        String selectedVariationGroupId = variationGroupsModels.get(variantGroupIndex).getId();
+
+        String nextVariationGroupId = variationGroupsModels.get(variantGroupIndex != variationGroupsModels.size() - 1 ? variantGroupIndex + 1 : variantGroupIndex).getId();
+
+        Integer nextVariationGroupIndex = 0;
+
+        for (int i = 0; i < variationGroupsModels.size(); i++) {
+            if (variationGroupsModels.get(i).getId().equals(nextVariationGroupId)) {
+                nextVariationGroupIndex = i;
+            }
+        }
+
+        VariantDataModel currentSelectedVariantDataModel = new VariantDataModel(selectedVariant, selectedVariationGroupId, selectedVariantId);
+
+        if (filterDataModel.isEmpty() || variantGroupIndex >= filterDataModel.size()) {
+            filterDataModel.add(variantGroupIndex, currentSelectedVariantDataModel);
+        } else {
+            filterDataModel.set(variantGroupIndex, currentSelectedVariantDataModel);
+        }
+
+        if (variantGroupIndex == 0 && filterDataModel.size() >= 1) {
+            for (VariantSelectionModel variantSelectionModel : variantSelectionModels) {
+                for (Variation variation : variantSelectionModel.getVariationList()) {
+                    if (!variantSelectionModel.getVariantGroupId().equals(selectedVariationGroupId)) {
+                        variantSelectionModel.setVariantGroupIsActive(false);
+                        variation.setAvailable(false);
+                        variation.setSelected(false);
+                    }
+                }
+            }
+            for (int i = 1; i < filterDataModel.size(); i++) {
+                filterDataModel.remove(i);
+            }
+        }
+
+        Integer selectionModelIndex = 0;
+
+        if (filterDataModel.size() != variantSelectionModels.size()) {
+            selectionModelIndex = filterDataModel.size();
+        } else {
+            selectionModelIndex = filterDataModel.size() - 1;
+        }
+
+        if (variantSelectionModels.get(selectionModelIndex).getVariantGroupId().equals(selectedVariationGroupId)) {
+            for (Variation variation : variantSelectionModels.get(selectionModelIndex).getVariationList()) {
+                if (!variation.getId().equals(selectedVariantId)) {
+                    variation.setSelected(false);
+                }
+            }
+        }
+
+
+        for (int i = 0; i < variants.size(); i++) {
+            if (variants.get(i).variantData.containsAll(filterDataModel)) {
+                for (int j = 0; j < variants.get(i).variantData.size(); j++) {
+                    if (variants.get(i).variantData.get(j).getVariationGroupId().equals(nextVariationGroupId)) {
+                        availableVariants.add(new Variation(variants.get(i).variantData.get(j).getVariationId(), variants.get(i).variantData.get(j).getValue(), true, false));
+                    }
+                }
+            }
+        }
+
+        if (availableVariants.size() != variantSelectionModels.get(selectionModelIndex).getVariationList().size()) {
+            for (Variation availableVariant : availableVariants) {
+                for (int i = 0; i < variantSelectionModels.get(selectionModelIndex).getVariationList().size(); i++) {
+                    if (!variantSelectionModels.get(selectionModelIndex).getVariationList().get(i).getId().equals(availableVariant.getId())) {
+                        variantSelectionModels.get(selectionModelIndex).getVariationList().get(i).setAvailable(false || variantSelectionModels.get(selectionModelIndex).getVariationList().get(i).isAvailable());
+                    } else {
+                        variantSelectionModels.get(selectionModelIndex).getVariationList().get(i).setAvailable(true);
+                    }
+                }
+            }
+        } else {
+            for (Variation variation : variantSelectionModels.get(selectionModelIndex).getVariationList()) {
+                variation.setAvailable(true);
+            }
+        }
+
+        adapter.updateVariantModel(variantSelectionModels, nextVariationGroupIndex, variantIndex);
 
     }
 

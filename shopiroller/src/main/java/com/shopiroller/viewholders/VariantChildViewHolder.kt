@@ -8,47 +8,54 @@ import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.shopiroller.R
+import com.shopiroller.adapter.ChildVariantAdapter
 import com.shopiroller.adapter.VariantMainAdapter
 import com.shopiroller.models.Variation
 
 class VariantChildViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-    private var variantVariableButton: TextView?
+    private var variantVariableTextView: TextView?
     private var cardViewContainer: CardView?
     private var disabledImage: ImageView?
 
-
     init {
-        variantVariableButton = itemView.findViewById(R.id.variant_section)
+        variantVariableTextView = itemView.findViewById(R.id.variant_section)
         disabledImage = itemView.findViewById(R.id.disabled_image_view)
         cardViewContainer = itemView.findViewById(R.id.container_card_view)
     }
 
-    fun bind(model: Variation, isLayoutGroupActive: Boolean) {
+    fun bind(model: Variation, isLayoutGroupActive: Boolean, isBaseVariantGroup: Boolean) {
+
         if (!isLayoutGroupActive) {
-            variantVariableButton?.alpha = 0.3F
+            variantVariableTextView?.alpha = 0.3F
         } else {
-            variantVariableButton?.alpha = 1F
+            variantVariableTextView?.alpha = 1F
+            disabledImage?.visibility = View.GONE
         }
 
-        if (model.isAvailable == false) {
-            disabledImage?.visibility = View.VISIBLE
+        if (!isBaseVariantGroup) {
+            if (model.isAvailable == false) {
+                disabledImage?.visibility = View.VISIBLE
+            } else {
+                disabledImage?.visibility = View.GONE
+            }
         } else {
             disabledImage?.visibility = View.GONE
         }
 
-        variantVariableButton?.text = model.value
+
+        variantVariableTextView?.text = model.value
         //if (!isActive) {
           //  disabledImage?.visibility = View.VISIBLE
             //cardViewContainer?.isEnabled = false
             //variantVariableButton?.isEnabled = false
        // }
         if (model.isSelected == true) {
-            variantVariableButton?.background = ContextCompat.getDrawable(
+            variantVariableTextView?.background = ContextCompat.getDrawable(
                 itemView.context,
                 R.drawable.e_commerce_bank_selected
             )
         } else {
-            variantVariableButton?.background = ContextCompat.getDrawable(
+            variantVariableTextView?.background = ContextCompat.getDrawable(
                 itemView.context,
                 R.drawable.e_commerce_bank_unselected
             )

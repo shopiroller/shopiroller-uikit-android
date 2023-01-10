@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.shopiroller.R
 import com.shopiroller.models.VariantSelectionModel
-import com.shopiroller.models.Variation
 import com.shopiroller.viewholders.VariantMainViewHolder
 
 class VariantMainAdapter(
@@ -32,8 +31,8 @@ class VariantMainAdapter(
         return mainList.size
     }
 
-    fun updateVariantModel(mainList: ArrayList<VariantSelectionModel>, position: Int?) {
-        mainList[position ?: 0].variantGroupIsActive = true
+    fun updateVariantModel(mainList: ArrayList<VariantSelectionModel>, nextGroupIndex: Int?, childSelectedIndex: Int?) {
+        mainList[nextGroupIndex ?: 0].variantGroupIsActive = true
         notifyDataSetChanged()
     }
 }

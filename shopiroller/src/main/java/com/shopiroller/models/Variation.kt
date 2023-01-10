@@ -8,7 +8,7 @@ data class Variation(
     @SerializedName("value")
     val value: String? = null,
 
-    var isAvailable: Boolean? = true,
+    var isAvailable: Boolean? = false,
 
     var isSelected: Boolean? = false
 )
