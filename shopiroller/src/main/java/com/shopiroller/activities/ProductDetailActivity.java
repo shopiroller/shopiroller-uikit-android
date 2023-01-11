@@ -11,7 +11,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.Spannable;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -20,14 +19,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -35,7 +32,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.widget.ImageViewCompat;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.PagerAdapter;
@@ -44,7 +40,6 @@ import androidx.viewpager.widget.ViewPager;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
-import com.google.errorprone.annotations.Var;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.shopiroller.adapter.VariantMainAdapter;
@@ -54,12 +49,10 @@ import com.shopiroller.util.ECommerceUtil;
 import com.shopiroller.R;
 import com.shopiroller.R2;
 import com.shopiroller.Shopiroller;
-import com.shopiroller.adapter.DialogFilterAdapter;
 import com.shopiroller.constants.Constants;
 import com.shopiroller.enums.MobirollerDialogType;
 import com.shopiroller.fragments.ProductGalleryBottomSheetFragment;
 import com.shopiroller.helpers.ColorHelper;
-import com.shopiroller.helpers.ItemClickSupport;
 import com.shopiroller.helpers.LocalizationHelper;
 import com.shopiroller.helpers.NetworkHelper;
 import com.shopiroller.helpers.ProgressViewHelper;
@@ -97,7 +90,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -166,8 +158,6 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
     TextView shippingTitleTextView;
     @BindView(R2.id.return_title)
     TextView returnTitleTextView;
-    @BindView(R2.id.variant_field_layout)
-    LinearLayout variantLayout;
     @BindView(R2.id.video_play_image_view)
     ImageView videoPlayImageView;
     @BindView(R2.id.web_view_for_url)
@@ -205,6 +195,13 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
     ProductImageAdapter imageAdapter;
 
     private VariantMainAdapter adapter;
+
+    String selectedVariant = "";
+    String selectedVariantId = "";
+    String selectedVariationGroupId = "";
+
+    String nextVariationGroupId = "";
+
 
     public static void startActivity(Context context, String productId, String title, String featuredImageUrl) {
         if (productId == null) {
@@ -448,20 +445,6 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
             DialogUtil.showNoConnectionError(this);
     }
 
-    private void getSelectedVariant() {
-        for (int i = 0; i < variants.size(); i++) {
-            List<String> variantValue = new ArrayList<>();
-            for (int j = 0; j < variants.get(i).variantData.size(); j++) {
-                variantValue.add(variants.get(i).variantData.get(j).getValue());
-            }
-            if (variantValue.containsAll(variantMapData.values())) {
-                productModel = variants.get(i);
-                productId = productModel.id;
-                loadVariantModel(i);
-            }
-        }
-    }
-
     private void loadVariantModel(int variantIndex) {
         if (!variants.get(variantIndex).images.isEmpty()) {
             int emptyVariantImageCount = 0;
@@ -518,63 +501,20 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
 
         if (productModel.variationGroups.size() > 0 && !productModel.variants.isEmpty()) {
 
-            variantList.setVisibility(View.VISIBLE);
-
             variationGroupsModels = productModel.variationGroups;
             variants = productModel.variants;
-
-            variantLayout.setVisibility(View.VISIBLE);
-            variantLayout.setWeightSum(variationGroupsModels.size());
 
             mediaImages.addAll(productModel.images);
             for (int l = 0; l < variants.size(); l++) {
                 variantImages.addAll(productModel.variants.get(l).images);
             }
 
-            productModel = productModel.variants.get(0);
-            productId = productModel.id;
-
             productModel.images.clear();
             productModel.images.addAll(variantImages);
             productModel.images.addAll(mediaImages);
 
-            for (int i = 0; i < variationGroupsModels.size(); i++) {
-                LayoutInflater vi = getLayoutInflater();
-                View v = vi.inflate(R.layout.item_variant_field, null);
-
-                v.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 2f));
-                if (variationGroupsModels.size() > 1) {
-                    if (i + 1 != variationGroupsModels.size())
-                        v.setPadding(0, 0, 30, 0);
-                    else
-                        v.setPadding(10, 0, 0, 0);
-                }
-
-                List<String> variantList = new ArrayList<>();
-                for (int j = 0; j < variationGroupsModels.get(i).getVariations().size(); j++) {
-                    variantList.add(variationGroupsModels.get(i).getVariations().get(j).getValue());
-                }
-
-                ShopirollerTextView textView = v.findViewById(R.id.variant_text_view);
-                textView.setText(variationGroupsModels.get(i).getVariations().get(0).getValue());
-                variantMapData.put(variationGroupsModels.get(i).getName(), variationGroupsModels.get(i).getVariations().get(0).getValue());
-                textView.setTag(i);
-
-                int finalI = i;
-                textView.setOnClickListener(x -> {
-                    Integer selectedTextViewPosition = (Integer) textView.getTag();
-                    if (selectedVariantIndexMapData.get(selectedTextViewPosition) != null) {
-                        materialListFilterDialog = new MaterialListFilterDialog(this, variationGroupsModels.get(finalI).getName(), variantList, selectedVariantIndexMapData.get(selectedTextViewPosition));
-                    } else {
-                        materialListFilterDialog = new MaterialListFilterDialog(this, variationGroupsModels.get(finalI).getName(), variantList, 0);
-                    }
-                    createVariantSelectionListDialog(materialListFilterDialog, textView);
-                });
-                variantFields.add(v);
-            }
-            setVariantFields();
-
-            Boolean variantGroupIsActive = true;
+            //Create Variant Selection Models For First Initialize
+            boolean variantGroupIsActive = true;
             for (int i = 0; i < variationGroupsModels.size(); i++) {
                 if (i != 0) {
                     variantGroupIsActive = false;
@@ -588,6 +528,8 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
 
             adapter = new VariantMainAdapter(variantSelectionModels, this);
             variantList.setAdapter(adapter);
+
+            variantList.setVisibility(View.VISIBLE);
 
         }
 
@@ -715,59 +657,6 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
         }
     }
 
-    private void setVariantFields() {
-        boolean isOdd = false;
-
-        if (variantFields.size() % 2 != 0) {
-            isOdd = true;
-        }
-
-        List<View> linearLayouts = new ArrayList<>();
-        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-        View rootView = inflater.inflate(R.layout.e_commerce_variant_layout, null);
-        ViewGroup linearLayout = rootView.findViewById(R.id.variant_main_view);
-        for (int i = 0; i < variantFields.size(); i++) {
-            if (i % 2 == 0) {
-                rootView = inflater.inflate(R.layout.e_commerce_variant_layout, null);
-                linearLayout = rootView.findViewById(R.id.variant_main_view);
-                linearLayouts.add(rootView);
-            }
-            linearLayout.addView(variantFields.get(i));
-        }
-
-        if (isOdd) {
-            LayoutInflater emptyTextViewInflater = getLayoutInflater();
-            View emptyView = emptyTextViewInflater.inflate(R.layout.item_variant_field, null);
-            ShopirollerTextView emptyViewTextView = emptyView.findViewById(R.id.variant_text_view);
-            emptyViewTextView.setVisibility(View.INVISIBLE);
-            View lastRootView = linearLayouts.get(linearLayouts.size() - 1);
-            linearLayouts.remove(lastRootView);
-            ViewGroup oddLinearLayout = lastRootView.findViewById(R.id.variant_main_view);
-            emptyView.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 2f));
-            oddLinearLayout.addView(emptyView);
-            linearLayouts.add(lastRootView);
-        }
-
-        for (int i = 0; i < linearLayouts.size(); i++) {
-            variantLayout.addView(linearLayouts.get(i));
-        }
-    }
-
-    private void createVariantSelectionListDialog(MaterialListFilterDialog materialListFilterDialog, TextView textView) {
-        RecyclerView recyclerView = materialListFilterDialog.show();
-        ItemClickSupport.addTo(recyclerView).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
-            @Override
-            public void onItemClicked(RecyclerView recyclerView, int position, View v) {
-                String selectedVariant = (String) ((DialogFilterAdapter) recyclerView.getAdapter()).getItemAtPosition(position);
-                textView.setText(selectedVariant);
-                variantMapData.put(variationGroupsModels.get((Integer) textView.getTag()).getName(), selectedVariant);
-                selectedVariantIndexMapData.put(((Integer) textView.getTag()), position);
-                materialListFilterDialog.dismiss();
-                getSelectedVariant();
-            }
-        });
-    }
-
     public void setContinueButton(boolean isEnabled) {
         buyButton.setEnabled(isEnabled);
         if (isEnabled) {
@@ -814,7 +703,7 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
             for (int j = 0; j < variantList.get(i).variantData.size(); j++) {
                 variationIdList.add(variantList.get(i).variantData.get(j).getVariationId());
             }
-            if (selectedVariantIds.containsAll(variationIdList)) {
+            if (selectedVariantIds.containsAll(variationIdList) && filterDataModel.size() == variationGroupsModels.size()) {
                 return true;
             }
         }
@@ -849,8 +738,8 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
                     if (isVariantCanBeAdd()) {
                         addProductToCart();
                     } else {
-                        showWarning(getString(R.string.e_commerce_product_detail_does_not_exist_variant_error),
-                                getString(R.string.e_commerce_product_detail_does_not_exist_variant_description),
+                        showWarning(getString(R.string.e_commerce_product_detail_variant_selection_error_title),
+                                getString(R.string.e_commerce_product_detail_variant_selection_error_description),
                                 getString(R.string.e_commerce_product_detail_maximum_product_limit_button),
                                 null);
                     }
@@ -953,46 +842,19 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
 
     }
 
-
     @Override
     public void clickedVariantSection(@Nullable Integer variantIndex, @Nullable Integer variantGroupIndex) {
 
-        HashSet<Variation> availableVariants = new HashSet<Variation>();
+        setCurrentVariantData(variantGroupIndex,variantIndex);
 
-        String selectedVariant = variationGroupsModels.get(variantGroupIndex).getVariations().get(variantIndex).getValue();
-        String selectedVariantId = variationGroupsModels.get(variantGroupIndex).getVariations().get(variantIndex).getId();
-        String selectedVariationGroupId = variationGroupsModels.get(variantGroupIndex).getId();
-
-        String nextVariationGroupId = variationGroupsModels.get(variantGroupIndex != variationGroupsModels.size() - 1 ? variantGroupIndex + 1 : variantGroupIndex).getId();
-
-        Integer nextVariationGroupIndex = 0;
-
-        for (int i = 0; i < variationGroupsModels.size(); i++) {
-            if (variationGroupsModels.get(i).getId().equals(nextVariationGroupId)) {
-                nextVariationGroupIndex = i;
-            }
-        }
-
-        VariantDataModel currentSelectedVariantDataModel = new VariantDataModel(selectedVariant, selectedVariationGroupId, selectedVariantId);
-
-        if (filterDataModel.isEmpty() || variantGroupIndex >= filterDataModel.size()) {
-            filterDataModel.add(variantGroupIndex, currentSelectedVariantDataModel);
-        } else {
-            filterDataModel.set(variantGroupIndex, currentSelectedVariantDataModel);
-        }
-
-        if (variantGroupIndex == 0 && filterDataModel.size() >= 1) {
-            for (VariantSelectionModel variantSelectionModel : variantSelectionModels) {
+        for (VariantSelectionModel variantSelectionModel : variantSelectionModels) {
+            int index = getGroupIndexOfSelectionModel(variantSelectionModel);
+            if (index > variantGroupIndex) {
                 for (Variation variation : variantSelectionModel.getVariationList()) {
-                    if (!variantSelectionModel.getVariantGroupId().equals(selectedVariationGroupId)) {
-                        variantSelectionModel.setVariantGroupIsActive(false);
-                        variation.setAvailable(false);
-                        variation.setSelected(false);
-                    }
+                    variantSelectionModel.setVariantGroupIsActive(false);
+                    variation.setAvailable(false);
+                    variation.setSelected(false);
                 }
-            }
-            for (int i = 1; i < filterDataModel.size(); i++) {
-                filterDataModel.remove(i);
             }
         }
 
@@ -1004,6 +866,10 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
             selectionModelIndex = filterDataModel.size() - 1;
         }
 
+        Integer nextVariationGroupIndex = getNextVariantGroupIndex();
+
+        setAvailableVariants(nextVariationGroupId,selectionModelIndex);
+
         if (variantSelectionModels.get(selectionModelIndex).getVariantGroupId().equals(selectedVariationGroupId)) {
             for (Variation variation : variantSelectionModels.get(selectionModelIndex).getVariationList()) {
                 if (!variation.getId().equals(selectedVariantId)) {
@@ -1012,6 +878,53 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
             }
         }
 
+        adapter.updateVariantModel(variantSelectionModels, nextVariationGroupIndex, variantIndex);
+
+        variantMapData.put(variationGroupsModels.get(variantGroupIndex).getName(), selectedVariant);
+
+        if (filterDataModel.size() == variationGroupsModels.size()) {
+            setContinueButton(true);
+            getSelectedVariant();
+        }
+    }
+
+    private int getNextVariantGroupIndex() {
+        Integer nextVariationGroupIndex = 0;
+
+        for (int i = 0; i < variationGroupsModels.size(); i++) {
+            if (variationGroupsModels.get(i).getId().equals(nextVariationGroupId)) {
+                nextVariationGroupIndex = i;
+            }
+        }
+
+        return  nextVariationGroupIndex;
+    }
+
+    private void setCurrentVariantData(Integer variantGroupIndex, Integer variantIndex) {
+
+        selectedVariant = variationGroupsModels.get(variantGroupIndex).getVariations().get(variantIndex).getValue();
+        selectedVariantId = variationGroupsModels.get(variantGroupIndex).getVariations().get(variantIndex).getId();
+        selectedVariationGroupId = variationGroupsModels.get(variantGroupIndex).getId();
+
+        nextVariationGroupId = variationGroupsModels.get(variantGroupIndex != variationGroupsModels.size() - 1 ? variantGroupIndex + 1 : variantGroupIndex).getId();
+
+        if (!filterDataModel.isEmpty() && variantGroupIndex < filterDataModel.size() - 1) {
+            for (int j = variantGroupIndex; j < filterDataModel.size(); j++) {
+                filterDataModel.remove(j);
+            }
+        }
+
+        VariantDataModel currentSelectedVariantDataModel = new VariantDataModel(selectedVariant, selectedVariationGroupId, selectedVariantId);
+
+        if (filterDataModel.isEmpty() || variantGroupIndex >= filterDataModel.size()) {
+            filterDataModel.add(variantGroupIndex, currentSelectedVariantDataModel);
+        } else {
+            filterDataModel.set(variantGroupIndex, currentSelectedVariantDataModel);
+        }
+    }
+
+    private void setAvailableVariants(String nextVariationGroupId, Integer selectionModelIndex) {
+        HashSet<Variation> availableVariants = new HashSet<Variation>();
 
         for (int i = 0; i < variants.size(); i++) {
             if (variants.get(i).variantData.containsAll(filterDataModel)) {
@@ -1038,9 +951,29 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
                 variation.setAvailable(true);
             }
         }
+    }
 
-        adapter.updateVariantModel(variantSelectionModels, nextVariationGroupIndex, variantIndex);
+    private void getSelectedVariant() {
+        for (int i = 0; i < variants.size(); i++) {
+            List<String> variantValue = new ArrayList<>();
+            for (int j = 0; j < variants.get(i).variantData.size(); j++) {
+                variantValue.add(variants.get(i).variantData.get(j).getValue());
+            }
+            if (variantValue.containsAll(variantMapData.values())) {
+                productModel = variants.get(i);
+                productId = productModel.id;
+                loadVariantModel(i);
+            }
+        }
+    }
 
+    private int getGroupIndexOfSelectionModel(VariantSelectionModel variantSelectionModel) {
+        for (int i = 0; i < variationGroupsModels.size(); i++) {
+            if (variantSelectionModel.getVariantGroupId() == variationGroupsModels.get(i).getId()) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     public class ProductImageAdapter extends PagerAdapter {
