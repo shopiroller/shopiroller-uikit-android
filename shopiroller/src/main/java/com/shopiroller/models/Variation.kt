@@ -4,7 +4,11 @@ import com.google.gson.annotations.SerializedName
 
 data class Variation(
     @SerializedName("id")
-    val id: String,
+    val id: String? = null,
     @SerializedName("value")
-    val value: String
+    val value: String? = null,
+
+    var isAvailable: Boolean? = false,
+
+    var isSelected: Boolean? = false
 )

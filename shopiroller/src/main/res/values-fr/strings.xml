@@ -35,8 +35,8 @@
     <string name="e_commerce_product_detail_sold_out_button">Épuisé</string>
     <string name="e_commerce_product_detail_sold_out_badge">Épuisé</string>
     <string name="e_commerce_product_detail_free_shipping_badge">Livraison gratuite</string>
-    <string name="e_commerce_product_detail_does_not_exist_variant_error">Erreur de variante</string>
-    <string name="e_commerce_product_detail_does_not_exist_variant_description">Vous avez sélectionné une variante qui n\'est pas dans le produit. Veuillez modifier votre sélection de variantes.</string>
+    <string name="e_commerce_product_detail_variant_selection_error_title">Erreur de variante</string>
+    <string name="e_commerce_product_detail_variant_selection_error_description">Veuillez vérifier vos sélections de variantes dans le produit.</string>
     <string name="e_commerce_product_detail_maximum_product_limit_title">Limite maximale de produits</string>
     <string name="e_commerce_product_detail_maximum_product_limit_description">Vous avez atteint la limite maximale d\'achat de produits. Vous pouvez ajouter un maximum de %s produits dans votre panier.</string>
     <string name="e_commerce_product_detail_maximum_product_limit_button">Retourner au produit</string>
