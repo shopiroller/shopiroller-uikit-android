@@ -35,8 +35,8 @@
     <string name="e_commerce_product_detail_sold_out_button">Satıldı</string>
     <string name="e_commerce_product_detail_sold_out_badge">Satıldı</string>
     <string name="e_commerce_product_detail_free_shipping_badge">Pulsuz çatdırılma</string>
-    <string name="e_commerce_product_detail_does_not_exist_variant_error">Variant xətası</string>
-    <string name="e_commerce_product_detail_does_not_exist_variant_description">Siz məhsulda olmayan variant seçmisiniz. Variant seçiminizi dəyişdirin.</string>
+    <string name="e_commerce_product_detail_variant_selection_error_title">Variant xətası</string>
+    <string name="e_commerce_product_detail_variant_selection_error_description">Zəhmət olmasa məhsuldakı variant seçimlərinizi yoxlayın.</string>
     <string name="e_commerce_product_detail_maximum_product_limit_title">Maksimum məhsul həddi</string>
     <string name="e_commerce_product_detail_maximum_product_limit_description">Maksimum maddə alış həddinə çatmısınız. Səbətinizə maksimum% s əlavə edə bilərsiniz</string>
     <string name="e_commerce_product_detail_maximum_product_limit_button">Geri məhsula</string>
