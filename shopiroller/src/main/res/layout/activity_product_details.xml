@@ -252,25 +252,17 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/variant_field_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="6dp"
-                android:layout_marginRight="6dp"
-                android:orientation="vertical"
-                android:visibility="gone"
-                app:layout_constraintTop_toBottomOf="@id/top_container"/>
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/variant_list"
                 android:layout_width="0dp"
                 android:visibility="gone"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/quantity_layout"
-                app:layout_constraintTop_toBottomOf="@id/variant_field_layout"
+                app:layout_constraintTop_toBottomOf="@id/top_container"
                 tools:itemCount="5"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/item_main_variant"/>
