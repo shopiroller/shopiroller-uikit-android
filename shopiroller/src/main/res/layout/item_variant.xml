@@ -5,34 +5,31 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/variant_section"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
-        android:padding="10dp"
-        android:background="@drawable/rounded_white_background"
-        android:layout_margin="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:text="Kırmızı" />
+        <TextView
+            android:id="@+id/variant_section"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:padding="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/rounded_white_background"
+            android:visibility="visible"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="Kırmızı" />
 
-
-    <ImageView
-        android:id="@+id/disabled_image_view"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
-        android:layout_marginTop="-5dp"
-        android:layout_marginRight="-3dp"
-        android:elevation="4dp"
-        android:src="@drawable/stripe_ic_lock"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="@id/variant_section"
-        app:layout_constraintTop_toTopOf="@id/variant_section"
-        app:tint="@color/black" />
+        <com.shopiroller.views.DiagonalView
+            android:id="@+id/disabled_line_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin = "3sp"
+            android:backgroundTint="#cfcfcf"
+            app:layout_constraintTop_toTopOf="@id/variant_section"
+            app:layout_constraintBottom_toBottomOf="@id/variant_section"
+            app:layout_constraintStart_toStartOf="@id/variant_section"
+            app:layout_constraintEnd_toEndOf="@id/variant_section"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
