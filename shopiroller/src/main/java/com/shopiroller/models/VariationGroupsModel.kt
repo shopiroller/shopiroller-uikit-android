@@ -16,5 +16,5 @@ data class VariationGroupsModel(
     @SerializedName("updateDate")
     val updateDate: String,
     @SerializedName("variations")
-    val variations: List<Variation>
+    val variations: ArrayList<Variation>
 ) : Serializable

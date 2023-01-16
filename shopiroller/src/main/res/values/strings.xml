@@ -36,8 +36,8 @@
     <string name="e_commerce_product_detail_sold_out_button">Sold Out</string>
     <string name="e_commerce_product_detail_sold_out_badge">Sold Out</string>
     <string name="e_commerce_product_detail_free_shipping_badge">Free Shipping</string>
-    <string name="e_commerce_product_detail_does_not_exist_variant_error">Variant Error</string>
-    <string name="e_commerce_product_detail_does_not_exist_variant_description">You have selected a variant that is not in the product. Please change your variant selection.</string>
+    <string name="e_commerce_product_detail_variant_selection_error_title">Variant Error</string>
+    <string name="e_commerce_product_detail_variant_selection_error_description">Please check your variant selections in the product.</string>
     <string name="e_commerce_product_detail_maximum_product_limit_title">Maximum Product Limit</string>
     <string name="e_commerce_product_detail_maximum_product_limit_description">You reached maximum product buying limit. You can added max %s products in shopping cart</string>
     <string name="e_commerce_product_detail_maximum_product_limit_button">Back to product</string>

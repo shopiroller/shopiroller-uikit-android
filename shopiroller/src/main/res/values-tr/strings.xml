@@ -32,8 +32,8 @@
     <string name="e_commerce_product_detail_sold_out_button">Tükendi</string>
     <string name="e_commerce_product_detail_sold_out_badge">Tükendi</string>
     <string name="e_commerce_product_detail_free_shipping_badge">Ücretsiz Kargo</string>
-    <string name="e_commerce_product_detail_does_not_exist_variant_error">Varyant Hatası</string>
-    <string name="e_commerce_product_detail_does_not_exist_variant_description">Üründe olmayan bir varyantı seçtiniz. Lütfen varyant seçiminizi değiştiriniz.</string>
+    <string name="e_commerce_product_detail_variant_selection_error_title">Varyant Hatası</string>
+    <string name="e_commerce_product_detail_variant_selection_error_description">Lütfen ürün içerisindeki varyant seçimlerinizi kontrol ediniz.</string>
     <string name="e_commerce_product_detail_maximum_product_limit_title">Maksimum Ürün Sınırı</string>
     <string name="e_commerce_product_detail_maximum_product_limit_description">Maksimum ürün satın alma sınırına ulaştınız. Sepetinize maksimum %s ürün ekleyebilirsiniz</string>
     <string name="e_commerce_product_detail_maximum_product_limit_button">Ürüne dön</string>
@@ -80,7 +80,7 @@
     <string name="e_commerce_payment_bank_iban">Iban: %s</string>
     <string name="e_commerce_payment_bank_branch">Şube: %s</string>
     <string name="e_commerce_payment_bank_account">Hesap: %s</string>
-    <string name="e_commerce_payment_bank_copy_toast_message">Panoya kopyalandı.</string>
+    <string name="e_commerce_payment_bank_copy_toast_message">Panoya kopyalandı</string>
     <string name="e_commerce_payment_method_selection_description_text">Siparişi tamamla"yı tıkladıktan sonra, satın alma işleminizi güvenli bir şekilde tamamlamak için %s'a yönlendirileceksiniz.</string>
     <string name="e_commerce_order_summary_title">Sipariş Özeti</string>
     <string name="e_commerce_order_summary_payment_title">Ödeme</string>
