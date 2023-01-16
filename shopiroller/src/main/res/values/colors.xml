@@ -7,6 +7,7 @@
     <color name="black">#ff000000</color>
     <color name="silver">#e7eaeb</color>
     <color name="light_grey">#f4f6f6</color>
+    <color name="divider_color">#cfcfcf</color>
     <color name="gray_light">#e8e8e8</color>
     <color name="red">#e94f4f</color>
     <color name="gray">#808080</color>

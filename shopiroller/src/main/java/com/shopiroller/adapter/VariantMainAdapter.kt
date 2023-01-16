@@ -31,7 +31,7 @@ class VariantMainAdapter(
         return mainList.size
     }
 
-    fun updateVariantModel(mainList: ArrayList<VariantSelectionModel>, nextGroupIndex: Int?, childSelectedIndex: Int?) {
+    fun updateVariantModel(mainList: ArrayList<VariantSelectionModel>, nextGroupIndex: Int?) {
         mainList[nextGroupIndex ?: 0].variantGroupIsActive = true
         notifyDataSetChanged()
     }

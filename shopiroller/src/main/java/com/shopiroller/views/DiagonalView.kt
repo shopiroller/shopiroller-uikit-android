@@ -6,6 +6,8 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
+import androidx.core.content.ContextCompat
+import com.shopiroller.R
 
 class DiagonalView : View {
     private var dividerColor = 0
@@ -28,8 +30,7 @@ class DiagonalView : View {
     }
 
     private fun init(context: Context) {
-        val resources = context.resources
-        dividerColor = Color.parseColor("#cfcfcf")
+        dividerColor = ContextCompat.getColor(context, R.color.divider_color)
         paint = Paint()
         paint!!.isAntiAlias = true
         paint!!.color = dividerColor

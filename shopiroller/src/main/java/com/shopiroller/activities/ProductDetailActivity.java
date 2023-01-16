@@ -826,22 +826,6 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
         webViewForUrl.loadUrl(videoUrl);
     }
 
-    public void filterVariantModel() {
-
-        Boolean variantGroupIsActive = true;
-        for (int i = 0; i < variationGroupsModels.size(); i++) {
-            if (i != 0) {
-                variantGroupIsActive = false;
-            }
-            variantSelectionModels.add(new VariantSelectionModel(
-                    variationGroupsModels.get(i).getVariations(),
-                    variationGroupsModels.get(i).getId(),
-                    variationGroupsModels.get(i).getName(),
-                    variantGroupIsActive));
-        }
-
-    }
-
     @Override
     public void clickedVariantSection(@Nullable Integer variantIndex, @Nullable Integer variantGroupIndex) {
 
@@ -878,7 +862,7 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
             }
         }
 
-        adapter.updateVariantModel(variantSelectionModels, nextVariationGroupIndex, variantIndex);
+        adapter.updateVariantModel(variantSelectionModels, nextVariationGroupIndex);
 
         variantMapData.put(variationGroupsModels.get(variantGroupIndex).getName(), selectedVariant);
 

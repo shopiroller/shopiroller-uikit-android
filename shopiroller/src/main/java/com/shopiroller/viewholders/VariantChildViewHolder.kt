@@ -1,15 +1,11 @@
 package com.shopiroller.viewholders
 
 import android.view.View
-import android.widget.Button
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.shopiroller.R
-import com.shopiroller.adapter.ChildVariantAdapter
-import com.shopiroller.adapter.VariantMainAdapter
 import com.shopiroller.models.Variation
 
 class VariantChildViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
@@ -46,11 +42,7 @@ class VariantChildViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) 
         }
 
         variantVariableTextView?.text = model.value
-        //if (!isActive) {
-          //  disabledImage?.visibility = View.VISIBLE
-            //cardViewContainer?.isEnabled = false
-            //variantVariableButton?.isEnabled = false
-       // }
+
         if (model.isSelected == true) {
             variantVariableTextView?.background = ContextCompat.getDrawable(
                 itemView.context,

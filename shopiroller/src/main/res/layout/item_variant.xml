@@ -25,7 +25,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin = "3sp"
-            android:backgroundTint="#cfcfcf"
+            android:backgroundTint="@color/divider_color"
             app:layout_constraintTop_toTopOf="@id/variant_section"
             app:layout_constraintBottom_toBottomOf="@id/variant_section"
             app:layout_constraintStart_toStartOf="@id/variant_section"
