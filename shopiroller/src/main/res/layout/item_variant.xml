@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/variant_section"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:padding="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/rounded_white_background"
+            android:visibility="visible"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="Kırmızı" />
+
+        <com.shopiroller.views.DiagonalView
+            android:id="@+id/disabled_line_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin = "3sp"
+            android:backgroundTint="@color/divider_color"
+            app:layout_constraintTop_toTopOf="@id/variant_section"
+            app:layout_constraintBottom_toBottomOf="@id/variant_section"
+            app:layout_constraintStart_toStartOf="@id/variant_section"
+            app:layout_constraintEnd_toEndOf="@id/variant_section"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

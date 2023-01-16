@@ -6,9 +6,9 @@ import java.io.Serializable
 
 data class VariantDataModel(
     @SerializedName("value")
-    val value: String,
+    var value: String? = "",
     @SerializedName("variationGroupId")
-    val variationGroupId: String,
+    var variationGroupId: String? = "",
     @SerializedName("variationId")
-    val variationId: String
+    var variationId: String? = ""
 ) : Serializable
