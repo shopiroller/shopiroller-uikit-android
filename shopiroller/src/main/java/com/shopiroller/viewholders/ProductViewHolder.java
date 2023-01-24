@@ -56,7 +56,7 @@ public class ProductViewHolder extends RecyclerView.ViewHolder {
     public void bind(ProductDetailModel product) {
         if (product.featuredImage != null && product.featuredImage.n != null) {
             Glide.with(itemView)
-                    .load(product.featuredImage.n + "?width=" +ScreenUtil.getScreenWidth() / 2)
+                    .load(product.featuredImage.n + "?width=" + ScreenUtil.getScreenWidth() / 2)
                     .apply(new RequestOptions().diskCacheStrategy(DiskCacheStrategy.AUTOMATIC))
                     .error(Glide.with(itemView)
                             .load(R.drawable.no_image_e_commerce))
@@ -68,8 +68,8 @@ public class ProductViewHolder extends RecyclerView.ViewHolder {
         title.setText(UtilManager.localizationHelper().getLocalizedTitle(product.title));
 
         if (product.campaignPrice != 0) {
-            price.setText(String.format("%s %s", ECommerceUtil.getPriceString(product.campaignPrice), ECommerceUtil.getCurrencySymbol(product.currency)));
-            priceCampaign.setText(String.format("%s %s", ECommerceUtil.getPriceString(product.price), ECommerceUtil.getCurrencySymbol(product.currency)));
+            price.setText(ECommerceUtil.getFormattedPrice(product.campaignPrice, product.currency));
+            priceCampaign.setText(ECommerceUtil.getFormattedPrice(product.price, product.currency));
             priceCampaign.setPaintFlags(priceCampaign.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
             priceCampaign.setVisibility(View.VISIBLE);
             saleBadge.setVisibility(View.VISIBLE);
@@ -78,10 +78,10 @@ public class ProductViewHolder extends RecyclerView.ViewHolder {
         } else {
             saleBadge.setVisibility(View.GONE);
             priceCampaign.setVisibility(View.GONE);
-            price.setText(String.format("%s %s", ECommerceUtil.getPriceString(product.price), ECommerceUtil.getCurrencySymbol(product.currency)));
+            price.setText(ECommerceUtil.getFormattedPrice(product.price, product.currency));
         }
 
-        if(product.shippingPrice == 0 && !product.useFixPrice) {
+        if (product.shippingPrice == 0 && !product.useFixPrice) {
             freeShippingBadge.setVisibility(View.VISIBLE);
         } else {
             freeShippingBadge.setVisibility(View.GONE);
