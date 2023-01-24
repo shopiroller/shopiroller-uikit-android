@@ -455,9 +455,7 @@ class FilterFragment : Fragment(), CompoundButton.OnCheckedChangeListener,
     }
 
     private fun setCurrencies() {
-        val currency = ECommerceUtil.getCurrency(
-            ECommerceUtil.getPaymentSettings().defaultCurrency)
-        minimum_price_currency_text_view.text = currency
-        maximum_price_currency_text_view.text = currency
+        minimum_price_currency_text_view.text = ECommerceUtil.getPaymentSettings().defaultCurrency
+        maximum_price_currency_text_view.text = ECommerceUtil.getPaymentSettings().defaultCurrency
     }
 }
