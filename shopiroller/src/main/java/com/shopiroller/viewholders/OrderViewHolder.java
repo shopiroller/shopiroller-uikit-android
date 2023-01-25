@@ -53,7 +53,7 @@ public class OrderViewHolder extends RecyclerView.ViewHolder {
         orderNumber.setText(String.valueOf(order.orderCode));
         orderDate.setText(new ECommerceUtil().getFormattedDateTime(order.createdDate,ECommerceUtil.dateFormatOrderDateString));
         orderTime.setText(new ECommerceUtil().getFormattedDateTime(order.createdDate,ECommerceUtil.dateFormatOrderTimeString));
-        orderPaid.setText(String.format("%s %s", ECommerceUtil.getPriceString(order.totalPrice), ECommerceUtil.getCurrency(order.currency)));
+        orderPaid.setText(ECommerceUtil.getFormattedPrice(order.totalPrice, order.currency));
         orderStatusTextView.setText(ECommerceUtil.getOrderStatus(order.currentStatus, context));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             orderStatusBackground.setBackgroundTintList(ColorStateList.valueOf(ECommerceUtil.getOrderStatusColor(order.currentStatus, context)));

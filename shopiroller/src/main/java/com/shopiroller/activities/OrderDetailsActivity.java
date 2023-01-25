@@ -266,9 +266,9 @@ public class OrderDetailsActivity extends ECommerceBaseActivity {
             }
         }
 
-        productSubTotalTextView.setText(": " + getSubTotal() + " " + ECommerceUtil.getCurrency(mOrderDetailModel.currency));
-        shippingTotalTextView.setText(": " + ECommerceUtil.getPriceString(mOrderDetailModel.shippingPrice) + " " + ECommerceUtil.getCurrency(mOrderDetailModel.currency));
-        totalTextView.setText(ECommerceUtil.getPriceString((mOrderDetailModel.totalPrice)) + " " + ECommerceUtil.getCurrency(mOrderDetailModel.currency));
+        productSubTotalTextView.setText(": " + ECommerceUtil.getFormattedPrice(getSubTotal(), mOrderDetailModel.currency));
+        shippingTotalTextView.setText(": " + ECommerceUtil.getFormattedPrice(mOrderDetailModel.shippingPrice, mOrderDetailModel.currency));
+        totalTextView.setText(ECommerceUtil.getFormattedPrice(mOrderDetailModel.totalPrice, mOrderDetailModel.currency));
         if (mOrderDetailModel.appliedCouponModel.getDiscountPrice() != null && mOrderDetailModel.appliedCouponModel.getDiscountPrice() != 0.0 && !mOrderDetailModel.appliedCouponModel.getId().equals("")) {
             couponDiscountPriceTextView.setVisibility(View.VISIBLE);
             couponDiscountPrice.setVisibility(View.VISIBLE);
@@ -294,9 +294,9 @@ public class OrderDetailsActivity extends ECommerceBaseActivity {
         progressViewHelper.dismiss();
     }
 
-    private String getSubTotal() {
-        if(mOrderDetailModel.appliedCouponModel != null) return ECommerceUtil.getPriceString(mOrderDetailModel.appliedCouponModel.getDiscountPrice() + mOrderDetailModel.totalPrice - mOrderDetailModel.shippingPrice);
-        else return ECommerceUtil.getPriceString(mOrderDetailModel.totalPrice - mOrderDetailModel.shippingPrice);
+    private double getSubTotal() {
+        if(mOrderDetailModel.appliedCouponModel != null) return mOrderDetailModel.appliedCouponModel.getDiscountPrice() + mOrderDetailModel.totalPrice - mOrderDetailModel.shippingPrice;
+        else return mOrderDetailModel.totalPrice - mOrderDetailModel.shippingPrice;
     }
 
     public static void startActivity(Context context, String orderId) {

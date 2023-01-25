@@ -287,10 +287,10 @@ public class OrderSummaryFragment extends OrderFlowBaseFragment {
     }
 
     private void setCartLayout(ShoppingCartResponse response) {
-        cardDescriptionTExtView.setText(getString(R.string.e_commerce_order_summary_cart_description, String.valueOf(response.items.size()), ECommerceUtil.getPriceString(response.subTotalPrice) + " " + ECommerceUtil.getCurrency(response.currency)));
-        productSubTotalTextView.setText(": " + ECommerceUtil.getPriceString(response.subTotalPrice) + " " + ECommerceUtil.getCurrency(response.currency));
-        shippingTotalTextView.setText(": " + ECommerceUtil.getPriceString(response.shippingPrice) + " " + ECommerceUtil.getCurrency(response.currency));
-        totalTextView.setText(ECommerceUtil.getPriceString(response.totalPrice) + " " + ECommerceUtil.getCurrency(response.currency));
+        cardDescriptionTExtView.setText(getString(R.string.e_commerce_order_summary_cart_description, String.valueOf(response.items.size()), ECommerceUtil.getFormattedPrice(response.subTotalPrice, response.currency)));
+        productSubTotalTextView.setText(": " + ECommerceUtil.getFormattedPrice(response.subTotalPrice, response.currency));
+        shippingTotalTextView.setText(": " + ECommerceUtil.getFormattedPrice(response.shippingPrice, response.currency));
+        totalTextView.setText(ECommerceUtil.getFormattedPrice(response.totalPrice, response.currency));
         if (response.couponPrice != null && response.couponPrice != 0.0 && !response.couponId.equals("")) {
             couponDiscountPriceTextView.setVisibility(View.VISIBLE);
             couponDiscountPrice.setVisibility(View.VISIBLE);
