@@ -11,6 +11,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.Spannable;
+import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -738,8 +739,31 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
                     if (isVariantCanBeAdd()) {
                         addProductToCart();
                     } else {
+                        ArrayList<String> unselectedGroupNames = new ArrayList<>();
+                        ArrayList<VariantDataModel> filterDataModel = new ArrayList<>(this.filterDataModel);
+                        for (VariationGroupsModel variant : variationGroupsModels) {
+                            if (filterDataModel.isEmpty()) {
+                                unselectedGroupNames.add(variant.getName());
+                            } else {
+                                for (int i = 0; i < filterDataModel.size(); i++) {
+                                    if (filterDataModel.get(i).getVariationGroupId().equals(variant.getId())) {
+                                        filterDataModel.remove(i);
+                                    } else {
+                                        unselectedGroupNames.add(variant.getName());
+                                    }
+                                }
+                            }
+                        }
+                        String expression;
+                        if (unselectedGroupNames.size() <= 2) {
+                            expression = TextUtils.join(" " + getString(R.string.e_commerce_general_and) + " ", unselectedGroupNames);
+                        } else {
+                            String last = unselectedGroupNames.remove(unselectedGroupNames.size() - 1);
+                            expression = TextUtils.join(", ", unselectedGroupNames);
+                            expression += ", " + getString(R.string.e_commerce_general_and) + " " + last;
+                        }
                         showWarning(getString(R.string.e_commerce_product_detail_variant_selection_error_title),
-                                getString(R.string.e_commerce_product_detail_variant_selection_error_description),
+                                getString(R.string.e_commerce_product_detail_variant_selection_error_description, expression),
                                 getString(R.string.e_commerce_product_detail_maximum_product_limit_button),
                                 null);
                     }
