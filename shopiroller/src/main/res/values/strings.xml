@@ -37,7 +37,7 @@
     <string name="e_commerce_product_detail_sold_out_badge">Sold Out</string>
     <string name="e_commerce_product_detail_free_shipping_badge">Free Shipping</string>
     <string name="e_commerce_product_detail_variant_selection_error_title">Variant Error</string>
-    <string name="e_commerce_product_detail_variant_selection_error_description">Please check your variant selections in the product.</string>
+    <string name="e_commerce_product_detail_variant_selection_error_description">Please check your %s selections on the product.</string>
     <string name="e_commerce_product_detail_maximum_product_limit_title">Maximum Product Limit</string>
     <string name="e_commerce_product_detail_maximum_product_limit_description">You reached maximum product buying limit. You can added max %s products in shopping cart</string>
     <string name="e_commerce_product_detail_maximum_product_limit_button">Back to product</string>
@@ -231,6 +231,7 @@
     <string name="OK">OK</string>
     <string name="field_required">%s is required</string>
     <string name="cancel">Cancel</string>
+    <string name="e_commerce_general_and">and</string>
     <string name="action_search">Search</string>
     <string name="action_share">Share</string>
 
