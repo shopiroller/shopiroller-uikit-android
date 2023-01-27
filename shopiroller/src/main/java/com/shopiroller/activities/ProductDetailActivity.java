@@ -11,6 +11,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.Spannable;
+import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -371,16 +372,16 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
             imageViewPager.setCurrentItem(0);
             title.setText(localizationHelper.getLocalizedTitle(productListModel.title));
             if (productListModel.campaignPrice == 0) {
-                price.setText(ECommerceUtil.getPriceString(productListModel.price) + " " + ECommerceUtil.getCurrencySymbol(productListModel.currency));
+                price.setText(ECommerceUtil.getFormattedPrice(productListModel.price, productListModel.currency));
                 discountedPrice.setVisibility(View.GONE);
                 saleCardView.setVisibility(View.GONE);
             } else {
-                price.setText(ECommerceUtil.getPriceString(productListModel.campaignPrice) + " " + ECommerceUtil.getCurrencySymbol(productListModel.currency));
+                price.setText(ECommerceUtil.getFormattedPrice(productListModel.campaignPrice, productListModel.currency));
                 discountedPrice.setVisibility(View.VISIBLE);
                 saleCardView.setVisibility(View.VISIBLE);
                 saleRateTextView.setText(String.format("%%%s", 100 * (productListModel.price - productListModel.campaignPrice) / productListModel.price));
                 saleRateTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
-                discountedPrice.setText(Html.fromHtml("<strike>" + ECommerceUtil.getPriceString(productListModel.price) + " " + ECommerceUtil.getCurrencySymbol(productListModel.currency) + "</strike>"));
+                discountedPrice.setText(Html.fromHtml("<strike>" + ECommerceUtil.getFormattedPrice(productListModel.price, productListModel.currency) + "</strike>"));
             }
             if (productListModel.stock <= 0) {
                 quantityLayout.setVisibility(View.GONE);
@@ -458,16 +459,16 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
 
         title.setText(localizationHelper.getLocalizedTitle(productModel.title));
         if (productModel.campaignPrice == 0) {
-            price.setText(ECommerceUtil.getPriceString(productModel.price) + " " + ECommerceUtil.getCurrencySymbol(productModel.currency));
+            price.setText(ECommerceUtil.getFormattedPrice(productModel.price, productModel.currency));
             discountedPrice.setVisibility(View.GONE);
             saleCardView.setVisibility(View.GONE);
         } else {
-            price.setText(ECommerceUtil.getPriceString(productModel.campaignPrice) + " " + ECommerceUtil.getCurrencySymbol(productModel.currency));
+            price.setText(ECommerceUtil.getFormattedPrice(productModel.campaignPrice, productModel.currency));
             discountedPrice.setVisibility(View.VISIBLE);
             saleCardView.setVisibility(View.VISIBLE);
             saleRateTextView.setText(String.format("%%%s", 100 * (productModel.price - productModel.campaignPrice) / productModel.price));
             saleRateTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
-            discountedPrice.setText(Html.fromHtml("<strike>" + ECommerceUtil.getPriceString(productModel.price) + " " + ECommerceUtil.getCurrencySymbol(productModel.currency) + "</strike>"));
+            discountedPrice.setText(Html.fromHtml("<strike>" + ECommerceUtil.getFormattedPrice(productModel.price, productModel.currency) + "</strike>"));
         }
         if (productModel.stock <= 0) {
             soldOutBadge.setVisibility(View.VISIBLE);
@@ -557,31 +558,28 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
         if (!productModel.useFixPrice && productModel.shippingPrice != 0) {
             cargoCardView.setVisibility(View.VISIBLE);
             cargoTextView.setText(
-                    Html.fromHtml(
-                            cargoTextView.getContext().getString(R.string.e_commerce_product_detail_cargo_warning,
-                                    String.format("%s %s", ECommerceUtil.getPriceString(productModel.shippingPrice), ECommerceUtil.getCurrencySymbol(productModel.currency)))
-                    )
-            );
+                    Html.fromHtml(cargoTextView.getContext().getString(R.string.e_commerce_product_detail_cargo_warning,
+                            ECommerceUtil.getFormattedPrice(productModel.shippingPrice, productModel.currency))));
         } else {
             cargoCardView.setVisibility(View.GONE);
         }
         if (productModel.campaignPrice == 0)
-            price.setText(ECommerceUtil.getPriceString(productModel.price) + " " + ECommerceUtil.getCurrencySymbol(productModel.currency));
+            price.setText(ECommerceUtil.getFormattedPrice(productModel.price, productModel.currency));
         else
-            price.setText(ECommerceUtil.getPriceString(productModel.campaignPrice) + " " + ECommerceUtil.getCurrencySymbol(productModel.currency));
+            price.setText(ECommerceUtil.getFormattedPrice(productModel.campaignPrice, productModel.currency));
 
         if (productModel.campaignPrice == 0) {
-            price.setText(ECommerceUtil.getPriceString(productModel.price) + " " + ECommerceUtil.getCurrencySymbol(productModel.currency));
+            price.setText(ECommerceUtil.getFormattedPrice(productModel.price, productModel.currency));
             discountedPrice.setVisibility(View.GONE);
             saleCardView.setVisibility(View.GONE);
 
         } else {
-            price.setText(ECommerceUtil.getPriceString(productModel.campaignPrice) + " " + ECommerceUtil.getCurrencySymbol(productModel.currency));
+            price.setText(ECommerceUtil.getFormattedPrice(productModel.campaignPrice, productModel.currency));
             discountedPrice.setVisibility(View.VISIBLE);
             saleCardView.setVisibility(View.VISIBLE);
             saleRateTextView.setText(String.format("%%%s", Math.round(100 * (productModel.price - productModel.campaignPrice) / productModel.price)));
             saleRateTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
-            discountedPrice.setText(Html.fromHtml("<strike>" + ECommerceUtil.getPriceString(productModel.price) + " " + ECommerceUtil.getCurrencySymbol(productModel.currency) + "</strike>"));
+            discountedPrice.setText(Html.fromHtml("<strike>" + ECommerceUtil.getFormattedPrice(productModel.price, productModel.currency) + "</strike>"));
         }
 
         if (productModel.stock <= 0) {
@@ -738,8 +736,31 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
                     if (isVariantCanBeAdd()) {
                         addProductToCart();
                     } else {
+                        ArrayList<String> unselectedGroupNames = new ArrayList<>();
+                        ArrayList<VariantDataModel> filterDataModel = new ArrayList<>(this.filterDataModel);
+                        for (VariationGroupsModel variant : variationGroupsModels) {
+                            if (filterDataModel.isEmpty()) {
+                                unselectedGroupNames.add(variant.getName());
+                            } else {
+                                for (int i = 0; i < filterDataModel.size(); i++) {
+                                    if (filterDataModel.get(i).getVariationGroupId().equals(variant.getId())) {
+                                        filterDataModel.remove(i);
+                                    } else {
+                                        unselectedGroupNames.add(variant.getName());
+                                    }
+                                }
+                            }
+                        }
+                        String expression;
+                        if (unselectedGroupNames.size() <= 2) {
+                            expression = TextUtils.join(" " + getString(R.string.e_commerce_general_and) + " ", unselectedGroupNames);
+                        } else {
+                            String last = unselectedGroupNames.remove(unselectedGroupNames.size() - 1);
+                            expression = TextUtils.join(", ", unselectedGroupNames);
+                            expression += ", " + getString(R.string.e_commerce_general_and) + " " + last;
+                        }
                         showWarning(getString(R.string.e_commerce_product_detail_variant_selection_error_title),
-                                getString(R.string.e_commerce_product_detail_variant_selection_error_description),
+                                getString(R.string.e_commerce_product_detail_variant_selection_error_description, expression),
                                 getString(R.string.e_commerce_product_detail_maximum_product_limit_button),
                                 null);
                     }
@@ -829,7 +850,7 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
     @Override
     public void clickedVariantSection(@Nullable Integer variantIndex, @Nullable Integer variantGroupIndex) {
 
-        setCurrentVariantData(variantGroupIndex,variantIndex);
+        setCurrentVariantData(variantGroupIndex, variantIndex);
 
         for (VariantSelectionModel variantSelectionModel : variantSelectionModels) {
             int index = getGroupIndexOfSelectionModel(variantSelectionModel);
@@ -852,7 +873,7 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
 
         Integer nextVariationGroupIndex = getNextVariantGroupIndex();
 
-        setAvailableVariants(nextVariationGroupId,selectionModelIndex);
+        setAvailableVariants(nextVariationGroupId, selectionModelIndex);
 
         if (variantSelectionModels.get(selectionModelIndex).getVariantGroupId().equals(selectedVariationGroupId)) {
             for (Variation variation : variantSelectionModels.get(selectionModelIndex).getVariationList()) {
@@ -881,7 +902,7 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
             }
         }
 
-        return  nextVariationGroupIndex;
+        return nextVariationGroupIndex;
     }
 
     private void setCurrentVariantData(Integer variantGroupIndex, Integer variantIndex) {

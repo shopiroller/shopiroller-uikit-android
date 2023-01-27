@@ -82,14 +82,14 @@ public class ShoppingCartViewHolder extends RecyclerView.ViewHolder {
         title.setText(UtilManager.localizationHelper().getLocalizedTitle(shoppingCartItem.product.title));
 
         if (shoppingCartItem.product.campaignPrice != 0) {
-            price.setText(String.format("%s %s", ECommerceUtil.getPriceString(shoppingCartItem.product.campaignPrice * shoppingCartItem.quantity), ECommerceUtil.getCurrencySymbol(shoppingCartItem.product.currency)));
+            price.setText(ECommerceUtil.getFormattedPrice(shoppingCartItem.product.campaignPrice * shoppingCartItem.quantity, shoppingCartItem.product.currency));
 
-            campaignPrice.setText(String.format("%s %s", ECommerceUtil.getPriceString(shoppingCartItem.product.price * shoppingCartItem.quantity), ECommerceUtil.getCurrencySymbol(shoppingCartItem.product.currency)));
+            campaignPrice.setText(ECommerceUtil.getFormattedPrice(shoppingCartItem.product.price * shoppingCartItem.quantity, shoppingCartItem.product.currency));
             campaignPrice.setPaintFlags(campaignPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
             campaignPrice.setVisibility(View.VISIBLE);
         } else {
             campaignPrice.setVisibility(View.GONE);
-            price.setText(String.format("%s %s", ECommerceUtil.getPriceString(shoppingCartItem.product.price * shoppingCartItem.quantity), ECommerceUtil.getCurrencySymbol(shoppingCartItem.product.currency)));
+            price.setText(ECommerceUtil.getFormattedPrice(shoppingCartItem.product.price * shoppingCartItem.quantity, shoppingCartItem.product.currency));
         }
 
         countTextView.setText(String.valueOf(shoppingCartItem.quantity));
@@ -103,11 +103,8 @@ public class ShoppingCartViewHolder extends RecyclerView.ViewHolder {
         if (!shoppingCartItem.product.useFixPrice && shoppingCartItem.product.shippingPrice != 0) {
             cargoLayout.setVisibility(View.VISIBLE);
             cargoText.setText(
-                    Html.fromHtml(
-                            cargoText.getContext().getString(R.string.e_commerce_shopping_cart_cargo_warning,
-                            String.format("%s %s", ECommerceUtil.getPriceString(shoppingCartItem.product.shippingPrice), ECommerceUtil.getCurrencySymbol(shoppingCartItem.product.currency)))
-                    )
-            );
+                    Html.fromHtml(cargoText.getContext().getString(R.string.e_commerce_shopping_cart_cargo_warning,
+                            ECommerceUtil.getFormattedPrice(shoppingCartItem.product.shippingPrice, shoppingCartItem.product.currency))));
         } else {
             cargoLayout.setVisibility(View.GONE);
         }

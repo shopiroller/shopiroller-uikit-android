@@ -33,7 +33,7 @@
     <string name="e_commerce_product_detail_sold_out_badge">Tükendi</string>
     <string name="e_commerce_product_detail_free_shipping_badge">Ücretsiz Kargo</string>
     <string name="e_commerce_product_detail_variant_selection_error_title">Varyant Hatası</string>
-    <string name="e_commerce_product_detail_variant_selection_error_description">Lütfen ürün içerisindeki varyant seçimlerinizi kontrol ediniz.</string>
+    <string name="e_commerce_product_detail_variant_selection_error_description">Lütfen üründeki %s seçimlerinizi kontrol ediniz.</string>
     <string name="e_commerce_product_detail_maximum_product_limit_title">Maksimum Ürün Sınırı</string>
     <string name="e_commerce_product_detail_maximum_product_limit_description">Maksimum ürün satın alma sınırına ulaştınız. Sepetinize maksimum %s ürün ekleyebilirsiniz</string>
     <string name="e_commerce_product_detail_maximum_product_limit_button">Ürüne dön</string>
@@ -210,6 +210,7 @@
     <string name="OK">Tamam</string>
     <string name="field_required">%s gerekli</string>
     <string name="cancel">Vazgeç</string>
+    <string name="e_commerce_general_and">ve</string>
     <string name="action_search">Ara</string>
     <string name="action_share">Paylaş</string>
     <string name="mobiroller_dialog_negative_button">Hayır, şimdi değil</string>

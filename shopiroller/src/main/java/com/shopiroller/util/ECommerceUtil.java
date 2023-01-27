@@ -30,6 +30,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Currency;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -45,7 +46,7 @@ public class ECommerceUtil {
     public static DateFormat dateFormatOrderDate = new SimpleDateFormat("dd MMMM yyyy");
     public static DateFormat dateFormatOrderTime = new SimpleDateFormat("EEEE, HH:mm");
     public static DateFormat dateFormatOrderDetail = new SimpleDateFormat("dd MMMM yyyy EEEE, HH:mm");
-    private static DecimalFormat formatter;
+    private static NumberFormat formatter;
     private static int badgeCount;
     private static PaymentSettings paymentSettings;
 
@@ -68,36 +69,14 @@ public class ECommerceUtil {
         }
     }
 
-    public static String getCurrencySymbol(String currency) {
-        if (currency == null)
-            return "";
-        if (currency.equalsIgnoreCase("TRY"))
-            return "₺";
-        else if (currency.equalsIgnoreCase("EUR"))
-            return "€";
-        else if (currency.equalsIgnoreCase("USD"))
-            return "$";
-        else if (currency.equalsIgnoreCase("GBP"))
-            return "£";
-        else if (currency.equalsIgnoreCase("IRR"))
-            return "﷼";
-        else if (currency.equalsIgnoreCase("NOK"))
-            return "kr";
-        else if (currency.equalsIgnoreCase("RUB"))
-            return "\u20BD";
-        return currency;
-    }
-
-    public static String getCurrency(String currency) {
-        if (currency == null)
-            return "";
-        if (currency.equalsIgnoreCase("TRY"))
-            return "TL";
-        return currency;
-    }
-
     public static String getFormattedPrice(Double price, String currency) {
-        return String.format("%s %s", getPriceString(price), getCurrency(currency));
+        if (formatter == null) {
+            formatter = NumberFormat.getCurrencyInstance();
+            formatter.setMinimumFractionDigits(2);
+            formatter.setMaximumFractionDigits(2);
+        }
+        formatter.setCurrency(Currency.getInstance(currency));
+        return formatter.format(price);
     }
 
     public static String getOrderStatus(String status, Context context) {
@@ -119,20 +98,6 @@ public class ECommerceUtil {
             return Color.parseColor("#4bbf71");
         else
             return Color.parseColor("#464646");
-    }
-
-    public static String getPriceString(double price) {
-        setDecimalFormat();
-        return formatter.format(price);
-    }
-
-    private static void setDecimalFormat() {
-        if (formatter == null) {
-            formatter = (DecimalFormat) NumberFormat.getCurrencyInstance();
-            DecimalFormatSymbols symbols = formatter.getDecimalFormatSymbols();
-            symbols.setCurrencySymbol(""); // Don't use null.
-            formatter.setDecimalFormatSymbols(symbols);
-        }
     }
 
     public static String[] getSearchSuggestions() {

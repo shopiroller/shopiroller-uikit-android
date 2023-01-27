@@ -32,9 +32,9 @@ public class ProductDetailModel extends ProductListModel implements Serializable
 
     public String getPriceString() {
         if (campaignPrice != 0) {
-            return ECommerceUtil.getPriceString(campaignPrice) + " " + ECommerceUtil.getCurrency(currency);
+            return ECommerceUtil.getFormattedPrice(campaignPrice, currency);
         } else
-            return ECommerceUtil.getPriceString(price) + " " + ECommerceUtil.getCurrency(currency);
+            return ECommerceUtil.getFormattedPrice(price, currency);
     }
 
 }
