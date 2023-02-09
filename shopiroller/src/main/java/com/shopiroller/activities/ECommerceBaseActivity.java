@@ -15,7 +15,7 @@ public class ECommerceBaseActivity extends AppCompatActivity {
 
     public void startShoppingCartActivity() {
         if (!Shopiroller.getUserLoginStatus()) {
-            if(Shopiroller.getListener() != null)
+            if (Shopiroller.getListener() != null)
                 Shopiroller.getListener().loginNeeded();
         } else
             startActivity(new Intent(this, ShoppingCartActivity.class));
