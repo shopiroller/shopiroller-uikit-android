@@ -90,9 +90,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
-                        app:sBackgroundColor="#F8E7D8"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
+                        app:sBackgroundColor="#F8E7D8"
                         app:sText="@string/e_commerce_product_detail_sold_out_badge"
                         app:sTextColor="#000000" />
 
@@ -101,9 +101,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
-                        app:sBackgroundColor="#000000"
                         app:layout_constraintStart_toEndOf="@id/sold_out_badge"
                         app:layout_constraintTop_toTopOf="parent"
+                        app:sBackgroundColor="#000000"
                         app:sText="@string/e_commerce_list_free_shipping_badge"
                         app:sTextColor="#FFFFFF" />
 
@@ -125,10 +125,10 @@
                         android:layout_height="wrap_content"
                         android:includeFontPadding="false"
                         android:maxLines="2"
-                        app:sColorType="primary"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
+                        app:sColorType="primary"
                         app:sSizeType="head_one"
                         tools:text="Powerway WRX 01 FM/SD Bluetooth Portatif Speaker Ses Bombası" />
 
@@ -255,17 +255,17 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/variant_list"
                 android:layout_width="0dp"
-                android:visibility="gone"
+                android:layout_height="wrap_content"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:visibility="gone"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toTopOf="@id/quantity_layout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/top_container"
                 tools:itemCount="5"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/item_main_variant"/>
+                tools:listitem="@layout/item_main_variant" />
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -285,10 +285,10 @@
                     android:lineSpacingExtra="4.5sp"
                     android:paddingStart="15dp"
                     android:text="@string/e_commerce_product_detail_quantity"
-                    app:sColorType="primary"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:sColorType="primary"
                     app:sSizeType="heading_two" />
 
                 <com.shopiroller.views.legacy.ShopirollerImageView
@@ -300,18 +300,18 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_add_white_24dp"
-                    app:sTintType="primary" />
+                    app:sTintType="primary"
+                    app:srcCompat="@drawable/ic_add_white_24dp" />
 
                 <com.shopiroller.views.legacy.ShopirollerTextView
                     android:id="@+id/quantity_amount_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="15dp"
-                    app:sColorType="primary"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/quantity_up"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:sColorType="primary"
                     app:sSizeType="heading_two" />
 
                 <com.shopiroller.views.legacy.ShopirollerImageView
@@ -323,8 +323,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/quantity_amount_text"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_baseline_remove_24"
-                    app:sTintType="primary" />
+                    app:sTintType="primary"
+                    app:srcCompat="@drawable/ic_baseline_remove_24" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -346,8 +346,8 @@
                     android:lineSpacingExtra="4.5sp"
                     android:paddingStart="15dp"
                     android:text="@string/e_commerce_product_detail_description"
-                    app:sColorType="primary"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:sColorType="primary"
                     app:sSizeType="heading_two" />
 
                 <com.shopiroller.views.legacy.ShopirollerImageView
@@ -358,8 +358,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_baseline_keyboard_arrow_right_24"
-                    app:sTintType="primary" />
+                    app:sTintType="primary"
+                    app:srcCompat="@drawable/ic_baseline_keyboard_arrow_right_24" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -384,11 +384,11 @@
                     android:lines="1"
                     android:paddingStart="15dp"
                     android:text="@string/e_commerce_product_detail_return_terms"
-                    app:sColorType="primary"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/return_title_right_arrow_image_view"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:sColorType="primary"
                     app:sSizeType="heading_two" />
 
                 <com.shopiroller.views.legacy.ShopirollerImageView
@@ -400,8 +400,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_baseline_keyboard_arrow_right_24"
-                    app:sTintType="primary" />
+                    app:sTintType="primary"
+                    app:srcCompat="@drawable/ic_baseline_keyboard_arrow_right_24" />
 
             </com.shopiroller.views.legacy.ShopirollerClickableLayout>
 
@@ -426,11 +426,11 @@
                     android:lines="1"
                     android:paddingStart="15dp"
                     android:text="@string/e_commerce_product_detail_delivery_conditions"
-                    app:sColorType="primary"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/shipping_title_right_arrow_image_view"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:sColorType="primary"
                     app:sSizeType="heading_two" />
 
                 <com.shopiroller.views.legacy.ShopirollerImageView
@@ -442,8 +442,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_baseline_keyboard_arrow_right_24"
-                    app:sTintType="primary" />
+                    app:sTintType="primary"
+                    app:srcCompat="@drawable/ic_baseline_keyboard_arrow_right_24" />
 
             </com.shopiroller.views.legacy.ShopirollerClickableLayout>
 
@@ -534,9 +534,9 @@
         android:id="@+id/web_view_for_url"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
