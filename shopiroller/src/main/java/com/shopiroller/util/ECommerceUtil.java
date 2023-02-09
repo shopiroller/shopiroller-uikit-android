@@ -23,8 +23,6 @@ import com.shopiroller.network.ECommerceRequestHelper;
 import org.greenrobot.eventbus.EventBus;
 
 import java.text.DateFormat;
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -52,11 +50,11 @@ public class ECommerceUtil {
 
     public static String dateFormatOrderDateString = "dd MMMM yyyy";
     public static String dateFormatOrderTimeString = "EEEE, HH:mm";
-    public static String dateFormatOrderDetailString ="dd MMMM yyyy EEEE, HH:mm";
+    public static String dateFormatOrderDetailString = "dd MMMM yyyy EEEE, HH:mm";
 
     public static String APP_SETTINGS_BOOK = "appSettingsBook";
 
-    public String getFormattedDateTime(String stringDate, String format)  {
+    public String getFormattedDateTime(String stringDate, String format) {
         dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
         DateFormat dateFormat = new SimpleDateFormat(format);
         Date date = null;
@@ -200,7 +198,7 @@ public class ECommerceUtil {
         eCommerceRequestHelper.enqueue(responseCall, new ECommerceRequestHelper.ECommerceCallBack<PaymentSettings>() {
             @Override
             public void done() {
-                if(callBack != null) {
+                if (callBack != null) {
                     callBack.done();
                 }
             }
@@ -208,21 +206,21 @@ public class ECommerceUtil {
             @Override
             public void onSuccess(PaymentSettings result) {
                 ECommerceUtil.paymentSettings = result;
-                if(callBack != null) {
+                if (callBack != null) {
                     callBack.onSuccess(result);
                 }
             }
 
             @Override
             public void onFailure(ECommerceErrorResponse result) {
-                if(callBack != null) {
+                if (callBack != null) {
                     callBack.onFailure(result);
                 }
             }
 
             @Override
             public void onNetworkError(String result) {
-                if(callBack != null) {
+                if (callBack != null) {
                     callBack.onNetworkError(result);
                 }
             }
@@ -272,12 +270,12 @@ public class ECommerceUtil {
                     StringBuilder tempQuery = new StringBuilder(";" + variantList.get(i).getId() + ":");
                     boolean isFound = false;
                     for (int j = 0; j < variantList.get(i).getVariations().size(); j++) {
-                        if(variantList.get(i).getVariations().get(j).isChecked()) {
+                        if (variantList.get(i).getVariations().get(j).isChecked()) {
                             tempQuery.append(variantList.get(i).getVariations().get(j).getId() + ",");
                             isFound = true;
                         }
                     }
-                    if(isFound) {
+                    if (isFound) {
                         tempQuery = tempQuery.deleteCharAt(tempQuery.length() - 1);
                         query.append(tempQuery);
                     }
