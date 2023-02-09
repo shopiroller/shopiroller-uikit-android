@@ -29,6 +29,8 @@ public class ProductDetailModel extends ProductListModel implements Serializable
     public List<VariantDataModel> variantData = new ArrayList<>();
     @SerializedName("videos")
     public List<String> videos = new ArrayList<>();
+    @SerializedName("variantOfProductId")
+    public String variantOfProductID;
 
     public String getPriceString() {
         if (campaignPrice != 0) {

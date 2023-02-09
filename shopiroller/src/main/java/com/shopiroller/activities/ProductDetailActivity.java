@@ -167,15 +167,12 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
     RecyclerView variantList;
 
     Map<String, String> variantMapData = new HashMap<>();
-    Map<Integer, Integer> selectedVariantIndexMapData = new HashMap<>();
     List<VariationGroupsModel> variationGroupsModels = new ArrayList<>();
     List<ProductDetailModel> variants = new ArrayList<>();
     List<ProductImage> mediaImages = new ArrayList<>();
     List<ProductImage> variantImages = new ArrayList<>();
-    List<View> variantFields = new ArrayList<>();
     String videoUrl;
 
-    HashMap<Integer, VariantSelectionModel> variantGroupsChildParentMap = new HashMap<>();
     ArrayList<VariantSelectionModel> variantSelectionModels = new ArrayList<>();
 
     ArrayList<VariantDataModel> filterDataModel = new ArrayList<>();
@@ -222,10 +219,9 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
             return;
         }
         context.startActivity(new Intent(context, ProductDetailActivity.class)
-                        .putExtra(Constants.PRODUCT_ID, productId)
-                        .putExtra(Constants.PRODUCT_TITLE, title)
-                        .putExtra(Constants.PRODUCT_FEATURED_IMAGE, featuredImageUrl)
-//                , options.toBundle()
+                .putExtra(Constants.PRODUCT_ID, productId)
+                .putExtra(Constants.PRODUCT_TITLE, title)
+                .putExtra(Constants.PRODUCT_FEATURED_IMAGE, featuredImageUrl)
         );
     }
 
@@ -235,10 +231,9 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
             return;
         }
         context.startActivity(new Intent(context, ProductDetailActivity.class)
-                        .putExtra(Constants.PRODUCT_DETAIL_MODEL, productDetailModel)
-                        .putExtra(Constants.PRODUCT_TITLE, title)
-                        .putExtra(Constants.PRODUCT_FEATURED_IMAGE, featuredImageUrl)
-//                , options.toBundle()
+                .putExtra(Constants.PRODUCT_DETAIL_MODEL, productDetailModel)
+                .putExtra(Constants.PRODUCT_TITLE, title)
+                .putExtra(Constants.PRODUCT_FEATURED_IMAGE, featuredImageUrl)
         );
     }
 
@@ -248,10 +243,9 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
             return;
         }
         context.startActivity(new Intent(context, ProductDetailActivity.class)
-                        .putExtra(Constants.PRODUCT_LIST_MODEL, productListModel)
-                        .putExtra(Constants.PRODUCT_TITLE, title)
-                        .putExtra(Constants.PRODUCT_FEATURED_IMAGE, featuredImageUrl)
-//                , options.toBundle()
+                .putExtra(Constants.PRODUCT_LIST_MODEL, productListModel)
+                .putExtra(Constants.PRODUCT_TITLE, title)
+                .putExtra(Constants.PRODUCT_FEATURED_IMAGE, featuredImageUrl)
         );
     }
 
@@ -423,7 +417,11 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
                 @Override
                 public void onSuccess(ProductDetailModel result) {
                     productModel = result;
-                    loadUi();
+                    if (result.variantOfProductID != null) {
+                        getVariantGroup();
+                    } else {
+                        loadUi();
+                    }
                 }
 
                 @Override
@@ -444,6 +442,49 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
             });
         } else
             DialogUtil.showNoConnectionError(this);
+    }
+
+    private void getVariantGroup() {
+        progressViewHelper.show();
+        Call<ECommerceResponse<ProductDetailModel>> responseCall = eCommerceRequestHelper.getApiService().getProduct(productModel.variantOfProductID);
+        eCommerceRequestHelper.enqueue(responseCall, new ECommerceRequestHelper.ECommerceCallBack<ProductDetailModel>() {
+            @Override
+            public void done() {
+                if (!isFinishing() && progressViewHelper.isShowing())
+                    progressViewHelper.dismiss();
+            }
+
+            @Override
+            public void onSuccess(ProductDetailModel result) {
+                productModel.variationGroups = result.variationGroups;
+                loadUi();
+                for (int i = 0; i < productModel.variantData.size(); i++) {
+                    for (int j = 0; j < variationGroupsModels.get(i).getVariations().size(); j++) {
+                        if (variationGroupsModels.get(i).getVariations().get(j).getId().equals(productModel.variantData.get(i).getVariationId())) {
+                            variantSelectionModels.get(i).getVariationList().get(j).setSelected(true);
+                            clickedVariantSection(j, i);
+                            break;
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(ECommerceErrorResponse result) {
+                showWarning(getString(R.string.e_commerce_product_detail_not_found_product_title), getString(R.string.e_commerce_product_detail_not_found_product_description), getString(R.string.e_commerce_product_detail_not_found_product_button), new ShopirollerDialog.DialogButtonCallback() {
+                    @Override
+                    public void onClickButton() {
+                        finish();
+                    }
+                });
+            }
+
+            @Override
+            public void onNetworkError(String result) {
+                ErrorUtils.showErrorToast(ProductDetailActivity.this);
+                finish();
+            }
+        });
     }
 
     private void loadVariantModel(int variantIndex) {
@@ -826,7 +867,6 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
     }
 
     private void showWarning(String title, String description, String buttonText, ShopirollerDialog.DialogButtonCallback listener) {
-
         new ShopirollerDialog.Builder()
                 .setContext(ProductDetailActivity.this)
                 .setTitle(title)
@@ -863,7 +903,7 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
             }
         }
 
-        Integer selectionModelIndex = 0;
+        Integer selectionModelIndex;
 
         if (filterDataModel.size() != variantSelectionModels.size()) {
             selectionModelIndex = filterDataModel.size();
@@ -1077,12 +1117,6 @@ public class ProductDetailActivity extends ECommerceBaseActivity implements Vide
         } else if (webViewForUrl.getVisibility() == View.VISIBLE && webViewForUrl.canGoBack()) {
             webViewForUrl.goBack();
         } else finish();
-    }
-
-    @Override
-    public void finish() {
-        super.finish();
-//        overridePendingTransition(R.anim.push_up_in, R.anim.push_up_out);
     }
 
     @OnClick(R2.id.video_play_image_view)
