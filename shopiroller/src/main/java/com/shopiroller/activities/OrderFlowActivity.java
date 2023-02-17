@@ -440,7 +440,7 @@ public class OrderFlowActivity extends ECommerceBaseActivity {
     }
 
     private void setDefaultAddresses() {
-        if(Shopiroller.getListener() != null)
+        if (Shopiroller.getListener() != null)
             Shopiroller.getListener().onDefaultAddressChanged(makeOrder.userBillingAddressModel.id, makeOrder.userShippingAddressModel.id);
     }
 

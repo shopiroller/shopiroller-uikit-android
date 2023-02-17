@@ -115,7 +115,7 @@ public class Online3DSecureGateway extends ECommerceBaseActivity {
 
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            if(!NetworkHelper.isConnected(Online3DSecureGateway.this)) {
+            if (!NetworkHelper.isConnected(Online3DSecureGateway.this)) {
                 DialogUtil.showNoConnectionInfo(Online3DSecureGateway.this, new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
@@ -126,12 +126,12 @@ public class Online3DSecureGateway extends ECommerceBaseActivity {
                     }
                 });
             }
-            if (url.equalsIgnoreCase(Applyze_Payment_Complete) || url.equalsIgnoreCase(Applyze_Payment_Complete_1)  || url.equalsIgnoreCase(Applyze_Payment_Complete_2)) {
+            if (url.equalsIgnoreCase(Applyze_Payment_Complete) || url.equalsIgnoreCase(Applyze_Payment_Complete_1) || url.equalsIgnoreCase(Applyze_Payment_Complete_2)) {
                 Intent data = new Intent();
                 data.putExtra(ONLINE_PAYMENT_3D_HTML_REQUEST_SUCCESS, true);
                 setResult(RESULT_OK, data);
                 finish();
-            } else if (url.equalsIgnoreCase(Applyze_Payment_Failed) || url.equalsIgnoreCase(Applyze_Payment_Failed_1)  || url.equalsIgnoreCase(Applyze_Payment_Failed_2)) {
+            } else if (url.equalsIgnoreCase(Applyze_Payment_Failed) || url.equalsIgnoreCase(Applyze_Payment_Failed_1) || url.equalsIgnoreCase(Applyze_Payment_Failed_2)) {
                 Intent data = new Intent();
                 data.putExtra(ONLINE_PAYMENT_3D_HTML_REQUEST_FAILED, false);
                 setResult(RESULT_OK, data);
@@ -151,7 +151,7 @@ public class Online3DSecureGateway extends ECommerceBaseActivity {
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
             super.onPageStarted(view, url, favicon);
-            Log.e("onPageStarted",url);
+            Log.e("onPageStarted", url);
             if (!isFinishing() && legacyProgressViewHelper != null && !legacyProgressViewHelper.isShowing())
                 legacyProgressViewHelper.show();
             if (url.equalsIgnoreCase(Applyze_Payment_Complete) || url.equalsIgnoreCase(Applyze_Payment_Complete_1) || url.contains(Applyze_Payment_Complete_2)) {
@@ -159,7 +159,7 @@ public class Online3DSecureGateway extends ECommerceBaseActivity {
                 data.putExtra(ONLINE_PAYMENT_3D_HTML_REQUEST_SUCCESS, true);
                 setResult(RESULT_OK, data);
                 finish();
-            } else if (url.equalsIgnoreCase(Applyze_Payment_Failed)  || url.equalsIgnoreCase(Applyze_Payment_Failed_1) || url.contains(Applyze_Payment_Failed_2)) {
+            } else if (url.equalsIgnoreCase(Applyze_Payment_Failed) || url.equalsIgnoreCase(Applyze_Payment_Failed_1) || url.contains(Applyze_Payment_Failed_2)) {
 
                 Map<String, String> query_pairs = new HashMap<>();
                 try {
@@ -170,7 +170,7 @@ public class Online3DSecureGateway extends ECommerceBaseActivity {
                     e.printStackTrace();
                 }
                 String mResult = "";
-                if(query_pairs.containsKey("status"))
+                if (query_pairs.containsKey("status"))
                     mResult = query_pairs.get("status");
 
 
@@ -203,7 +203,7 @@ public class Online3DSecureGateway extends ECommerceBaseActivity {
     public static Map<String, String> splitQuery(URL url) throws UnsupportedEncodingException {
         Map<String, String> query_pairs = new LinkedHashMap<String, String>();
         String query = url.getQuery();
-        if(query!=null) {
+        if (query != null) {
             String[] pairs = query.split("&");
             for (String pair : pairs) {
                 int idx = pair.indexOf("=");
