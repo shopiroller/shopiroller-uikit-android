@@ -6,6 +6,7 @@ import static com.shopiroller.constants.Constants.PAY_PAL_REQUEST_SUCCESS;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.work.BackoffPolicy;
@@ -15,15 +16,14 @@ import androidx.work.NetworkType;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
 
-import com.braintreepayments.api.BraintreeFragment;
-import com.braintreepayments.api.PayPal;
-import com.braintreepayments.api.exceptions.ErrorWithResponse;
-import com.braintreepayments.api.exceptions.InvalidArgumentException;
-import com.braintreepayments.api.interfaces.BraintreeCancelListener;
-import com.braintreepayments.api.interfaces.BraintreeErrorListener;
-import com.braintreepayments.api.interfaces.PaymentMethodNonceCreatedListener;
-import com.braintreepayments.api.models.PayPalRequest;
-import com.braintreepayments.api.models.PaymentMethodNonce;
+import com.braintreepayments.api.BraintreeClient;
+import com.braintreepayments.api.ErrorWithResponse;
+import com.braintreepayments.api.PayPalAccountNonce;
+import com.braintreepayments.api.PayPalCheckoutRequest;
+import com.braintreepayments.api.PayPalClient;
+import com.braintreepayments.api.PayPalListener;
+import com.braintreepayments.api.PayPalPaymentIntent;
+import com.braintreepayments.api.UserCanceledException;
 import com.shopiroller.SharedApplication;
 import com.shopiroller.helpers.LegacyProgressViewHelper;
 import com.shopiroller.models.ECommerceResponse;
@@ -39,10 +39,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PayPalActivity extends AppCompatActivity implements PaymentMethodNonceCreatedListener,
-        BraintreeCancelListener, BraintreeErrorListener {
+public class PayPalActivity extends AppCompatActivity implements PayPalListener {
 
-    private BraintreeFragment mBraintreeFragment;
+    private BraintreeClient braintreeClient;
+    private PayPalClient payPalClient;
+
     public final static String PAYPAL_AUTH_TOKEN_KEY = "PayPalAuthTokenIntentExtra";
     public final static String PAYPAL_ORDER_ID_KEY = "PayPalOrderIdIntentExtra";
     public final static String PAYPAL_NONCE_KEY = "PayPalNonceIntentExtra";
@@ -73,23 +74,22 @@ public class PayPalActivity extends AppCompatActivity implements PaymentMethodNo
         } else {
             failed();
         }
-        try {
-            mBraintreeFragment = BraintreeFragment.newInstance(this, token);
 
-            PayPalRequest request = new PayPalRequest(String.valueOf(amount))
-                    .displayName(displayName)
-                    .currencyCode(currencyCode)
-                    .intent(PayPalRequest.INTENT_AUTHORIZE);
-            PayPal.requestOneTimePayment(mBraintreeFragment, request);
-        } catch (InvalidArgumentException e) {
-            e.printStackTrace();
-            failed();
-        }
+        braintreeClient = new BraintreeClient(this, token);
+        payPalClient = new PayPalClient(this, braintreeClient);
+
+        PayPalCheckoutRequest request = new PayPalCheckoutRequest(String.valueOf(amount));
+        request.setDisplayName(displayName);
+        request.setCurrencyCode(currencyCode);
+        request.setIntent(PayPalPaymentIntent.AUTHORIZE);
+        payPalClient.tokenizePayPalAccount(this, request);
+
+        payPalClient.setListener(this);
     }
 
     @Override
-    public void onPaymentMethodNonceCreated(PaymentMethodNonce paymentMethodNonce) {
-        queueSuccessRequest(paymentMethodNonce.getNonce());
+    public void onPayPalSuccess(@NonNull PayPalAccountNonce payPalAccountNonce) {
+        queueSuccessRequest(payPalAccountNonce.getString());
         Intent data = new Intent();
         data.putExtra(PAY_PAL_REQUEST_SUCCESS, true);
         setResult(RESULT_OK, data);
@@ -97,13 +97,10 @@ public class PayPalActivity extends AppCompatActivity implements PaymentMethodNo
     }
 
     @Override
-    public void onCancel(int requestCode) {
-        failed();
-    }
-
-    @Override
-    public void onError(Exception error) {
-        if (error instanceof ErrorWithResponse) {
+    public void onPayPalFailure(@NonNull Exception error) {
+        if (error instanceof UserCanceledException) {
+            failed();
+        } else if (error instanceof ErrorWithResponse) {
             ErrorWithResponse errorWithResponse = (ErrorWithResponse) error;
 
             try {
@@ -118,6 +115,7 @@ public class PayPalActivity extends AppCompatActivity implements PaymentMethodNo
         error.printStackTrace();
         failed();
     }
+
 
     private void queueSuccessRequest(String nonce) {
 
@@ -163,5 +161,4 @@ public class PayPalActivity extends AppCompatActivity implements PaymentMethodNo
         setResult(RESULT_OK, data);
         finish();
     }
-
 }

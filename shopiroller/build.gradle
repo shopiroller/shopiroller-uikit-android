@@ -28,7 +28,7 @@ new File("${rootDir}/scripts/publish-version.txt").eachLine { line ->
 }
 
 android {
-    compileSdkVersion 31
+    compileSdk 33
     ext {
         PUBLISH_GROUP_ID = publishGroupId
         PUBLISH_ARTIFACT_ID = publishArtifactId
@@ -88,7 +88,7 @@ dependencies {
 
     implementation 'com.squareup.okhttp3:logging-interceptor:3.12.1'
 
-    implementation 'com.braintreepayments.api:braintree:3.21.1'
+    implementation 'com.braintreepayments.api:paypal:4.43.0'
 
     implementation 'com.stripe:stripe-android:20.8.0'
 
