@@ -55,26 +55,19 @@
             android:theme="@style/NoActionBarNoStatusBar" />
         <activity
             android:name="com.shopiroller.activities.PayPalActivity"
-            android:theme="@style/PayPal" />
+            android:exported="true"
+            android:theme="@style/PayPal" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <data android:scheme="${applicationId}.braintree"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+            </intent-filter>
+        </activity>
 
         <activity
             android:name="com.shopiroller.activities.VideoPlayerActivity"
             android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|screenLayout|screenSize"
             android:theme="@style/MaterialComponentsNoActionBarNoStatusBar" />
-        
-        <activity
-            android:name="com.braintreepayments.api.BraintreeBrowserSwitchActivity"
-            android:launchMode="singleTask"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:scheme="${applicationId}.braintree" />
-            </intent-filter>
-        </activity>
-        
     </application>
 </manifest>
