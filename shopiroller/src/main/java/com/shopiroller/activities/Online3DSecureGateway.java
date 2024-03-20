@@ -89,7 +89,7 @@ public class Online3DSecureGateway extends ECommerceBaseActivity {
         settings.setBuiltInZoomControls(true);
 
         settings.setDomStorageEnabled(true);
-        settings.setAppCacheEnabled(true);
+        settings.setCacheMode(WebSettings.LOAD_DEFAULT);
         paymentHtml = getIntent().getStringExtra(ONLINE_PAYMENT_3D_HTML);
         webView.setWebViewClient(new Online3DWebViewClient());
         settings.setDefaultTextEncodingName("utf-8");
