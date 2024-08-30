@@ -8,8 +8,8 @@
         android:id="@+id/suggestion_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/search_view_text_padding"
-        android:paddingRight="@dimen/search_view_text_padding"
+        android:paddingLeft="65dp"
+        android:paddingRight="65dp"
         android:textColor="#727272"
         android:layout_centerVertical="true"
         android:focusable="false"
@@ -24,7 +24,7 @@
         android:paddingLeft="@dimen/search_icon_padding"
         android:paddingRight="@dimen/search_icon_padding"
         android:focusable="false"
-        android:src="@drawable/ic_suggestion" />
+        android:src="@drawable/ic_outline_info_24" />
 
     <ImageView
         android:id="@+id/remove_icon"
@@ -33,9 +33,9 @@
         android:layout_centerVertical="true"
         android:layout_alignParentEnd="true"
         android:background="@android:color/transparent"
-        android:paddingLeft="@dimen/search_icon_padding"
-        android:paddingRight="@dimen/search_icon_padding"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
         android:focusable="false"
-        android:tint="#606060"
-        app:srcCompat="@drawable/ic_close_grey_24dp" />
+        app:srcCompat="@drawable/ic_close_grey_24dp"
+        app:tint="#606060" />
 </RelativeLayout>
